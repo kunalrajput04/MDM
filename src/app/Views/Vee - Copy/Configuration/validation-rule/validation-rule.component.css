@@ -1,0 +1,26 @@
+.create_btn {
+    line-height: 28px;
+    background-color: #08537f;
+    color: white;
+  }
+  
+  .search-icon {
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  .search-btn {
+    background-color: #008b8bab;
+    height: 44px;
+    width: 44px;
+    margin-top: 32px;
+  }
+  
+  .field {
+    height: 44px;
+  }
+  
+  :host ::ng-deep .ag-header-cell-text {
+    text-transform: uppercase;
+  }
+  

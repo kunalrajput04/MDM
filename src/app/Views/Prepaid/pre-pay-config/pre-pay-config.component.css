@@ -1,0 +1,17 @@
+.h5 {
+    background-color: #ddd;
+    padding: 3px;
+}
+.form-check-label{
+    margin-left: 21px;
+}
+.padding_infor_info {
+    padding: 2px 4px;
+ 
+}
+
+.updatebtn {
+    float: right;
+    font-size: 14px;
+    padding: 1px 21px;
+}

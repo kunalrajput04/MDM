@@ -1,0 +1,28 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
+.invalid {
+    border-color: red;
+}
+
+a {
+    cursor: pointer !important;
+}
+
+.errorclass {
+    border-color: red;
+}
+
+.successclass {
+    border-color: green;
+}
+
+.ag-header {
+    font-weight: 600 !important;
+    font-size: 15px;
+}
+
+.apexcharts-menu-item.exportCSV {
+    display: none;
+}

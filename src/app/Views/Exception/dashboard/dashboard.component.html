@@ -1,0 +1,176 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Dashboard</h2>
+
+                </div>
+
+
+            </div>
+        </div>
+        <!-- row -->
+
+
+
+        <div class="row column1">
+
+
+            <div class="col-md-4 col-lg-2">
+                <a routerLink="/mdm/exception/newevents">
+                    <div class="full counter_section margin_bottom_30 allconsumer">
+
+                        <div class="counter_no">
+                            <i [ngClass]="eventCount.newEvents > 0 ? 'redicon blink' : 'icon'" class="fa fa-bell ">
+          </i>
+                            <div>
+                                <p style="color: white" class="total_no">{{eventCount.singleEvents}}</p>
+                                <p style="color: white" class="head_couter">1P </p>
+                                <P></P>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-2">
+                <a routerLink="/mdm/exception/newevents">
+                    <div class="full counter_section margin_bottom_30 allconsumer">
+
+                        <div class="counter_no">
+                            <i [ngClass]="eventCount.newEvents > 0 ? 'redicon blink' : 'icon'" class="fa fa-bell ">
+        </i>
+                            <div>
+                                <p style="color: white" class="total_no">{{eventCount.threeEvents}}</p>
+                                <p style="color: white" class="head_couter">3P </p>
+                                <P></P>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-2">
+                <a routerLink="/mdm/exception/newevents">
+                    <div class="full counter_section margin_bottom_30 allconsumer">
+
+                        <div class="counter_no">
+                            <i [ngClass]="eventCount.newEvents > 0 ? 'redicon blink' : 'icon'" class="fa fa-bell ">
+      </i>
+                            <div>
+                                <p style="color: white" class="total_no">{{eventCount.ltEvents}}</p>
+                                <p style="color: white" class="head_couter">LT</p>
+                                <P></P>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-2">
+                <a routerLink="/mdm/exception/newevents">
+                    <div class="full counter_section margin_bottom_30 allconsumer">
+
+                        <div class="counter_no">
+                            <i [ngClass]="eventCount.newEvents > 0 ? 'redicon blink' : 'icon'" class="fa fa-bell ">
+    </i>
+                            <div>
+                                <p style="color: white" class="total_no">{{eventCount.htEvents}}</p>
+                                <p style="color: white" class="head_couter">HT</p>
+                                <P></P>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <a routerLink="/mdm/exception/critical">
+                    <div class="full counter_section margin_bottom_30 allconsumer">
+
+                        <div class="counter_no">
+                            <i [ngClass]="eventCount.newEvents > 0 ? 'redicon blink' : 'icon'" class="fa fa-exclamation-triangle"></i>
+                            <div>
+                                <p style="color: white" class="total_no">{{eventCount.newEvents}}</p>
+                                <p style="color: white" class="head_couter">Critical Events</p>
+                                <P></P>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <div class="col-md-4 col-lg-4">
+
+                <div class="full counter_section margin_bottom_30 paidconsumer">
+
+                    <div class="counter_no">
+                        <i class="fa fa-bell icon">
+              </i>
+                        <div>
+                            <p style="color: white" class="total_no">{{eventCount.weeklyEvents}}</p>
+                            <p style="color: white" class="head_couter">Weekly Events</p>
+                            <P></P>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                <div class="full counter_section margin_bottom_30 dueconsumer">
+
+                    <div class="counter_no">
+                        <i class="fa fa-bell icon">
+              </i>
+                        <div>
+                            <p style="color: white" class="total_no">{{eventCount.monthlyEvents}}</p>
+                            <p style="color: white" class="head_couter">Monthly Events</p>
+                            <P></P>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="full inner_elements">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="tab_style2">
+                                    <div class="tabbar padding_infor_info">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab1" role="tablist">
+                                                <a (click)="changeEventType('Today')" class="nav-item nav-link active show" id="nav-home-tab2" data-toggle="tab" href="#today" role="tab" aria-controls="nav-home_s2" aria-selected="true">Today Events</a>
+                                                <a (click)="changeEventType('Weekly')" class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#weekly" role="tab" aria-controls="nav-profile_s2" aria-selected="false">Weekly Events</a>
+                                                <a (click)="changeEventType('Monthly')" class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab" href="#monthly" role="tab" aria-controls="nav-contacts_s2" aria-selected="false">Monthly Events</a>
+
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent_2">
+                                            <div class="tab-pane fade active show" id="today" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                <app-today-events *ngIf="eventType=='Today'"></app-today-events>
+                                            </div>
+                                            <div class="tab-pane fade" id="weekly" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                <app-weekly-events *ngIf="eventType=='Weekly'"></app-weekly-events>
+                                            </div>
+                                            <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                                <app-monthly-events *ngIf="eventType=='Monthly'"></app-monthly-events>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

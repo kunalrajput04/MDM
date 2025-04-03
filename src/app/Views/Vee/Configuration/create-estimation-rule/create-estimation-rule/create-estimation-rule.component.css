@@ -1,0 +1,84 @@
+.error {
+  color: red;
+}
+.down-arrow {
+  right: 1px;
+    top: 1px;
+    padding: 10px;
+    background-color: #f0f8ffe6;
+}
+
+.submit {
+  background-color: #008b8bab;
+    color: white;
+}
+
+.reset {
+  background-color: white;
+    border: 1px solid black;
+}
+
+:host ::ng-deep .switch small {
+  top: -7px;
+}
+:host ::ng-deep .switch.switch-medium {
+  height: 12px;
+}
+
+:host ::ng-deep .switch.switch-medium:not(.checked) small {
+  background:rgb(193 193 193) !important;
+  width: 25px;
+  height: 25px;
+  right: calc(100% - 24px);
+}
+
+:host ::ng-deep .switch.switch-medium.checked small {
+  background: rgb(0, 139, 139) !important;
+  width: 25px;
+  height: 25px;
+}
+
+.ui-switch {
+  width: 50px;
+} 
+/* *********************************************************************** */
+.form-control{
+  width: 100%;
+  font-size: 14px;
+}
+/* **************************************************** */
+
+::ng-deep .mat-select-value-text {
+  color: black;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-select-trigger {
+  border: 1px solid black;
+}
+
+.dropdown {
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.classification {
+  color: black;
+}
+
+.modelValue {
+  margin-left: 100px;
+}
+
+.selectedMenu {
+  color: black;
+  background-color: lightgray;
+
+}
+
+selectedMenu::after {
+  content: " (" attr(href) ")";
+}

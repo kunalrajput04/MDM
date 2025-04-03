@@ -1,0 +1,377 @@
+<div class="container-fluid pt-3 px-0">
+  <section>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <!-- <i class="fa fa-cog p-2" aria-hidden="true"></i> -->
+        <div class="text-container" *ngIf="!IsEditable">
+          <!-- <p class="m-0">VEE &nbsp; &#62; &nbsp;Configuration &nbsp; &#62;</p> -->
+          <p
+            class="m-0 font-weight-bold"
+            style="font-size: 16px; color: #364052"
+          >
+            Create Validation Rule
+          </p>
+        </div>
+        <div class="text-container" *ngIf="IsEditable">
+          <p
+            class="m-0 font-weight-bold"
+            style="font-size: 16px; color: #364052"
+          >
+            Edit Data
+          </p>
+        </div>
+      </div>
+      <div class="create-button">
+        <button type="button" routerLink="../validationRule" class="btn border">
+          &nbsp;Back
+        </button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-8">
+        <form #form="ngForm" novalidate autocomplete="off">
+          <div class="modal-body">
+            <div class="row">
+              <!-- <div class="d-flex"> -->
+              <div class="col-4 p-0">
+                <div class="form-group m-2">
+                  <label class="HideFeederDropDown" style="margin-bottom: 1em"
+                    >Meter Type
+                    <span
+                      [ngClass]="{
+                        error:
+                        meterType.invalid && meterType.touched
+                      }"
+                      >*</span
+                    >  </label
+                  ><br />
+                  <select
+                    #meterType="ngModel"
+                    name="meterType"
+                    id="meterType"
+                    class="form-control"
+                    [(ngModel)]="formdata.meterType"
+                    (ngModelChange)="getBillingtype($event)"
+                    required
+                  >
+                    <option value="" disabled selected default hidden>
+                      Select Meter Type
+                    </option>
+                    <option *ngFor="let obj of MeterType" [value]="obj">
+                      {{ obj }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="meterType.errors?.required && (meterType.touched)"
+                    class="alert alert-danger my-2"
+                  >
+                    Meter Type is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 p-0">
+                <div class="form-group m-2">
+                  <label class="HideFeederDropDown" style="margin-bottom: 1em"
+                    >Data Type<span
+                      [ngClass]="{
+                        error: dataType.invalid && dataType.touched
+                      }"
+                      >*</span
+                    ></label
+                  ><br />
+                  <select
+                    #dataType="ngModel"
+                    name="dataType"
+                    id="dataType"
+                    class="form-control"
+                    [(ngModel)]="formdata.dataType"
+                    (ngModelChange)="getBillingtype($event)"
+                    required
+                    (change)="onChange($event.target)"
+                  >
+                    <option value="" disabled selected default hidden>
+                      Select Data Type
+                    </option>
+                    <option
+                      *ngFor="let obj of validationtype"
+                      [value]="obj.name"
+                    >
+                      {{ obj.name }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="dataType.invalid && dataType.touched"
+                    class="alert alert-danger my-2"
+                  >
+                    Data Type Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 p-0">
+                <div class="form-group m-2">
+                  <label class="HideFeederDropDown" style="margin-bottom: 1em"
+                    >Validation Type
+                    <span
+                      [ngClass]="{
+                        error: validationType.invalid && validationType.touched
+                      }"
+                      >*</span
+                    ></label
+                  ><br />
+                  <select
+                    #validationType="ngModel"
+                    name="validationType"
+                    id="validationType"
+                    class="form-control"
+                    [(ngModel)]="formdata.validationType"
+                    (ngModelChange)="getBillingtype($event)"
+                    required
+                  >
+                    <option value="" disabled selected default hidden>
+                      Select Validation Type
+                    </option>
+                    <option
+                      *ngFor="let obj1 of typeData | keyvalue"
+                      [value]="obj1.value"
+                    >
+                      {{ obj1.value }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="validationType.invalid && validationType.touched"
+                  class="alert alert-danger my-2"
+                >
+                  validation Type Name is required
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 p-0">
+                <div class="form-group m-2">
+                  <label for="validationRuleName" style="margin-bottom: 1em"
+                    >Validation Rule Name<span
+                      [ngClass]="{
+                        error:
+                          validationRuleType.invalid &&
+                          validationRuleType.touched
+                      }"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    #validationRuleType="ngModel"
+                    name="validationRuleType"
+                    id="validationRuleType"
+                    class="form-control"
+                    [(ngModel)]="formdata.validationRuleType"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      validationRuleType.invalid && validationRuleType.touched
+                    "
+                    class="alert alert-danger my-2"
+                  >
+                    Validation Rule Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 p-0">
+                <div class="form-group m-2">
+                  <label class="HideFeederDropDown" style="margin-bottom: 1em"
+                    >Parameter
+                    <span
+                      [ngClass]="{
+                        error: parameter.invalid && parameter.touched
+                      }"
+                      >*</span
+                    ></label
+                  >
+                  <select
+                    #parameter="ngModel"
+                    name="parameter"
+                    id="parameter"
+                    class="form-control"
+                    [(ngModel)]="formdata.parameter"
+                    (ngModelChange)="getBillingtype($event)"
+                    required
+                  >
+                    <option value="" disabled selected default hidden>
+                      Select Parameter
+                    </option>
+                    <option *ngFor="let obj of parameters" [value]="obj">
+                      {{ obj }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="parameter.invalid && parameter.touched"
+                    class="alert alert-danger my-2"
+                  >
+                    Parameter Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row flex-nowrap justify-content-around pt-2">
+              <div class="col-3 p-0 mx-1">
+                <div class="form-group">
+                  <label for="lowThreshold" style="margin-bottom: 1em"
+                    >Low Threshold
+                    <span
+                    [ngClass]="{
+                      error: lowThreshold.invalid && lowThreshold.touched
+                    }"
+                    >*</span>
+                    </label
+                  >
+                  <div class="position-relative">
+                    <input
+                      type="text"
+                      #lowThreshold="ngModel"
+                      name="lowThreshold"
+                      id="lowThreshold"
+                      class="w-100 form-control"
+                      [(ngModel)]="formdata.lowThreshold"
+                      required
+                    />
+                    <i
+                      class="fa-solid fa-arrow-down position-absolute down-arrow btn btn-light"
+                      aria-hidden="true"
+                      style="color: #ff00006b"
+                    ></i>
+                  </div>
+                  <div
+                  *ngIf="lowThreshold.invalid && lowThreshold.touched"
+                  class="alert alert-danger my-2"
+                >
+                LowThreshold is required
+                </div>
+                </div>
+              </div>
+              <div class="col-3 p-0 mx-1">
+                <div class="form-group">
+                  <label for="highThreshold" style="margin-bottom: 1em"
+                    >High Threshold
+                    <span
+                    [ngClass]="{
+                      error: highThreshold.invalid && highThreshold.touched
+                    }"
+                    >*</span>
+                    </label
+                  >
+                  <div class="position-relative">
+                    <input
+                      type="text"
+                      #highThreshold="ngModel"
+                      name="highThreshold"
+                      id="highThreshold"
+                      class="w-100 form-control"
+                      [(ngModel)]="formdata.highThreshold"
+                      required
+                    />
+                    <i
+                      class="fa-solid fa-arrow-up position-absolute down-arrow btn btn-light"
+                      aria-hidden="true"
+                      style="color: #ff00006b"
+                    ></i>
+                  </div>
+                  <div
+                  *ngIf="highThreshold.invalid && highThreshold.touched"
+                  class="alert alert-danger my-2"
+                >
+                HighThreshold is required
+                </div>
+                </div>
+              </div>
+              <div class="col-3 p-0 mx-3">
+                <div class="form-group">
+                  <label for="effectiveFrom" style="margin-bottom: 1em"
+                    >Effective From<span
+                      [ngClass]="{
+                        error: effectiveFrom.invalid && effectiveFrom.touched
+                      }"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="date"
+                    #effectiveFrom="ngModel"
+                    name="effectiveFrom"
+                    [(ngModel)]="formdata.effectiveFrom"
+                    class="form-control"
+                    required=""
+                  />
+                  <div
+                    *ngIf="effectiveFrom.invalid && effectiveFrom.touched"
+                    class="alert alert-danger my-2"
+                  >
+                    Effective From is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-5 d-flex flex-column">
+                <label for="Estimation">Estimation Required</label>
+                <ui-switch
+                  class="ui-switch"
+                  #estimationRequired="ngModel"
+                  name="estimationRequired"
+                  [(ngModel)]="formdata.estimationRequired"
+                  (ngModelChange)="getBillingtype($event)"
+                ></ui-switch>
+              </div>
+              <div class="col-5 d-flex flex-column">
+                <label for="status">Status</label>
+                <ui-switch
+                  class="ui-switch"
+                  #status="ngModel"
+                  name="status"
+                  [(ngModel)]="formdata.status"
+                  (ngModelChange)="getBillingtype($event)"
+                ></ui-switch>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group m-2 w-100">
+                <label for="ruleDescription" style="margin-bottom: 1em"
+                  >Rule Description</label
+                >
+                <textarea
+                  #ruleDescription="ngModel"
+                  name="ruleDescription"
+                  id="ruleDescription"
+                  class="form-control"
+                  [(ngModel)]="formdata.ruleDescription"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row" *ngIf="!IsEditable">
+              <button
+                type="button"
+                class="btn btn-light submit m-2"
+                (click)="createValidationRule()"
+              >
+                Submit
+              </button>
+            
+            </div>
+            <div class="row" *ngIf="IsEditable">
+              <button
+                type="button"
+                class="btn btn-light submit m-2"
+                (click)="save()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

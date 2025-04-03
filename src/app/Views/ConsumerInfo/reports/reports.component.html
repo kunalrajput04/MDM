@@ -1,0 +1,105 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-lg-12 col-12 layout-spacing">
+      <div class="widget-content widget-content-area animated-underline-content">
+<div class="tab-content" id="animateLineContent-4">
+          <div class="tab-pane fade show active" id="animated-underline-home" role="tabpanel"
+            aria-labelledby="animated-underline-home-tab">
+            <h3 style="color: white; background-color: blue">
+              New Meter Report
+            </h3>
+            <br />
+
+            <form method="post" #form="ngForm" (submit)="onSubmit()">
+              <div class="form-row mb-4">
+               
+                <div class="col-md-3 mb-3" id="basic">
+                  <label for="validationCustom_22">From Date* </label>
+                  <br />
+                  <input type="date" #fromDate="ngModel" name="fromDate" [(ngModel)]="formdata.fromDate"
+                    class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3" id="basic">
+                  <label for="validationCustom_22">To Date* </label>
+                  <br />
+                  <input type="date" #toDate="ngModel" name="toDate" [(ngModel)]="formdata.toDate"
+                    class="form-control" />
+                </div>
+
+                <div class="col-md-2 mb-2" id="basic" style="margin-top: 14px">
+                  <button type="submit" id="submitform" class="btn btn-success mt-3 btn-lg">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <div class="col-md-12 mb-4">
+              <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+                <i class="fa fa-download"></i> CSV Export
+              </button>
+              <select name="pageOption" [(ngModel)]="pageOption" (change)="getRecordNumber()">
+                <option value="All">All</option>
+                <option value="500">500</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="20000">20000</option>
+                <option value="30000">30000</option>
+                <option value="Customize">Customize</option>
+              </select>
+              <select name="searchColumn"  [(ngModel)]="formdata.searchColumn" >
+                <option value="">Select Search Column</option>
+                <option value="customerNo">Customer No</option>
+                <option value="newCustomerNo">New Consumer No</option>
+                <option value="customerName">Customer Name</option>
+                <option value="aadharNo">Aadhar No</option>
+                <option value="bookNo">Book No</option>
+                <option value="houseno">House No</option>
+                <option value="villageName">Village Name</option>
+                <option value="censusCode">Census Code</option>
+                <option value="cableLength">Cable Length</option>
+                <option value="Address">Customer Address</option>
+                <option value="MeterSerialNumber">MeterNo</option>
+                <option value="simImei">Sim Imei</option>
+                <option value="iPv6Address">IPv6 Address</option>
+                <option value="simType">Sim Type</option>
+                <option value="meterSealNo">Meter SealNo</option>
+                <option value="boxSealNo">Box SealNo</option>
+                <option value="gprsSealNo">Gprs SealNo</option>
+                <option value="meterManufacture">Meter Manufacture</option>
+                <option value="sectionLoad">SectionLoad</option>
+                <option value="installedKWH">Installed KWH</option>
+                <option value="mobileNo">Mobile No</option>
+                <option value="meterType">Meter Type</option>
+                
+              </select>
+              <input type="text"  name="searchValue" [(ngModel)]="formdata.searchValue"
+              placeholder="search in full database" />
+              <input type="number" *ngIf="pageOption=='Customize'" name="length" [(ngModel)]="formdata.length"
+                placeholder="enter number" />
+              <button type="button"  (click)="onSubmit()" class="ag-gridbtn">
+                <i class="fa fa-download"></i> Go
+              </button>
+             
+              <input type="text" id="filter-text-box" placeholder="search in table" (input)="onFilterTextBoxChanged()"
+                style="float: right;" />
+
+              <ag-grid-angular style="width: 100%; height: 450px;" class="ag-theme-balham"
+                [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="15"
+                [enableCellTextSelection]=true (gridReady)="onGridReady($event)" [columnDefs]="columnDefs"
+                [animateRows]=true>
+              </ag-grid-angular>
+
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="animated-underline-profile" role="tabpanel"
+            aria-labelledby="animated-underline-profile-tab">
+            
+          </div>
+        </div>
+		      </div>
+    </div>
+  </div>
+</div>
+

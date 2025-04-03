@@ -1,0 +1,89 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>Email & Sms Logs</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="row"></div>
+
+            <div class="table-responsive">
+              <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+                Download
+              </button>
+
+              <select
+                name="pageOption"
+                [(ngModel)]="pageOption"
+                (change)="getRecordNumber()"
+              >
+                <option value="All">All</option>
+                <option value="500">500</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="20000">20000</option>
+                <option value="30000">30000</option>
+                <option value="Customize">Customize</option>
+              </select>
+              <select
+                name="searchColumn"
+                [(ngModel)]="agridRequest.searchColumn"
+              >
+                <option value="">Select Search Column</option>
+                <option value="MeterSerialNo">Meter Serial No</option>
+                <option value="EventDateTime">Event Date</option>
+                <option value="EventCategory">Event Category</option>
+                <option value="EventCode">Event Code</option>
+                <option value="EventType">Event Type</option>
+              </select>
+              <input
+                type="text"
+                name="searchValue"
+                [(ngModel)]="agridRequest.searchValue"
+                placeholder="search in full database"
+              />
+              <input
+                type="number"
+                *ngIf="pageOption == 'Customize'"
+                name="length"
+                [(ngModel)]="agridRequest.length"
+                placeholder="enter number"
+              />
+              <button type="button" (click)="renderTable()" class="ag-gridbtn">
+                Go
+              </button>
+              <input
+                type="text"
+                id="filter-text-box"
+                placeholder="search in table"
+                (input)="onFilterTextBoxChanged()"
+                style="float: right"
+              />
+              <ag-grid-angular
+                style="width: 100%; height: 450px"
+                class="ag-theme-balham"
+                [defaultColDef]="defaultColDef"
+                [gridOptions]="gridOptions"
+                [pagination]="true"
+                [paginationPageSize]="100"
+                [enableCellTextSelection]="true"
+                (gridReady)="onGridReady($event)"
+                [suppressRowClickSelection]="true"
+                [columnDefs]="columnDefs"
+              >
+              </ag-grid-angular>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

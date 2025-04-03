@@ -1,0 +1,26 @@
+
+
+
+
+.li1 {
+  color: red;
+}
+
+a {
+  color: white;
+}
+
+
+
+.active
+{
+  color: #1d7adb !important;
+}
+
+
+/* ********************************************** */
+
+/* **********************************New */
+.ic::after{
+  display: none !important;  
+}

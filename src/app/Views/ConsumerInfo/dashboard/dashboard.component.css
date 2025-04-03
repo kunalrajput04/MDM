@@ -1,0 +1,164 @@
+h5 {
+  font-size: 11px;
+  font-weight: 500;
+ 
+  margin: 0;
+  line-height: inherit;
+  color: #000;
+  font-family: sans-serif;
+  
+}
+
+.head {
+    font-weight: bold;
+    
+  }
+
+.heading1 h2 {
+  line-height: normal;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 0;
+  color: #15283c;
+  letter-spacing: 0px;
+  
+}
+
+.graph_head {
+  padding: 16px 9px 16px;
+  float: left;
+  width: 100%;
+  border-bottom: solid #f3f3f3 2 px;
+  background-color: lightgray;
+}
+
+#consumermap {
+  height: 300px !important;
+}
+
+.meterinfo {
+  color: white;
+  background-color: black;
+  padding: 3px;
+}
+
+
+@media (min-width: 1200px) {
+  .modal-xl {
+      max-width: 1140px !important;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 5px;
+}
+
+.row {margin: 0 -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.card {
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  padding: 16px;
+  text-align: center;
+  color: white;
+}
+
+.fa {color:white;}
+
+
+/* card css */
+
+.card{
+    
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(50,50,50,0.1);
+    padding: 0;
+}
+.card *{
+    font-family: 'Poppins',sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.card h4{
+    color: var(--theme-color);
+    font-size: 16px;
+    margin: 15px 0 5px 0;
+}
+.card h5{
+  color: #15283c;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 14px 0;
+  border-bottom: 1px solid #ccc;
+  background: #d3d3d3;
+}
+.details{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.details h2{
+  font-weight: 400;
+    font-size: 20px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 8px;
+}
+.details span{
+    color: black;
+}
+.buttons{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+}
+.buttons button{
+  width: 130px;
+  padding: 8px 0;
+  border-radius: 4px;
+  border: 3px solid var(--theme-color);
+}
+.buttons button:first-child{
+    background-color: #1ed085;
+    color: #ffffff;
+}
+.buttons .second-child{
+  background-color: #b32e55;
+  color: #ffffff;
+}
+.buttons .thired-child{
+  background-color: yellowgreen;
+  color: #ffffff;
+}
+.buttons button:last-child{
+    background-color: #719ece;
+    color: white;
+}

@@ -1,0 +1,139 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+  
+      <!-- row -->
+      <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              <div class="heading1 margin_0">
+                <h2>Update Configuration</h2>
+              </div>
+            </div>
+            <div class="full price_table padding_infor_info">
+              <div class="row">
+                <!-- column contact -->
+                <div class="col-md-12">
+                  <form #form="ngForm" (submit)="callMethod()">
+                    <div class="form-group row">
+                      <input type="hidden" #configID="ngModel" name="configID" [(ngModel)]="formData.configID" />
+  
+                      <div class="col-md-3">
+                        <label>Level Type</label>
+                        <input class="form-control" readonly #requestType="ngModel" name="requestType"
+                          [(ngModel)]="formData.requestType"/>
+                        
+                      </div>
+                      
+                      
+                      <div class="col-md-3">
+                        <label>Level Value</label>
+                        <input class="form-control" readonly #requestValue="ngModel" name="requestValue"
+                          [(ngModel)]="formData.requestValue"/>
+                        
+                      </div>
+                      
+                      <div class="col-md-3">
+                        <label>Configuration Type</label>
+                        <input class="form-control" readonly #configurationType="ngModel" name="configurationType"
+                          [(ngModel)]="formData.configurationType"/>
+                        
+                      </div>
+                      
+                      
+                      <div class="col-md-3">
+                        <label>Configuration Value</label>
+                        <input class="form-control" readonly #configurationValue="ngModel" name="configurationValue"
+                          [(ngModel)]="formData.configurationValue"/>
+                        
+                      </div>
+                      
+  
+  
+                  
+                      <div class="col-md-3">
+                        <label>Request To</label>
+    
+                        <select class="form-control" #requestTo="ngModel" name="requestTo" [(ngModel)]="formData.requestTo">
+                          <option value="">--Select User--</option>
+                          <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                            {{ obj.fullName }}
+                          </option>
+                        </select>
+                      </div>
+    
+                     <div class="col-md-6">
+                      <label>Request Reason</label>
+  
+                      <textarea
+                        class="form-control"
+                        [readonly]="isAssignUser"
+                        #requestReason="ngModel"
+                        name="requestReason"
+                        [(ngModel)]="formData.requestReason"
+                        required
+                        rows="2"
+                        cols="50"
+                      ></textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Response</label>
+  
+                      <textarea
+                        class="form-control"
+                        [readonly]="!isAssignUser"
+                        #response="ngModel"
+                        name="response"
+                        [(ngModel)]="formData.response"
+                        rows="2"
+                        cols="50"
+                      ></textarea>
+                    </div>
+  
+                    <div class="col-md-6">
+                      <label>Remarks</label>
+  
+                      <textarea
+                        class="form-control"
+                        #remarks="ngModel"
+                        name="remarks"
+                        [(ngModel)]="formData.remarks"
+                        rows="2"
+                        cols="50"
+                      ></textarea>
+                    </div>
+                    <div
+                      class="col-md-4"
+                      *ngIf="formData.configID > 0 && isAssignUser"
+                    >
+                      <label>Request Status</label>
+                      <select
+                        class="form-control"
+                        #requestStatus="ngModel"
+                        name="requestStatus"
+                        [(ngModel)]="formData.requestStatus"
+                      >
+                        <option value="Pending">Pending</option>
+                        <option value="Accept">Accept</option>
+                        <option value="Reject">Reject</option>
+                      </select>
+                    </div>
+                    </div>
+  
+                    <button type="submit" class="btn btn-success">
+                      <i class="fa fa-check"></i> Apply
+                    </button>
+                    <a style="margin-left: 5px;" routerLink="/mdm/prepaid/configuration" class="btn btn-primary">
+                      <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>

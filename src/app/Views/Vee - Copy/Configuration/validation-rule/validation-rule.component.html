@@ -1,0 +1,98 @@
+<div class="container-fluid pt-3 px-0">
+    <section>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <!-- <i class="fa fa-cog p-2" aria-hidden="true"></i> -->
+          <div class="text-container">
+            <!-- <p class="m-0">VEE &nbsp; &#62; &nbsp;Configuration &nbsp; &#62;</p> -->
+            <p class="m-0 font-weight-bold" style="font-size:16px;color:#364052;">Validation Rule</p>
+          </div>
+        </div>
+        <div class="create-button">
+          <button type="button" routerLink="../createValidationRule" class="btn create_btn">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            &nbsp;Create Rule
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="mt-4">
+      <div class="d-flex align-items-center flex-wrap">
+        <div class="search px-1">
+          <label for="search">Search</label>
+          <div class="position-relative">
+            <!-- <i
+              class="fa fa-search position-absolute search-icon"
+              aria-hidden="true"
+            ></i> -->
+            <!-- <input class="field pl-5" name="search" /> -->
+            <input type="text" id="filter-text-box" 
+            class="field pl-2" name="search" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+          </div>
+        </div>
+        <div class="validation-cat px-1">
+          <label for="Validation_Category">Data Type</label>
+          <div>
+            <select class="field" name="Validation_Category" [(ngModel)]="filterForm.dataType"  (change)="onChange($event)">
+              <option value="" selected>
+                All Data Type
+              </option>
+              <option *ngFor="let obj of validationType"  [value]="obj.name">{{obj.name}}</option>
+            
+            </select>
+          </div>
+        </div>
+        <div class="profile-type px-1">
+          <label for="Profile_Type">Validation Type</label>
+          <div>
+            <select class="field" name="Profile_Type" [(ngModel)]="filterForm.validationType">
+              <option value="" selected>All Validation Type</option>     
+              <option *ngFor="let obj1 of typeData|keyvalue" [value]="obj1.value">{{obj1.value}}</option>
+           
+            </select>
+          </div>
+        </div>
+        <div class="billing-type px-1">
+          <label for="Profile_Type">Meter Type</label>
+          <div>
+            <select class="field" name="Profile_Type" [(ngModel)]="filterForm.meterType">
+              <option value="" selected>All Meter Type</option>
+              <option *ngFor="let obj of MeterType" [value]="obj">
+                {{ obj }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="search-btn-container px-1">
+          <button type="button" class="btn search-btn" (click)="searchData($event)">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="table-responsive table-container mt-3">
+        <ag-grid-angular
+        style="width: 100%; height:630px"
+          class="ag-theme-balham"
+          #agGrid
+          id="myGrid"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [editType]="editType"
+          [rowClassRules]="rowClassRules"
+          [pagination]=true
+          [paginationPageSize]="20"
+          (cellClicked)="onCellClicked($event)"
+          (gridReady)="onGridReady($event)"
+          [animateRows]=true
+          [immutableColumns] = "true"
+          suppressClickEdit
+          [frameworkComponents]="frameworkComponents"
+        >
+        </ag-grid-angular>
+       
+      </div>
+    </section>
+  
+  </div>
+  

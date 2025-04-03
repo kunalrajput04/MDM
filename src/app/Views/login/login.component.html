@@ -1,0 +1,106 @@
+<div id="stars"></div>
+<div class="full_container">
+    <section class="vh-100 " style="background-color: #0077B5">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="/assets/images/loginbackground.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;height: 620px;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <form [formGroup]="loginForm" (submit)="userlogin()">
+
+                                        <div class="d-flex align-items-center mb-3 pb-1 center" style="background-color: #0077B5">
+                                            <img class="logoimg" src="/assets/images/logo/mdmlogo.png" alt="#" />
+                                        </div>
+
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+                                        <div class="form-outline mb-4">
+
+                                            <input type="email" formControlName="userName" id="userName" class="form-control form-control-lg" placeholder="Enter Your Email" />
+                                            <label class="form-label" for="form2Example17">Email address</label>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="password" formControlName="password" id="password" class="form-control form-control-lg" placeholder="Enter Your Password" />
+                                            <label class="form-label" for="form2Example27">Password</label>
+                                        </div>
+
+                                        <div class="pt-1 mb-4">
+                                            <label class="label_field hidden">hidden label</label>
+                                            <button class="btn btn-dark btn-lg btn-block main_bt" [disabled]="loginForm.invalid" type="submit">Sign In</button>
+                                            <label class="version">version : {{version}}</label>
+                                            <a class="forgot" routerLink="/auth/forgotpassword">Forgotten Password?</a>
+                                        </div>
+                                        <div class="field " id="Captcha">
+                                            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [size]="'normal'" [hl]="'en'" [theme]="'light'" formControlName="recaptcha">
+                                            </ngx-recaptcha2>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- <div class="container">
+      <div class="center verticle_center full_height full_height1">
+         <div class="login_section">
+            <div class="logo_login">
+               <div class="center">
+                  <img class="logoimg" src="/assets/images/logo/mdmlogo.png" alt="#" />
+
+               </div>
+
+            </div>
+
+
+            <div class="login_form">
+               <form [formGroup]="loginForm" (submit)="userlogin()">
+                  <fieldset>
+                     <div class="field">
+                        <label class="label_field">Email Address </label>
+                      
+                        <input formControlName="userName" placeholder="username" class="form-control" type="text" />
+                       
+                     </div>
+                     <div class="field">
+                        <label class="label_field">Password</label>
+                        <input formControlName="password" placeholder="password" class="form-control"
+                        type="password" />
+                      
+                     </div>
+
+                     <div class="field margin_0">
+                        <label class="label_field hidden">hidden label</label>
+                        <button  [disabled]="loginForm.invalid" type="submit" class="main_bt">Sign In</button>
+                        <a class="forgot" routerLink="/auth/forgotpassword">Forgotten Password?</a>
+                     </div>
+
+                     <div class="field " id="Captcha">
+                        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [size]="'normal'" [hl]="'en'" [theme]="'light'"
+                        formControlName="recaptcha">
+                      </ngx-recaptcha2>
+                         
+                     </div>
+ 
+                  </fieldset>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div> -->
+</div>

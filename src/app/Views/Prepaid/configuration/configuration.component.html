@@ -1,0 +1,558 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>Configuration Management</h2>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12" *ngIf="IsAdd">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>Configuration</h2>
+            </div>
+            <button
+              class="btn btn-primary"
+              (click)="List()"
+              style="float: right"
+            >
+              <i class="fa fa-cog"></i> Configuration Logs
+            </button>
+          </div>
+          <div class="full price_table padding_infor_info">
+            <div class="row">
+              <!-- column contact -->
+              <div class="col-md-12">
+                <form>
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <label>Access Level</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getSubdivision()"
+                        name="accessLevel"
+                        [(ngModel)]="accessform.accessLevel"
+                        required
+                      >
+                        <option value="All">ALL</option>
+                        <option value="SUBDEVISION">Subdivision</option>
+                        <option value="SUBSTATION">Substation</option>
+                        <option value="FEEDER">Feeder</option>
+                        <option value="DT">DT</option>
+                      </select>
+                    </div>
+
+                    <div
+                      class="col-md-4"
+                      *ngIf="
+                        accessform.accessLevel == 'SUBDEVISION' ||
+                        accessform.accessLevel == 'SUBSTATION' ||
+                        accessform.accessLevel == 'FEEDER' ||
+                        accessform.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Subdivision</label>
+                      <select
+                        class="form-control"
+                        (change)="getSubstation(subdivisonName.value)"
+                        name="subdivisonName"
+                        #subdivisonName="ngModel"
+                        [(ngModel)]="accessform.subdivisonName"
+                      >
+                        <option [ngValue]="">Select Subdevision</option>
+                        <option
+                          *ngFor="let obj of subdivisionDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div
+                      class="col-md-4"
+                      *ngIf="
+                        accessform.accessLevel == 'SUBSTATION' ||
+                        accessform.accessLevel == 'FEEDER' ||
+                        accessform.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Substation</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getFeeder(substationName.value)"
+                        #substationName="ngModel"
+                        name="substationName"
+                        [(ngModel)]="accessform.substationName"
+                      >
+                        <option [ngValue]="">Select Substation</option>
+                        <option
+                          *ngFor="let obj of substatioDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div
+                      class="col-md-4"
+                      *ngIf="
+                        accessform.accessLevel == 'FEEDER' ||
+                        accessform.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Feeder</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getDT(feederName.value)"
+                        #feederName="ngModel"
+                        name="feederName"
+                        [(ngModel)]="accessform.feederName"
+                      >
+                        <option [ngValue]="">Select Feeder</option>
+                        <option
+                          *ngFor="let obj of feederDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      class="col-md-4"
+                      *ngIf="accessform.accessLevel == 'DT'"
+                    >
+                      <label>DT</label>
+
+                      <select
+                        class="form-control"
+                        name="dtName"
+                        #dtName="ngModel"
+                        [(ngModel)]="accessform.dtName"
+                      >
+                        <option [ngValue]="">Select DT</option>
+                        <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label>ConfigurationType</label>
+                      <select class="form-control" (change)="setInput($event)">
+                        <option value="">--Select Configuration--</option>
+                        <option value="DIP">Demand Integration Period</option>
+                        <option value="PCP">Profile Capture Period</option>
+                        <option value="LL">Load Limit</option>
+                        <option value="MM">Metering Mode</option>           
+                        <option value="CTO">Clear TCover Open</option>                      
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label>Assign To</label>
+                      <select class="form-control">
+                        <option value="">--Assign User--</option>
+                        <option value="Rahul Kumar">Rahul Kumar</option>
+                        <option value="Nagendra Kumar">Nagendra Kumar</option>
+                        <option value="Anil Singh">Anil Singh</option>
+                        <option value="GP">Deepak</option>
+                      </select>
+                    </div>
+
+                  
+                  
+                   
+                  </div>
+
+                  <div class="form-group row">
+                    
+                    <div class="col-md-4" *ngIf="IsMM">
+                      
+                        <input id="radio1" type="radio" name="radio" /><label
+                          for="radio1"
+                          class="radio"
+                          >Import Only</label
+                        >
+  
+                        <input id="radio1" type="radio" name="radio" /><label
+                        for="radio1"
+                        class="radio"
+                        >Import/Export</label
+                      >
+                       
+                      </div>
+
+
+                      <div class="col-md-4" *ngIf="IsDIP">
+                        <label>Demand Integration Period</label>
+                        <select class="form-control">
+                          <option value="">--Select Period--</option>
+                          <option value="900 Sec">900 Sec</option>
+                          <option value="1800 Sec">1800 Sec</option>
+                        
+                        </select>
+                      </div>
+
+                      <div class="col-md-4" *ngIf="IsPCP">
+                        <label>Profile Capture Period</label>
+                        <select class="form-control">
+                          <option value="">--Select Period--</option>
+                          <option value="900 Sec">900 Sec</option>
+                          <option value="1800 Sec">1800 Sec</option>
+                        
+                        </select>
+                      </div>
+
+                      <div class="col-md-4" *ngIf="IsLL">
+                        <label>Load Limit</label>
+                        <input type="text" class="form-control" placeholder="KW">
+                      </div>
+
+                      <div class="col-md-4" *ngIf="IsCTO">
+                        <label>Clear TCover Open</label>
+                        <input type="text" class="form-control">
+                      </div>
+
+
+
+                  </div>
+
+                  <button type="button" class="btn btn-success">
+                    <i class="fa fa-check"></i> Apply
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="IsList">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>Configuration</h2>
+            </div>
+            <a
+              href="javascript:void(0)"
+              class="btn btn-primary btn-xs"
+              style="float: right; color: white"
+              (click)="Add()"
+            >
+              <i class="fa fa-cog"> </i> Configuration
+            </a>
+
+            <button
+            data-toggle="modal"
+            data-target="#exampleModal"
+            class="btn btn-success"
+            style="float: right; margin-right: 5px"
+          >
+            <i class="fa fa-file-excel-o"></i> Import Excel
+          </button>
+          </div>
+
+          <div class="table_section padding_infor_info">
+            <div class="table-responsive-sm">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#Request No</th>
+                    <th>Subdvision</th>
+                    <th>Substation</th>
+                    <th>Feeder</th>
+                    <th>DT</th>
+                    <th>RequestDate</th>
+
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1000067890</td>
+                    <td>Amlarem Distribution Sub-Div</td>
+                    <td>SohkhaNongtalang feeder</td>
+                    <td>Mawlum-II</td>
+                    <td>12-01-2022: 10:55 : AM</td>
+
+                    <td>Rahul Kumar</td>
+                    <td>
+                      <span class="badge badge-pill badge-success"
+                        >CONFIRMED</span
+                      >
+                    </td>
+                    <td>
+                      <i class="btn btn-sm btn-warning fa fa-wrench"></i>&nbsp;
+                      <i class="btn btn-sm btn-success fa fa-check"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

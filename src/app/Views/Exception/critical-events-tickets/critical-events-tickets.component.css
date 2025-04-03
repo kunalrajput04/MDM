@@ -1,0 +1,14 @@
+.newrowcolor {
+    background-color: #e99292 !important;
+    color: white;
+}
+
+.openrowcolor {
+    background-color: #bebeed !important;
+    color: white;
+}
+
+.closerowcolor {
+    background-color: #7fcb7f !important;
+    color: white;
+}

@@ -1,0 +1,287 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h4>{{ metertype }} METERS</h4>
+
+
+
+                    <button routerLink="/mdm/assets/Inventory" class="btn btn-warning btn-xs" style="float: right; color: white; margin-top: -45px ;cursor: pointer;">
+          <i class="fa fa-arrow-left"> </i> Back
+          </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 allconsumer">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.live}}</p>
+                            <p style="color: white" class="head_couter">Live Meters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 paidconsumer">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg blue1_color" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.ok}}</p>
+                            <p style="color: white" class="head_couter">Ok Meters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 dueconsumer">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg green_color" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.faulty}}</p>
+                            <p style="color: white" class="head_couter">Faulty Meters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 totalamt">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg red_color" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.return}}</p>
+                            <p style="color: white" class="head_couter">Retrun To Supplier</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 paidamt">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg paid_color" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.received}}</p>
+                            <p style="color: white" class="head_couter">
+                                Recieved From Supplier
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <div class="full counter_section margin_bottom_30 dueamt">
+                    <div class="couter_icon">
+                        <div>
+                            <img class="myimg due_color" src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png" />
+                        </div>
+                    </div>
+                    <div class="counter_no">
+                        <div>
+                            <p style="color: white" class="total_no">{{data.pending}}</p>
+                            <p style="color: white" class="head_couter">
+                                Pending From Supplier
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-6">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <h4>Received From Supplier</h4>
+                    </div>
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                <form #form="ngForm" (submit)="receivedFromSupplier()" autocomplete="off">
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <label>Supplier Name</label>
+                                            <input type="text" #supplierName="ngModel" name="supplierName" [(ngModel)]="receivedForm.supplierName" [ngClass]="supplierName.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required
+                                                placeholder="Enter Supplier Name" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Chalan No <b>[IN]</b></label>
+                                            <input type="text" #chalanNo="ngModel" name="chalanNo" [(ngModel)]="receivedForm.chalanNo" [ngClass]="chalanNo.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required placeholder="Enter Chalan No"
+                                                class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Meter Type</label>
+                                            <select class="form-control" #meterCategory="ngModel" name="meterCategory" required [(ngModel)]="receivedForm.meterCategory">
+                        <option value="">--Select MeterType--</option>
+                        <option value="New">New Meters</option>
+                        <option value="Replaced">Replaced Meters</option>
+                      </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Received Meters</label>
+                                            <input type="number" #meterCount="ngModel" name="meterCount" [(ngModel)]="receivedForm.meterCount" required placeholder="Count" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label>Comments</label>
+                                            <textarea type="text" #comments="ngModel" name="comments" [(ngModel)]="receivedForm.comments" [ngClass]="comments.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required placeholder="Description"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <button [disabled]="form.invalid" type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                                    <button (click)="cleanReceivedFrom()" type="reset" class="btn btn-danger" style="float: right">
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <app-return-meter></app-return-meter> -->
+            <div class="col-md-6">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <h4>Return to Supplier</h4>
+                    </div>
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <form #form="ngForm" (submit)="returnToSupplier()" autocomplete="off">
+                                    <div class="form-group row">
+
+
+
+
+                                        <div class="col-md-12">
+                                            <label>Supplier Name</label>
+                                            <input type="text" #supplierName="ngModel" name="supplierName" [(ngModel)]="returnTo.supplierName" [ngClass]="supplierName.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required placeholder="Enter Supplier Name"
+                                                class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Chalan No <b>[OUT]</b> </label>
+                                            <input type="text" #chalanNo="ngModel" name="chalanNo" [(ngModel)]="returnTo.chalanNo" [ngClass]="chalanNo.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required placeholder="Enter Chalan No"
+                                                class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Faulty Meters</label>
+                                            <input type="number" #meterCount="ngModel" name="meterCount" [(ngModel)]="returnTo.meterCount" required placeholder="Fault Stock" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label>Comments</label>
+                                            <textarea type="text" #comments="ngModel" name="comments" [(ngModel)]="returnTo.comments" [ngClass]="comments.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" required placeholder="Description"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                                    <button (click)="cleanreturnto()" type="reset" class="btn btn-danger" style="float: right">
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h4>Inventory Logs</h4>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered nowrap" style="width: 100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#ChalanNo</th>
+                                        <th>MeterType</th>
+                                        <th>Supplier</th>
+                                        <th>Meter Category</th>
+                                        <th>Meter Count</th>
+                                        <th>Inventory Type</th>
+                                        <th>LastUpdated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let obj of meterlist">
+                                        <td>{{ obj.chalanNo }}</td>
+
+                                        <td>
+                                            <span class="badge badge-success">{{ obj.meterType }} METERS</span
+                      >
+                    </td>
+
+                    <td>{{ obj.supplierName }}</td>
+                    <td>
+                      <span class="badge badge-warning"
+                        >{{ obj.meterCategory }} METERS</span
+                      >
+                    </td>
+
+                    <td>{{ obj.meterCount }}</td>
+
+                    <td>
+                      <span class="badge badge-info"
+                        >{{ obj.returnType }}</span
+                      >
+                    </td>
+
+
+                   
+                    <td>{{ obj.lastUpdated | date: "dd/MM/yyyy hh:mm a" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

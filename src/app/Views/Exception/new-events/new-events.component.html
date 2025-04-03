@@ -1,0 +1,346 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>All Events</h2>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+        <label>Access Level</label>
+
+        <select
+          class="form-control"
+          name="selectedLevel"
+          [(ngModel)]="selectedLevel"
+        >
+          <option *ngIf="accessLevel == 'All'" value="All">ALL</option>
+          <option *ngIf="accessLevel == 'All'" value="SUBDEVISION">
+            Subdivision
+          </option>
+          <option
+            *ngIf="accessLevel == 'All' || accessLevel == 'SUBDEVISION'"
+            value="SUBSTATION"
+          >
+            Substation
+          </option>
+          <option
+            *ngIf="
+              accessLevel == 'All' ||
+              accessLevel == 'SUBDEVISION' ||
+              accessLevel == 'SUBSTATION'
+            "
+            value="FEEDER"
+          >
+            Feeder
+          </option>
+          <option
+            *ngIf="
+              accessLevel == 'All' ||
+              accessLevel == 'SUBDEVISION' ||
+              accessLevel == 'SUBSTATION' ||
+              accessLevel == 'FEEDER'
+            "
+            value="DT"
+          >
+            DT
+          </option>
+        </select>
+      </div>
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
+        *ngIf="
+          (selectedLevel == 'SUBDEVISION' ||
+            selectedLevel == 'SUBSTATION' ||
+            selectedLevel == 'FEEDER' ||
+            selectedLevel == 'DT') &&
+          accessLevel == 'All'
+        "
+      >
+        <label>Subdivision</label>
+        <select
+          class="form-control"
+          (change)="getAccessLevel('Substation', subdivisonName.value)"
+          name="subdivisonName"
+          #subdivisonName="ngModel"
+          [(ngModel)]="formData.subdivisonID"
+        >
+          <option [ngValue]="">Select Subdevision</option>
+          <option *ngFor="let obj of subDivDropDown" [ngValue]="obj.id">
+            {{ obj.name }}
+          </option>
+        </select>
+      </div>
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
+        *ngIf="
+          (selectedLevel == 'SUBSTATION' ||
+            selectedLevel == 'FEEDER' ||
+            selectedLevel == 'DT') &&
+          (accessLevel == 'All' || accessLevel == 'SUBDEVISION')
+        "
+      >
+        <label>Substation</label>
+        <select
+          class="form-control"
+          (change)="getAccessLevel('Feeder', substationName.value)"
+          name="substationName"
+          #substationName="ngModel"
+          [(ngModel)]="formData.substationID"
+        >
+          <option [ngValue]="">Select Substation</option>
+          <option *ngFor="let obj of subDropDown" [ngValue]="obj.id">
+            {{ obj.name }}
+          </option>
+        </select>
+      </div>
+
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
+        *ngIf="
+          (selectedLevel == 'FEEDER' || selectedLevel == 'DT') &&
+          (accessLevel == 'SUBSTATION' ||
+            accessLevel == 'SUBDEVISION' ||
+            accessLevel == 'All')
+        "
+      >
+        <label>Feeder</label>
+        <select
+          class="form-control"
+          (change)="getAccessLevel('Dt', feederName.value)"
+          name="feederName"
+          #feederName="ngModel"
+          [(ngModel)]="formData.feederID"
+        >
+          <option [ngValue]="">Select Feeder</option>
+          <option *ngFor="let obj of feedDropDown" [ngValue]="obj.id">
+            {{ obj.name }}
+          </option>
+        </select>
+      </div>
+
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
+        *ngIf="
+          selectedLevel == 'DT' &&
+          (accessLevel == 'FEEDER' ||
+            accessLevel == 'SUBSTATION' ||
+            accessLevel == 'SUBDEVISION' ||
+            accessLevel == 'All')
+        "
+      >
+        <label>DT</label>
+        <select
+          class="form-control"
+          name="dtName"
+          #dtName="ngModel"
+          [(ngModel)]="formData.dtID"
+        >
+          <option [ngValue]="">Select DT</option>
+          <option *ngFor="let obj of dtDropDown" [ngValue]="obj.id">
+            {{ obj.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 go-button">
+        <button type="button" (click)="renderTable()" class="btn btn-success">
+          Go
+        </button>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="row"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <button
+                        type="button"
+                        (click)="onBtnExport()"
+                        class="btn btn-secondary"
+                      >
+                        Download
+                      </button>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <button
+                        type="button"
+                        (click)="getSelectedRowData()"
+                        class="btn btn-secondary"
+                      >
+                        Mark As Read
+                      </button>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                        class="btn btn-secondary"
+                      >
+                        Raise Ticket
+                      </button>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <button
+                        type="button"
+                        (click)="renderTable()"
+                        class="btn btn-secondary"
+                      >
+                        Go
+                      </button>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <select
+                        class="form-control"
+                        name="pageOption"
+                        [(ngModel)]="pageOption"
+                        (change)="getRecordNumber()"
+                      >
+                        <option value="All">All</option>
+                        <option value="500">500</option>
+                        <option value="5000">5000</option>
+                        <option value="10000">10000</option>
+                        <option value="20000">20000</option>
+                        <option value="30000">30000</option>
+                        <option value="Customize">Customize</option>
+                      </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <select
+                        class="form-control"
+                        name="searchColumn"
+                        [(ngModel)]="agridRequest.searchColumn"
+                      >
+                        <option value="">Select Search Column</option>
+                        <option value="MeterSerialNo">Meter Serial No</option>
+                        <option value="EventDateTime">Event Date</option>
+                        <option value="EventCategory">Event Category</option>
+                        <option value="EventCode">Event Code</option>
+                        <option value="EventType">Event Type</option>
+                      </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="searchValue"
+                        [(ngModel)]="agridRequest.searchValue"
+                        placeholder="search in full database"
+                      />
+                    </div>
+                    <div
+                      class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12"
+                      *ngIf="pageOption == 'Customize'"
+                    >
+                      <input
+                        class="form-control"
+                        type="number"
+                        name="length"
+                        [(ngModel)]="agridRequest.length"
+                        placeholder="enter number"
+                      />
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="filter-text-box"
+                        placeholder="search in table"
+                        (input)="onFilterTextBoxChanged()"
+                        style="float: right"
+                      />
+                    </div>
+                  </div>
+                  <ag-grid-angular
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [defaultColDef]="defaultColDef"
+                    [gridOptions]="gridOptions"
+                    [pagination]="true"
+                    [paginationPageSize]="100"
+                    [enableCellTextSelection]="true"
+                    (gridReady)="onGridReady($event)"
+                    [suppressRowClickSelection]="true"
+                    [columnDefs]="columnDefs"
+                    [rowSelection]="rowSelection"
+                  >
+                  </ag-grid-angular>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4
+          class="modal-title"
+          id="exampleModalSubstation"
+          style="text-align: center"
+        >
+          Raise Ticket
+        </h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="HideFeederDropDown" style="margin-bottom: 1em"
+              >Select User</label
+            >
+            <select
+              class="browser-default custom-select HideSubdivisionDropDown"
+              name="selectedUser"
+              [(ngModel)]="selectedUser"
+              style="width: 100%; height: 40px"
+            >
+              <option value="">--Select User--</option>
+              <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                {{ obj.fullName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+            style="float: left"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="raiseTicketSelectedRowData()"
+            style="float: right"
+            data-dismiss="modal"
+          >
+            <i class="fa fa-check"></i>
+            Assign
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

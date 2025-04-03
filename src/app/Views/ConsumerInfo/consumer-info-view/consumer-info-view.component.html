@@ -1,0 +1,376 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2 style="width: 90%;">Consumer Information</h2>
+                    <button (click)="getLevelValue()" style="float: right;margin-top: -31px;" type="button" *ngIf="isData" data-toggle="modal" data-target="#exampleModal1" class="btn btn-success">
+          <i class="fa fa-check"></i> Update
+        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="isData">
+
+    <div class="col-md-4">
+        <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+                <div class="heading1 margin_0">
+                    <h2>Consumer Information</h2>
+                </div>
+            </div>
+            <div class="full progress_bar_inner">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Consumer Name: </th>
+                                        <td> {{consumerformdata.customerName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Consumer No: </th>
+                                        <td> {{consumerformdata.customerNo}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>New Consumer No: </th>
+                                        <td> {{consumerformdata.newConsumerNo}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Consumer Address: </th>
+                                        <td> {{consumerformdata.address}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile No: </th>
+                                        <td> {{consumerformdata.whatsappNo}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Aadhar No: </th>
+                                        <td> {{consumerformdata.aadharNo}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Billing Category: </th>
+                                        <td> {{consumerformdata.billingCategory}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>SubDivision Name: </th>
+                                        <td>{{consumerformdata.subdivisionName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Substation name: </th>
+                                        <td>{{consumerformdata.substationName}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Feeder Name: </th>
+                                        <td>{{consumerformdata.feederName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DT Name: </th>
+                                        <td>{{consumerformdata.dtName}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" *ngIf="isLatLongExists">
+        <div class="white_shd full margin_bottom_30">
+
+            <div class="full progress_bar_inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="consumermap" leaflet [leafletLayers]="markers" [leafletOptions]="mapOptions">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+                <div class="heading1 margin_0">
+                    <h2>Meter Information</h2>
+                </div>
+            </div>
+            <div class="full progress_bar_inner">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+
+                                    <tr>
+                                        <th>Meter No: </th>
+                                        <td> {{consumerformdata.meterSerialNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Meter Type: </th>
+                                        <td> {{consumerformdata.meterType}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sim Type: </th>
+                                        <td> {{consumerformdata.simType}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sim No: </th>
+                                        <td> {{consumerformdata.simImei}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>NIC IPV6:</th>
+                                        <td> {{consumerformdata.iPv6Address}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Latitude: </th>
+                                        <td> {{consumerformdata.latitude}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Longitude: </th>
+                                        <td> {{consumerformdata.longitude}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>City: </th>
+                                        <td> {{consumerformdata.city}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZipCode: </th>
+                                        <td> {{consumerformdata.pincode}} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Subscribed Tariff: </th>
+                                        <td> {{consumerformdata.tariffName}} </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Device</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form #form="ngForm" novalidate (submit)="saveDevice(form)">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Consumer No</label>
+                            <input type="text" #customerNo="ngModel" name="customerNo" id="customerNo" [ngClass]="
+              customerNo.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.customerNo" class="form-control" [readonly]="isEdit" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Consumer Name</label>
+                            <input type="text" #customerName="ngModel" name="customerName" id="customerName" [ngClass]="
+              customerName.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.customerName" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>New Consumer No</label>
+                            <input type="text" #newConsumerNo="ngModel" name="newConsumerNo" id="newConsumerNo" [ngClass]="
+              newConsumerNo.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.newConsumerNo" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Consumer Address</label>
+                            <input type="text" #address="ngModel" name="address" id="address" [ngClass]="
+              address.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.address" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>City</label>
+                            <input type="text" #city="ngModel" name="city" id="city" [ngClass]="
+                            city.invalid ? 'errorclass' : 'successclass'
+                " [(ngModel)]="consumerformdata.city" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Pincode</label>
+                            <input type="text" #pincode="ngModel" name="pincode" id="pincode" [ngClass]="
+                            pincode.invalid ? 'errorclass' : 'successclass'
+              " [(ngModel)]="consumerformdata.pincode" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Mobile No</label>
+                            <input type="text" #whatsappNo="ngModel" name="whatsappNo" id="whatsappNo" [ngClass]="
+              whatsappNo.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.whatsappNo" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Aadhar No</label>
+                            <input type="text" #aadharNo="ngModel" name="aadharNo" id="aadharNo" [ngClass]="
+              aadharNo.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.aadharNo" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Biiling Category</label>
+
+                            <select #billingCategory="ngModel" name="billingCategory" id="billingCategory" [ngClass]="
+              billingCategory.invalid ? 'errorclass' : 'successclass'
+                  " [(ngModel)]="consumerformdata.billingCategory" class="form-control">
+                <option value="">--Select Category/Tariff--</option>
+                <option value="DLT">Domestic(DLT)</option>
+                <option value="CLT">Non Domestic(CLT)</option>
+                <option value="ILT">Industrial(ILT)</option>
+                <option value="GP">General Purpose(GP)</option>
+                <option value="WSLT">Public Water Supply(WSLT)</option>
+                <option value="PL">Public Lighting(PL)</option>
+                <option value="LED">LED Fittings And Lamps(LED)</option>
+                <option value="AP">Agriculture(AP)</option>
+                <option value="BPLM">Kultir Jyoti/BPL(BPLM)</option>
+                <option value="TOD_LT">Time Of Day-LT(TOD_LT)</option>
+              </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Tariif</label>
+
+                            <select class="form-control" name="tariffName" #tariffName="ngModel" [(ngModel)]="consumerformdata.tariffName">
+                          <option value="0">--Select Tarrif--</option>
+                            <option
+                              *ngFor="let obj of tarrif"
+                              [ngValue]="obj.tarrifName"
+                            >
+                              {{ obj.tarrifName }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Subdivision</label>
+
+                            <select class="form-control" (change)="getSubstation(subdivisionName.value)" name="subdivisionName" #subdivisionName="ngModel" [(ngModel)]="consumerformdata.subdivisionName">
+                  <option [ngValue]="">Select Subdevision</option>
+                  <option *ngFor="let obj of subdivisionDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+                </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Substation</label>
+
+                            <select class="form-control" (change)="getFeeder(substationName.value)" #substationName="ngModel" name="substationName" [(ngModel)]="consumerformdata.substationName">
+
+
+                  <option [ngValue]="">Select Substation</option>
+                  <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+
+
+                </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Feeder</label>
+
+                            <select class="form-control" (change)="getDT(feederName.value)" #feederName="ngModel" name="feederName" [(ngModel)]="consumerformdata.feederName">
+
+
+                  <option [ngValue]="">Select Feeder</option>
+                  <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+
+                </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>DT</label>
+                            <select class="form-control" name="dtName" #dtName="ngModel" [(ngModel)]="consumerformdata.dtName">
+
+                <option [ngValue]="">Select DT</option>
+                <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                  {{ obj }}
+                </option>
+
+              </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="meterinfo">Meter Information</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Meter No</label>
+                            <input type="text" #meterSerialNumber="ngModel" name="meterSerialNumber" id="meterSerialNumber" [ngClass]="
+  meterSerialNumber.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.meterSerialNumber" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Meter Type</label>
+                            <input type="text" #meterType="ngModel" name="meterType" id="meterType" [ngClass]="
+              meterType.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.meterType" class="form-control" required />
+                        </div>
+                        <!-- <div class="form-group col-md-4">
+              <label>Sim Type</label>
+              <input type="text" #simType="ngModel" name="simType" id="simType" [ngClass]="
+              simType.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.simType" class="form-control" required />
+            </div> -->
+                        <!-- <div class="form-group col-md-4">
+              <label>Sim No</label>
+              <input type="text" #simImei="ngModel" name="simImei" id="simImei" [ngClass]="
+              simImei.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.simImei" class="form-control" required />
+            </div> -->
+                        <!-- <div class="form-group col-md-4">
+              <label>NIC IPV6</label>
+              <input type="text" #iPv6Address="ngModel" name="iPv6Address" id="iPv6Address" [ngClass]="
+              iPv6Address.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.iPv6Address" class="form-control" required />
+            </div> -->
+                        <div class="form-group col-md-4">
+                            <label>Latitude</label>
+                            <input type="text" #latitude="ngModel" name="latitude" id="latitude" [ngClass]="
+              latitude.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.latitude" class="form-control" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Longitude</label>
+                            <input type="text" #longitude="ngModel" name="longitude" id="longitude" [ngClass]="
+              longitude.invalid ? 'errorclass' : 'successclass'
+        " [(ngModel)]="consumerformdata.longitude" class="form-control" required />
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" #closebutton data-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="form.invalid" class="btn brn-primary" style="float: right">
+              Save
+            </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

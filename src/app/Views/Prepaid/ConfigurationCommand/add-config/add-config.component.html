@@ -1,0 +1,435 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Configuration Management</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30" >
+
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label>Level Type</label>
+                                            <select class="form-control" name="requestType"
+                                                [(ngModel)]="requestType">
+                                                <option value="">--Select Level--</option>
+                                                <option value="All">All</option>
+                                                <option value="Consumer">Consumer</option>
+                                                <option value="SUBDEVISION">Subdivision</option>
+                                                <option value="SUBSTATION">Substation</option>
+                                                <option value="FEEDER">Feeder</option>
+                                                <option value="DT"> DT</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3" *ngIf="requestType=='Consumer'">
+                                            <label>Consumer</label>
+
+                                            <ng-select [items]="consumerno" bindLabel="consumerNumber"
+                                                bindValue="meterNo" name="meterNo" class="custom" [loading]="loading"
+                                                [virtualScroll]="virtualScroll"
+                                                [(ngModel)]="meterNo" (keyup)="getConsumers($event)">
+                                            </ng-select>
+                                        </div>
+
+
+                                        <div class="col-md-3"
+                                            *ngIf="requestType=='SUBDEVISION' || requestType=='SUBSTATION' || requestType=='FEEDER' || requestType=='DT'">
+                                            <label>Subdivision</label>
+                                            <select class="form-control" (change)="getSubstation()"
+                                                name="subdivisonName" [(ngModel)]="subdivisonName">
+                                                <option [ngValue]="">Select Subdevision</option>
+                                                <option *ngFor="let obj of subdivisionDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3"
+                                            *ngIf="requestType=='SUBSTATION'  || requestType=='FEEDER' || requestType=='DT'">
+
+
+                                            <label>Substation</label>
+
+                                            <select class="form-control" (change)="getFeeder()" name="substationName"
+                                                [(ngModel)]="substationName">
+
+
+                                                <option [ngValue]="">Select Substation</option>
+                                                <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+
+                                            </select>
+
+
+                                        </div>
+
+
+                                        <div class="col-md-3"
+                                            *ngIf="requestType=='FEEDER' ||  requestType=='DT'">
+
+
+                                            <label>Feeder</label>
+
+                                            <select class="form-control" (change)="getDT()" name="feederName"
+                                                [(ngModel)]="feederName">
+
+
+                                                <option [ngValue]="">Select Feeder</option>
+                                                <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-md-3" *ngIf="requestType=='DT'">
+
+
+                                            <label>DT</label>
+
+                                            <select class="form-control" name="dtName" [(ngModel)]="dtName">
+
+                                                <option [ngValue]="">Select DT</option>
+                                                <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+                                            </select>
+
+
+                                        </div>
+
+                                    </div>
+
+                                  
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table id="simple-table" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Configuration type</th>
+                                            <th>Configuration Value</th>
+                                            <th class="hidden-480">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#">RTC Set</a>
+                                            </td>
+                                            <td>{{ currentTime }}</td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('RTCClock')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Demand Integration Period</a>
+                                            </td>
+                                            <td>
+                                                <select name="demandIntegration" [(ngModel)]="demandIntegration">
+                                                    <option value="900">900 Sec</option>
+                                                    <option value="1800">1800 Sec</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('DemandIntegrationPeriod')"
+                                                        class="btn btn-info" type="button"
+                                                        >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Profile Capture Period</a>
+                                            </td>
+                                            <td>
+                                                <select name="profileCaptured" [(ngModel)]="profileCaptured">
+                                                    <option value="900">900 Sec</option>
+                                                    <option value="1800">1800 Sec</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('ProfileCapturePeriod')"
+                                                        class="btn btn-info" type="button"
+                                                        >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Load Limit</a>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="form-field-1" name="loadLimit"
+                                                    [(ngModel)]="loadLimit" placeholder="KW"
+                                                    class="col-xs-10 col-sm-5" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('LoadLimit')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Metering Mode</a>
+                                            </td>
+                                            <td>
+                                                <span>Import Only</span><input name="meteringMode" value="0"
+                                                    [(ngModel)]="meteringMode" type="radio" />
+                                                <span>Import/Export</span><input name="meteringMode" value="1"
+                                                    [(ngModel)]="meteringMode" type="radio" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('MeteringMode')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Load Control Mode</a>
+                                            </td>
+                                            <td>
+                                                <select name="enableDisableDisconnectControl"
+                                                    [(ngModel)]="enableDisableDisconnectControl">
+                                                    <option value="0">Mode 0</option>
+                                                    <option value="1">Mode 1</option>
+                                                    <option value="2">Mode 2</option>
+                                                    <option value="3">Mode 3</option>
+                                                    <option value="4">Mode 4</option>
+                                                    <option value="5">Mode 5</option>
+                                                    <option value="6">Mode 6</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('EnableDisableDisconnectControl')"
+                                                        class="btn btn-info" type="button"
+                                                        >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Clear TCover Open</a>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('CoverOpen')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Instant Push IP</a>
+                                            </td>
+                                            <td> <input type="text" name="InstantIPPush" [(ngModel)]="InstantIPPush"
+                                                    placeholder="[2400:5300:1::711]:4059" class="col-xs-10 col-sm-5" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('InstantIPPush')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Alert Push IP</a>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="AlertIPPush" [(ngModel)]="AlertIPPush"
+                                                    placeholder="[2400:5300:1::711]:4059" class="col-xs-10 col-sm-5" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('AlertIPPush')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Push Setup Duration</a>
+                                            </td>
+                                            <td>
+
+                                                <input type="text" name="ActivitySchedulePush"
+                                                    [(ngModel)]="ActivitySchedulePush"
+                                                    placeholder="00:31:00,06:30:00,12:30:00,18:30:00"
+                                                    class="col-xs-10 col-sm-5" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('ActivitySchedulePush')"
+                                                        class="btn btn-info" type="button"
+                                                        >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">Billing Date</a>
+                                            </td>
+                                            <td>
+
+                                                <input type="text" name="BillingDatesValue"
+                                                    [(ngModel)]="BillingDatesValue" placeholder="1:12:15:00"
+                                                    class="col-xs-10 col-sm-5" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('BillingDates')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">MD Reset</a>
+                                            </td>
+                                            <td>
+
+
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button (click)="onSubmit('MdReset')" class="btn btn-info"
+                                                        type="button" >
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0)">TOD (Time, Date)</a>
+                                            </td>
+                                            <td>
+
+                                                <input type="text" name="todTime" [(ngModel)]="todTime"
+                                                    placeholder="HH:mm:ss,HH:mm:ss,......" class="col-xs-10 col-sm-5" />
+                                                <input type="datetime-local" class="col-xs-10 col-sm-5" name="todDate"
+                                                    [(ngModel)]="todDate" />
+                                            </td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button class="btn btn-info" type="button"
+                                                        (click)="onSubmit('ActivityCalendar')">
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                              <a href="javascript:void(0)">PrePay Mode</a>
+                                            </td>
+                                            <td>
+                                              <span>PrePaid</span
+                                              ><input
+                                                name="PaymentMode"
+                                                value="0"
+                                                [(ngModel)]="PaymentMode"
+                                                type="radio"
+                                              />
+                                              <span>PostPaid</span
+                                              ><input
+                                                name="PaymentMode"
+                                                value="1"
+                                                [(ngModel)]="PaymentMode"
+                                                type="radio"
+                                              />
+                                            </td>
+                                            <td>
+                                              <div class="hidden-sm hidden-xs btn-group">
+                                                <button
+                                                  (click)="onSubmit('PaymentMode')"
+                                                  class="btn btn-info"
+                                                  type="button"
+                                                  
+                                                >
+                                                  <i class="ace-icon fa fa-check bigger-110"></i>
+                                                  Submit
+                                                </button>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.span -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

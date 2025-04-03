@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <div class="row">
+                    <div class="col-3">
+                        <h2>New Requests</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- row -->
+
+    <!-- row -->
+    <div class="row column1">
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+                <div class="full price_table padding_infor_info">
+                    <div class="form-group consumerdetails row">
+
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Consumer Name:</span> &nbsp;
+                            <span>{{consumerformdata.customerName}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Consumer No:</span> &nbsp;
+                            <span>{{consumerformdata.customerNo}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Consumer Address:</span> &nbsp;
+                            <span>{{consumerformdata.address}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Mobile No.:</span> &nbsp;
+                            <span>{{consumerformdata.whatsappNo}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Billing Category:</span> &nbsp;
+                            <span>{{consumerformdata.billingCategory}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Meter No.:</span> &nbsp;
+                            <span>{{consumerformdata.meterSerialNumber}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Meter Type:</span> &nbsp;
+                            <span>{{consumerformdata.meterType}}</span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">Consumer Type:</span> &nbsp;
+                            <span>{{consumerformdata.consumerType}}</span>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <!-- column contact -->
+                        <div class="col-md-12">
+                            <form #form="ngForm" (submit)="onSubmit()">
+                                <input type="hidden" #requestID="ngModel" name="requestID" [(ngModel)]="formdata.requestID" />
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label>Consumer Number*</label>
+                                        <ng-select [items]="consumerno" name="consumerNo" class="custom" [loading]="loading" #consumerNo="ngModel" [virtualScroll]="virtualScroll" [(ngModel)]="formdata.consumerNo" (keyup)="getConsumers($event)" (change)="getConsumerDetails()">
+                                        </ng-select>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label> Change To </label>
+
+                                        <select class="form-control" #changeTo="ngModel" name="changeTo" [(ngModel)]="formdata.changeTo">
+                      <option value="">--Select Consumer Type--</option>
+                      <option value="Prepaid">Prepaid</option>
+                      <option value="Postpaid">Postpaid</option>
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label> Current Tarrif </label>
+
+                                        <select class="form-control" name="billingTarrif" #billingTarrif="ngModel" [(ngModel)]="formdata.billingTarrif">
+                    <option value="0">--Select Tarrif--</option>
+                      <option
+                        *ngFor="let obj of tarrif"
+                        [ngValue]="obj.requestID"
+                      >
+                        {{ obj.tarrifName }}
+                      </option>
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Assign To </label>
+                                        <select class="form-control" name="assignTo" [(ngModel)]="formdata.assignTo" #assignTo="ngModel">
+                      <option value="0">--Select Assign To--</option>
+                      <option
+                        *ngFor="let obj of members"
+                        value="{{ obj.userID }}"
+                      >
+                        {{ obj.fullName }}
+                      </option>
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label> Net Metering </label>
+
+                                        <select class="form-control" name="netMetering" [(ngModel)]="formdata.netMetering" #netMetering="ngModel">
+                      <option value="">--Net Metering--</option>
+                      <option value="Import Only">Import Only</option>
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Pending Amount </label>
+
+                                        <input name="pendingAmount" [(ngModel)]="formdata.pendingAmount" #pendingAmount="ngModel" type="text" class="form-control" placeholder="0.0" />
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Arial </label>
+
+                                        <input name="arial" [(ngModel)]="formdata.arial" #arial="ngModel" type="text" class="form-control" />
+
+                                    </div>
+
+
+
+
+
+                                    <div class="col-md-3">
+                                        <label> </label>
+                                        <br />
+                                        <input name="autoDisconnect" [(ngModel)]="formdata.autoDisconnect" #autoDisconnect="ngModel" type="checkbox" class="form-control" class="form-check-input" /> Auto Disconnect
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label>Remarks </label>
+
+                                        <input name="remarks" [(ngModel)]="formdata.remarks" #remarks="ngModel" type="text" class="form-control" />
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+
+
+
+                                <button type="submit" class="btn btn-success">
+                  <i class="fa fa-check"></i> Submit
+                </button>
+                                <a style="margin-left: 5px" routerLink="/mdm/prepaid/UpdateRequests" class="btn btn-primary">
+                                    <i class="fa fa-arrow-left"></i> Back
+                                </a>
+                                <button type="reset" class="btn btn-danger" style="float: right">
+                  <i class="fa fa-refresh"></i> Reset
+                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

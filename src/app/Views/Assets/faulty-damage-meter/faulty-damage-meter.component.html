@@ -1,0 +1,98 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+
+                    <h2>Faulty/Damage Meters</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- row -->
+
+
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+
+                        </div>
+
+                        <div class="table-responsive">
+                            <button type="button" (click)="onBtnExport()" class="ag-gridbtn btn btn-primary">
+                <i class="fa fa-download"></i> CSV Export Data
+              </button> &nbsp;
+                            <input type="text" id="filter-text-box" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+                            <button type="submit" style="background: #0b7dda;"><i class="fa fa-search"></i></button> &nbsp;
+                            <a href="/assets/MeterStatus.xlsx" class="btn btn-primary">
+                                <i class="fa fa-download"></i> Sample Excel
+                            </a>&nbsp;
+                            <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-success">
+                <i class="fa fa-upload"></i> Import Excel
+              </button>
+
+                            <ag-grid-angular style="width: 100%; height: 450px; margin-top: 10px;;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+                                [floatingFilter]=true [animateRows]=true>
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-x"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Upload Excel* </label>
+
+                        <input type="file" (change)="onChange($event)" #fileInput (click)="fileInput.value = null" class="form-control" />
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="postFile()" class="btn btn-primary">
+          Upload
+        </button>
+                <button type="button" #closebutton class="btn" data-dismiss="modal">
+          <i class="flaticon-cancel-12"></i> Discard
+        </button>
+            </div>
+        </div>
+    </div>
+</div>

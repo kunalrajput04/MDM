@@ -1,0 +1,397 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <form #form="ngForm" (submit)="getDashboardChartComman()">
+            <div class="form-group row">
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+              >
+                <select
+                  class="form-control"
+                  #accessLevel="ngModel"
+                  (change)="accessLevelChange()"
+                  name="accessLevel"
+                  [(ngModel)]="formdata.accessLevel"
+                >
+                  <option value="SUBDIVISION">SUBDIVISION</option>
+                  <option value="SUBSTATION">SUBSTATION</option>
+                  <option value="FEEDER">FEEDER</option>
+                  <option value="DT">DT</option>
+                  <option value="All">All</option>
+                </select>
+              </div>
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+                *ngIf="
+                  formdata.accessLevel == 'SUBDIVISION' ||
+                  formdata.accessLevel == 'SUBSTATION' ||
+                  formdata.accessLevel == 'FEEDER' ||
+                  formdata.accessLevel == 'DT'
+                "
+              >
+                <select
+                  class="form-control"
+                  (change)="getSubstation(subdivisonName.value)"
+                  name="subdivisonName"
+                  #subdivisonName="ngModel"
+                  [(ngModel)]="formdata.subdivisonName"
+                >
+                  <option [ngValue]="">Select Subdevision</option>
+                  <option
+                    *ngFor="let obj of subdivisionDropDown"
+                    [ngValue]="obj"
+                  >
+                    {{ obj }}
+                  </option>
+                </select>
+              </div>
+
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+                *ngIf="
+                  formdata.accessLevel == 'SUBSTATION' ||
+                  formdata.accessLevel == 'FEEDER' ||
+                  formdata.accessLevel == 'DT'
+                "
+              >
+                <select
+                  class="form-control"
+                  (change)="getFeeder(substationName.value)"
+                  #substationName="ngModel"
+                  name="substationName"
+                  [(ngModel)]="formdata.substationName"
+                >
+                  <option [ngValue]="">Select Substation</option>
+                  <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+                </select>
+              </div>
+
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+                *ngIf="
+                  formdata.accessLevel == 'FEEDER' ||
+                  formdata.accessLevel == 'DT'
+                "
+              >
+                <select
+                  class="form-control"
+                  (change)="getDT(feederName.value)"
+                  #feederName="ngModel"
+                  name="feederName"
+                  [(ngModel)]="formdata.feederName"
+                >
+                  <option [ngValue]="">Select Feeder</option>
+                  <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+                </select>
+              </div>
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+                *ngIf="formdata.accessLevel == 'DT'"
+              >
+                <select
+                  class="form-control"
+                  name="dtName"
+                  #dtName="ngModel"
+                  [(ngModel)]="formdata.dtName"
+                >
+                  <option [ngValue]="">Select DT</option>
+                  <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                    {{ obj }}
+                  </option>
+                </select>
+              </div>
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+              >
+                <select
+                  (change)="dropDownChange()"
+                  name="datasetParamName"
+                  [(ngModel)]="dropDownValue"
+                  class="form-control"
+                >
+                  <option value="Today">Today</option>
+                  <option value="Yesterday">Yesterday</option>
+                  <option value="Last Week">Last Week</option>
+                  <option value="Last Month">Last Month</option>
+                </select>
+              </div>
+
+              <div
+                class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 col-padding-bottom"
+              >
+                <button
+                  type="submit"
+                  [disabled]="form.invalid"
+                  class="btn btn-success"
+                >
+                  GO
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- row -->
+    <div class="row chartrow column1 social_media_section">
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Comm Status</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="commRead"
+                  [chart]="commchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Instant Data</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="instantRead"
+                  [chart]="instatnchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>DLP Data</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="dlpRead"
+                  [chart]="dlpchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Load Profile Data</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="lpRead"
+                  [chart]="lpchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Event Data</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="eventRead"
+                  [chart]="eventchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Billing Data</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="billingRead"
+                  [chart]="billingchart"
+                  [labels]="chartOptions.labels"
+                  [colors]="chartOptions.colors"
+                  [legend]="chartOptions.legend"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [fill]="chartOptions.fill"
+                  [plotOptions]="chartOptions.plotOptions"
+                ></apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chartcol col-md-2 col-lg-2">
+        <div class="full socile_icons fb margin_bottom_30">
+          <div class="social_icon">
+            <span>Sim Type</span>
+          </div>
+          <div class="social_cont">
+            <ul>
+              <li>
+                <apx-chart
+                  [series]="metertypeRead"
+                  [chart]="metertypechart"
+                  [labels]="meterchartOptions.labels"
+                  [colors]="meterchartOptions.colors"
+                  [legend]="meterchartOptions.legend"
+                  [dataLabels]="meterchartOptions.dataLabels"
+                  [fill]="meterchartOptions.fill"
+                  [plotOptions]="meterchartOptions.plotOptions"
+                >
+                </apx-chart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row chartrow">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>{{ graphHeaderValue }}</h2>
+            </div>
+          </div>
+          <div class="table_section padding_infor_info">
+            <div style="display: flex">
+              <button
+                type="button"
+                (click)="onBtnExport()"
+                class="ag-grid btn btn-primary"
+              >
+                <i class="fa fa-download"></i> Export Data</button
+              >&nbsp;
+              <span
+                style="
+                  border: 1px solid #d3d3d3;
+                  border-radius: 3px;
+                  height: 36px;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <input
+                  type="text"
+                  id="filter-text-box"
+                  placeholder="Search"
+                  (input)="onFilterTextBoxChanged()"
+                  style="
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 9px;
+                  "
+                />
+                <button
+                  type="submit"
+                  style="background: transparent; color: #212121; border: none"
+                >
+                  <i
+                    class="fa fa-search"
+                    style="color: #212121; padding-right: 10px"
+                  ></i>
+                </button>
+              </span>
+            </div>
+            <ag-grid-angular
+              style="width: 100%; height: 250px; margin-top: 10px"
+              class="ag-theme-balham"
+              [defaultColDef]="defaultColDef"
+              [gridOptions]="gridOptions"
+              [pagination]="true"
+              [paginationPageSize]="100"
+              (gridReady)="onGridReady($event)"
+              [columnDefs]="columnDefs"
+              [animateRows]="true"
+            >
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row chartrow">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="map_section padding_infor_info">
+            <div class="map m_style1">
+              <div
+                id="map"
+                class="leaflet-container leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag"
+                tabindex="0"
+                style="outline: none; top: 1em"
+                leaflet
+                [leafletOptions]="mapOptions"
+                [leafletMarkerClusterOptions]="markerClusterOptions"
+                (leafletMapReady)="onMapReady($event)"
+                [leafletMarkerCluster]="markerClusterData"
+                [leafletFitBounds]="mapFitToBounds"
+                [leafletFitBoundsOptions]="mapFitToBoundsOptions"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

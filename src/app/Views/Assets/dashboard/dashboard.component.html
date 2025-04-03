@@ -1,0 +1,140 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="full price_table padding_infor_info">
+
+                        <div class="row column1">
+                            <div class="col-md-6 col-lg-2">
+                                <div class="full counter_section margin_bottom_30 yellow_bg">
+                                    <div class="couter_icon">
+                                        <div>
+                                            <i class="fa fa-industry"></i>
+                                        </div>
+                                    </div>
+                                    <div class="counter_no">
+                                        <div>
+                                            <p class="total_no">{{dashboard.SUBDEVISION}}</p>
+                                            <p class="head_couter">SUBDIVISION</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="full counter_section margin_bottom_30 blue1_bg">
+                                    <div class="couter_icon">
+                                        <div>
+                                            <i class="fa fa-rss"></i>
+                                        </div>
+                                    </div>
+                                    <div class="counter_no">
+                                        <div>
+                                            <p class="total_no">{{dashboard.SUBSTATION}}</p>
+                                            <p class="head_couter">SUBSTATION</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="full counter_section margin_bottom_30 green_bg">
+                                    <div class="couter_icon">
+                                        <div>
+                                            <i class="fa fa-rss"></i>
+                                        </div>
+                                    </div>
+                                    <div class="counter_no">
+                                        <div>
+                                            <p class="total_no">{{dashboard.FEEDER}}</p>
+                                            <p class="head_couter">FEEDER</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="full counter_section margin_bottom_30 red_bg">
+                                    <div class="couter_icon">
+                                        <div>
+                                            <i class="fa fa-bolt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="counter_no">
+                                        <div>
+                                            <p class="total_no">{{dashboard.DT}}</p>
+                                            <p class="head_couter">DT</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="full counter_section margin_bottom_30 red_bg">
+                                    <div class="couter_icon">
+                                        <div>
+                                            <i class="fa fa-tachometer"></i>
+                                        </div>
+                                    </div>
+                                    <div class="counter_no">
+                                        <div>
+                                            <p class="total_no">{{dashboard.DEVICES}}</p>
+                                            <p class="head_couter">DEVICE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row column1">
+                            <div class="col-md-6 ">
+                                <h4 class="h4">SUBDIVISION LIST</h4>
+                                <ag-grid-angular style="width: 100%; height: 250px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" (gridReady)="onGridReady($event)" [columnDefs]="columnDefs" [floatingFilter]=true
+                                    [animateRows]=true (cellClicked)="onSubdivisionSelected($event)" [rowSelection]="rowSelection">
+                                </ag-grid-angular>
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <h4 class="h4">SUBSTATION LIST</h4>
+                                <ag-grid-angular style="width: 100%; height: 250px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [columnDefs]="columnDefs" (gridReady)="onGridReady1($event)" [floatingFilter]=true
+                                    [animateRows]=true (cellClicked)="onSubstationSelected($event)" [rowSelection]="rowSelection">
+                                </ag-grid-angular>
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <h4 class="h4">FEEDER LIST</h4>
+                                <ag-grid-angular style="width: 100%; height: 250px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [columnDefs]="columnDefs" (cellClicked)="onFeederSelected($event)" (gridReady)="onGridReady2($event)"
+                                    [floatingFilter]=true [animateRows]=true [rowSelection]="rowSelection">
+                                </ag-grid-angular>
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <h4 class="h4">DT LIST</h4>
+                                <ag-grid-angular style="width: 100%; height: 250px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [columnDefs]="columnDefs" (gridReady)="onGridReady3($event)" [floatingFilter]=true
+                                    [animateRows]=true [rowSelection]="rowSelection">
+                                </ag-grid-angular>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 wi-100" style="margin-top: 1em">
+                                <div style="margin-left: 0px; margin-right: 0px">
+
+
+                                    <div id="map" class="
+                        leaflet-container
+                        leaflet-retina
+                        leaflet-fade-anim
+                        leaflet-grab
+                        leaflet-touch-drag
+                      " tabindex="0" style="outline: none; top: 1em" leaflet [leafletOptions]="mapOptions" [leafletMarkerClusterOptions]="markerClusterOptions" (leafletMapReady)="onMapReady($event)" [leafletMarkerCluster]="markerClusterData" [leafletFitBounds]="mapFitToBounds"
+                                        [leafletFitBoundsOptions]="mapFitToBoundsOptions"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

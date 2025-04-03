@@ -1,0 +1,309 @@
+<div class="full_container">
+    <div class="inner_container">
+        <div class="topbar" style="padding-left: 0px !important; background-color: blue;">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="full">
+                    <a routerLink="/"><img style="padding-top: 8px;width: 9%; " class="img-responsive111" src="/assets/images/logo/mdmlogo.png" alt="#" />
+                    </a>
+
+                    <div class="right_topbar">
+                        <div class="icon_info">
+                            <ul class="user_profile_dd">
+                                <li>
+                                    <a href="../../../assets/MDM Help.pdf" target="_blank" class="ic"><button type="button" class="btn btn-outline-light mx-3">Help</button></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><img style="background-color: white;" class="img-responsive rounded-circle" src="/assets/images/MeECLlogo.png" alt="#" />
+                                        <span class="name_user">{{loginUserName}}</span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" routerLink="/mdm/changepassword">Change Password</a>
+                                        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()"><span>Log Out</span> </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <br />
+        <br />
+    </div>
+</div>
+
+
+<div class="container" style="padding-bottom: 20px; width: 1200px;">
+    <div class="row">
+        <div class=" " *ngIf="permission.isUser">
+            <div class="card" style="border: none;">
+                <a routerLink="/mdm/user">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon1">
+                                <img style="width: 68%;" src="/assets/images/user-management.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/user">Users Management </a>
+                            </h4>
+                            <p>It allows us to manage users and their roles.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class=" " *ngIf="permission.isconsumer">
+            <div class="card" style="border: none;">
+                <a routerLink="/mdm/consumer">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon2" style="text-align: center;">
+                                <img style="width: 100%;" src="/assets/images/consumer.png" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/consumer">Consumer Management </a>
+                            </h4>
+                            <p>it helps to manage Consumer Information.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isAssets">
+            <div class="card" style="border: none;">
+                <a routerLink="/mdm/assets">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon3" style="text-align: center;">
+                                <img style="width: 63%;" src="/assets/images/assets.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/assets">Assets Management</a>
+                            </h4>
+                            <p>It allows us to manage meter related assets.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class=" " *ngIf="permission.isPrepaid">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/prepaid">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon4" style="text-align: center;">
+                                <img style="width: 55%;margin-top: 19px;" src="/assets/images/prepaid.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/prepaid">Demand Service</a>
+                            </h4>
+                            <p>This module allows you to manage commands .</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isMeter">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/meterdata">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon5" style="text-align: center;">
+                                <img style="width: 63%;" src="/assets/images/meterdata.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/meterdata">Meter Data Management</a>
+                            </h4>
+                            <p>It helps to manage smart Meter related Data.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isVee">
+
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/vee">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon6" style="text-align: center;">
+                                <img style="width: 55%;margin-top: 19px;" src="/assets/images/valid.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/vee">VEE Management</a>
+                            </h4>
+                            <p>This module allows you to manage VEE Information.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isCommunication">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/communication">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon7" style="text-align: center;">
+                                <img style="width: 55%;margin-top: 19px;" src="/assets/images/digital-marketing.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/communication">Communication Management</a>
+                            </h4>
+                            <p>This module allows you to manage Communications</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isEnergy">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/energy/analysis">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon8" style="text-align: center;">
+                                <img style="width: 79%;" src="/assets/images/energuaudit.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/energy/analysis">Energy Audit Management</a>
+                            </h4>
+                            <p>It helps to manage audit energy related data.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isRevenue">
+            <div class="card" style="border: none;">
+                <a routerLink="/mdm/revenue">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon9" style="text-align: center;">
+                                <img style="width: 63%;" src="/assets/images/revenue.png" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/revenue">Revenue Management </a>
+
+                            </h4>
+                            <p>This module allows you to manage revenues.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isException">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/exception">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon10" style="text-align: center;">
+                                <img style="width: 55%;margin-top: 19px;" src="/assets/images/alarm.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+
+                            <div class="led-box">
+                                <div [ngClass]="permission.isAnyEvents ==true ? 'led-red-blink' : 'led-red'"></div>
+                            </div>
+
+
+                            <h4>
+                                <a routerLink="/mdm/exception">Exception Management</a>
+                            </h4>
+                            <p>This module allows you to manage Exceptions.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isCustomer">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/support">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon11" style="text-align: center;">
+                                <img style="width: 79%;" src="/assets/images/customersupport.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/support">Customer Service Management</a>
+                            </h4>
+                            <p>This module helps to manange prepaid service report.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" " *ngIf="permission.isPrepaidService">
+            <div class="card card1" style="border: none;">
+                <a routerLink="/mdm/PrepaidService">
+                    <div class="face face1">
+                        <div class="content">
+                            <div class="icon icon12" style="text-align: center;">
+                                <img style="width: 100%;margin-top: 19px;" src="/assets/images/complaint.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h4>
+                                <a routerLink="/mdm/complain">Prepaid Service Management </a>
+                            </h4>
+                            <p>It helps to manage all the prepaid activities</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="container-fluid">
+    <div class="footer">
+        <p>version: 1.0.1</p>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+
+                    <h2>Configuration Report</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+                        </div>
+                        <div class="table-responsive">
+                            <button type="button" (click)="onBtnExport()" class="ag-grid btn btn-primary">
+                                <i class="fa fa-download"></i> CSV Export Data
+                            </button>&nbsp;
+
+                            <input type="text" id="filter-text-box" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+                            <button type="submit" style="background: #0b7dda;"><i class="fa fa-search"></i></button> &nbsp;
+                            <select (change)="externalFilterChanged($event)">
+                                <option value="Select Command Type">Select Command Type</option>
+                                <option *ngFor="let obj of commandList" [ngValue]="obj">{{obj}}</option>
+                            </select> &nbsp;
+                            <input type="date" #fromdate="ngModel" [(ngModel)]="formdata.fromdate" /> &nbsp;
+
+                            <input type="date" #todate="ngModel" [(ngModel)]="formdata.todate" /> &nbsp;
+                            <button type="button" (click)="onSubmit()" class="btn brn-default" style="
+                              background: #707878;
+                              border-radius: 7px;
+                              color: white;
+                            ">
+                            Go
+                          </button>
+                            <ag-grid-angular style="width: 100%; height: 450px; margin-top: 10px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+                                [animateRows]=true [isExternalFilterPresent]="isExternalFilterPresent" [doesExternalFilterPass]="doesExternalFilterPass">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

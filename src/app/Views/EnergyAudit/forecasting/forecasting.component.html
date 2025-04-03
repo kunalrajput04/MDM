@@ -1,0 +1,534 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>
+            Energy Forecasting
+
+            <button routerLink="/mdm/energy/analysis" class="btn btn-success btn-xs mybutton">
+              <i class="fa fa-bolt"> </i> Analysis
+            </button>
+
+            &nbsp;&nbsp;
+
+            <button routerLink="/mdm/energy/loss" class="btn btn-danger btn-xs mybutton">
+              <i class="fa fa-money"> </i> Loss
+            </button>
+            &nbsp;&nbsp;
+
+            <button routerLink="/mdm/energy/forecasting" class="btn btn-info btn-xs mybutton">
+              <i class="fas fa-chart-line"></i> Forecasting
+            </button>
+            &nbsp;&nbsp;
+          </h2>
+        </div>
+      </div>
+
+      <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full price_table padding_infor_info">
+              <div class="row">
+                <!-- column contact -->
+                <div class="col-md-12">
+                  <!-- <form #form="ngForm" autocomplete="off">
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                        <select
+                          class="form-control"
+                          #accessLevel="ngModel"
+                          (change)="accessLevelChange()"
+                          name="accessLevel"
+                          [(ngModel)]="formdata.accessLevel"
+                        >
+                          <option value="CONSUMER">CONSUMER</option>
+                          <option value="SUBDIVISION">SUBDIVISION</option>
+                          <option value="SUBSTATION">SUBSTATION</option>
+                          <option value="FEEDER">FEEDER</option>
+                          <option value="DT">DT</option>
+                        </select>
+                      </div>
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'SUBDIVISION' ||
+                          formdata.accessLevel == 'SUBSTATION' ||
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getSubstation(subdivisonName.value)"
+                          name="subdivisonName"
+                          #subdivisonName="ngModel"
+                          [(ngModel)]="formdata.subdivisonName"
+                        >
+                          <option [ngValue]="">Select Subdevision</option>
+                          <option
+                            *ngFor="let obj of subdivisionDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'SUBSTATION' ||
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getFeeder(substationName.value)"
+                          #substationName="ngModel"
+                          name="substationName"
+                          [(ngModel)]="formdata.substationName"
+                        >
+                          <option [ngValue]="">Select Substation</option>
+                          <option
+                            *ngFor="let obj of substatioDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getDT(feederName.value)"
+                          #feederName="ngModel"
+                          name="feederName"
+                          [(ngModel)]="formdata.feederName"
+                        >
+                          <option [ngValue]="">Select Feeder</option>
+                          <option
+                            *ngFor="let obj of feederDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+                      <div
+                        class="col-md-3"
+                        *ngIf="formdata.accessLevel == 'DT'"
+                      >
+                        <select
+                          class="form-control"
+                          name="dtName"
+                          #dtName="ngModel"
+                          [(ngModel)]="formdata.dtName"
+                        >
+                          <option [ngValue]="">Select DT</option>
+                          <option
+                            *ngFor="let obj of dtDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <select
+                          class="form-control"
+                          #dataRange="ngModel"
+                          name="dataRange"
+                          [(ngModel)]="formdata.dataRange"
+                        >
+                          <option value="DAILY">DAILY</option>
+                          <option value="WEEKLY">WEEKLY</option>
+                          <option value="MONTHLY">MONTHLY</option>
+                          <option value="YEARLY">YEARLY</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #fromdate="ngModel"
+                          name="fromdate"
+                          [(ngModel)]="formdata.fromdate"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #todate="ngModel"
+                          name="todate"
+                          [(ngModel)]="formdata.todate"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <br />
+                      <br />
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="formdata.accessLevel == 'CONSUMER'"
+                      >
+                        <input
+                          type="text"
+                          required
+                          [class.invalid]="meterNo.invalid"
+                          #meterNo="ngModel"
+                          placeholder="meter number"
+                          name="meterNo"
+                          [(ngModel)]="formdata.meterNo"
+                          [ngClass]="
+                            meterNo.invalid ? 'errorclass' : 'successclass'
+                          "
+                          pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-md-3">
+                        <button
+                          type="submit"
+                          [disabled]="form.invalid"
+                          class="btn btn-success"
+                        >
+                          GO
+                        </button>
+                      </div>
+                    </div>
+                  </form> -->
+                                 
+                      <!-- Old Consumer Dropdown -->
+                      <!-- <div class="col-md-3"> -->
+                      <!-- <select
+                        class="form-control"
+                        #accessLevel="ngModel"
+                        (change)="accessLevelChange()"
+                        name="accessLevel"
+                        [(ngModel)]="formdata.accessLevel"
+                      >
+                        <option value="CONSUMER">CONSUMER</option>
+                        <option value="SUBDIVISION">SUBDIVISION</option>
+                        <option value="SUBSTATION">SUBSTATION</option>
+                        <option value="FEEDER">FEEDER</option>
+                        <option value="DT">DT</option>
+                      </select> -->
+                      <!-- </div>
+                    <div
+                      class="col-md-3"
+                      *ngIf="
+                        formdata.accessLevel == 'SUBDIVISION' ||
+                        formdata.accessLevel == 'SUBSTATION' ||
+                        formdata.accessLevel == 'FEEDER' ||
+                        formdata.accessLevel == 'DT'
+                      "
+                    >
+                      <select
+                        class="form-control"
+                        (change)="getSubstation(subdivisonName.value)"
+                        name="subdivisonName"
+                        #subdivisonName="ngModel"
+                        [(ngModel)]="formdata.subdivisonName"
+                      >
+                        <option [ngValue]="">Select Subdevision</option>
+                        <option
+                          *ngFor="let obj of subdivisionDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+      
+                    <div
+                      class="col-md-3"
+                      *ngIf="
+                        formdata.accessLevel == 'SUBSTATION' ||
+                        formdata.accessLevel == 'FEEDER' ||
+                        formdata.accessLevel == 'DT'
+                      "
+                    >
+                      <select
+                        class="form-control"
+                        (change)="getFeeder(substationName.value)"
+                        #substationName="ngModel"
+                        name="substationName"
+                        [(ngModel)]="formdata.substationName"
+                      >
+                        <option [ngValue]="">Select Substation</option>
+                        <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+      
+                    <div
+                      class="col-md-3"
+                      *ngIf="
+                        formdata.accessLevel == 'FEEDER' ||
+                        formdata.accessLevel == 'DT'
+                      "
+                    >
+                      <select
+                        class="form-control"
+                        (change)="getDT(feederName.value)"
+                        #feederName="ngModel"
+                        name="feederName"
+                        [(ngModel)]="formdata.feederName"
+                      >
+                        <option [ngValue]="">Select Feeder</option>
+                        <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div> -->
+                      <!-- <div class="col-md-3" *ngIf="formdata.accessLevel == 'DT'">
+                      <select
+                        class="form-control"
+                        name="dtName"
+                        #dtName="ngModel"
+                        [(ngModel)]="formdata.dtName"
+                      >
+                        <option [ngValue]="">Select DT</option>
+                        <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div> -->
+        <!-- Enter MeterNo -->
+                      <!-- <div
+                        class="col-md-3"
+                        *ngIf="formdata.accessLevel == 'CONSUMER'"
+                      >
+                        <input
+                          type="text"
+                          required
+                          [class.invalid]="meterNo.invalid"
+                          #meterNo="ngModel"
+                          placeholder="meter number"
+                          name="meterNo"
+                          [(ngModel)]="formdata.meterNo"
+                          [ngClass]="meterNo.invalid ? 'errorclass' : 'successclass'"
+                          pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                          class="form-control"
+                        />
+                      </div> -->
+                    
+                      <!-- End Old Consumer Dropdown -->
+
+                      <!-- New Form -->
+                <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                  <div class="form-group row">
+                      <!-- Start FromDate -->
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #fromdate="ngModel"
+                          name="fromdate"
+                          [(ngModel)]="formdata.fromdate"
+                          class="form-control dateBorder"
+                        />
+                      </div>
+                      <!-- ToDate -->
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #todate="ngModel"
+                          name="todate"
+                          [(ngModel)]="formdata.todate"
+                          class="form-control dateBorder"
+                        />
+                      </div>
+      
+                        <!-- Daily -->
+                        <div class="col-md-4">
+                          <select
+                            class="form-control dailyBackg"
+                            #dataRange="ngModel"
+                            name="dataRange"
+                            [(ngModel)]="formdata.dataRange"
+                          >
+                            <option value="DAILY">DAILY</option>
+                            <option value="WEEKLY">WEEKLY</option>
+                            <option value="MONTHLY">MONTHLY</option>
+                            <option value="YEARLY">YEARLY</option>
+                          </select>
+                        </div>
+                        </div>
+                    
+                      <div class="form-group row">
+                 <!-- Subdivision -->
+                 <div class="col-md-3">
+                  <select
+                    class="form-control dailyBackg"
+                    #dataRange="ngModel"
+                    name="dataRange"
+                    [(ngModel)]="formdata.dataRange"
+                  >
+                    <option value="DAILY">Subdivision</option>
+                    <option value="WEEKLY">Subdivision1</option>
+                    <option value="MONTHLY">Subdivision2</option>
+                    <option value="YEARLY">Subdivision3</option>
+                  </select>
+                </div> 
+      
+                  <!-- Substation -->
+                  <div class="col-md-3">
+                    <select
+                      class="form-control dailyBackg"
+                      #dataRange="ngModel"
+                      name="dataRange"
+                      [(ngModel)]="formdata.dataRange"
+                    >
+                      <option value="DAILY">Substation</option>
+                      <option value="WEEKLY">Substation1</option>
+                      <option value="MONTHLY">Substation2</option>
+                      <option value="YEARLY">Substation3</option>
+                    </select>
+                  </div>
+      
+                    <!-- Feeder -->
+                    <div class="col-md-2">
+                      <select
+                        class="form-control dailyBackg"
+                        #dataRange="ngModel"
+                        name="dataRange"
+                        [(ngModel)]="formdata.dataRange"
+                      >
+                        <option value="DAILY">Feeder</option>
+                        <option value="WEEKLY">Feeder1</option>
+                        <option value="MONTHLY">Feeder2</option>
+                        <option value="YEARLY">Feeder3</option>
+                      </select>
+                    </div>
+      
+                     <!-- DT -->
+                     <div class="col-md-2">
+                      <select
+                        class="form-control dailyBackg"
+                        #dataRange="ngModel"
+                        name="dataRange"
+                        [(ngModel)]="formdata.dataRange"
+                      >
+                        <option value="DAILY">DT</option>
+                        <option value="WEEKLY">DT1</option>
+                        <option value="MONTHLY">DT2</option>
+                        <option value="YEARLY">DT3</option>
+                      </select>
+                    </div>
+      
+                      <!-- GoButton -->
+                      <div class="col-md-2">
+                        <button
+                          type="submit"
+                          [disabled]="form.invalid"
+                          class="btn btn-success"
+                        >
+                          GO
+                        </button>
+                      </div>
+                </div>
+                </form>
+                </div>
+              </div>
+            
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  
+                <!-- Old Charts -->
+                <!-- <div class="col-md-6">
+                  <div id="chart">
+                    <apx-chart
+                      [series]="chartOptions.series"
+                      [chart]="chartOptions.chart"
+                      [yaxis]="chartOptions.yaxis"
+                      [xaxis]="chartOptions.xaxis"
+                      [labels]="chartOptions.labels"
+                      [stroke]="chartOptions.stroke"
+                      [plotOptions]="chartOptions.plotOptions"
+                      [markers]="chartOptions.markers"
+                      [fill]="chartOptions.fill"
+                      [tooltip]="chartOptions.tooltip"
+                    ></apx-chart>
+                </div>
+
+               
+                
+              </div> -->
+
+                <!-- <div class="col-md-6">
+                  <div id="chart">
+                    <apx-chart
+                      [series]="chartOptions1.series"
+                      [chart]="chartOptions1.chart"
+                      [yaxis]="chartOptions1.yaxis"
+                      [xaxis]="chartOptions1.xaxis"
+                      [labels]="chartOptions1.labels"
+                      [stroke]="chartOptions1.stroke"
+                      [title]="chartOptions1.title"
+                      [dataLabels]="chartOptions1.dataLabels"
+                      [fill]="chartOptions1.fill"
+                      [tooltip]="chartOptions1.tooltip"
+                    ></apx-chart>
+                  </div>
+                </div> -->
+
+                <!-- New Charts -->
+                <!--new energy forcasting -->
+                <div class="row column1">
+                  <div class="col-md-12">
+                    <div class="white_shd full margin_bottom_30">
+                      <div class="full price_table padding_infor_info">
+                        <div class="row">
+                          <!-- column contact -->
+                          <div class="col-md-12">
+                           
+                              <div id="chart">
+                
+                                <apx-chart
+                                  [series]="chartOptions2.series"
+                                  [chart]="chartOptions2.chart"
+                                  [xaxis]="chartOptions2.xaxis"
+                                  [yaxis]="chartOptions2.yaxis"
+                                  [dataLabels]="chartOptions2.dataLabels"
+                                  [grid]="chartOptions2.grid"
+                                  [stroke]="chartOptions2.stroke"
+                                  [title]="chartOptions2.title"
+                                  [labels]="chartOptions2.labels"
+                                  [markers]="chartOptions2.markers"
+                                  [legend]="chartOptions2.legend"
+                                  [colors]="chartOptions2.colors"
+                                  [plotOptions]="chartOptions2.plotOptions"
+                                  [fill]="chartOptions2.fill"
+                                ></apx-chart>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                
+                <!--  -->
+              </div>
+    
+              </div>
+            </div>
+        

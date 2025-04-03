@@ -1,0 +1,115 @@
+  .counter_section {
+
+
+    padding: 5px 2px;
+
+    min-height: 93px;
+
+  }
+
+  .allconsumer {
+    background-image: linear-gradient(#d5d0ed, #515e9b);
+  }
+
+  .paidconsumer {
+    background-image: linear-gradient(#b5e9c5, #519b5e);
+  }
+
+  .dueconsumer {
+    background-image: linear-gradient(#eda3b4, #e95267);
+  }
+
+  .totalamt {
+    background-image: linear-gradient(#c8d9eb, #007bff);
+  }
+
+  .paidamt {
+    background-image: linear-gradient(#cdebde, #05db81);
+
+  }
+
+  .dueamt {
+    background-image: linear-gradient(#f3aeae, #d9071c);
+  }
+
+  .red_color {
+    color: #212529 !important;
+  }
+
+  .paid_color {
+    color: #6c757d !important;
+  }
+
+  .due_color {
+    color: #28a745 !important;
+  }
+
+
+
+
+  p {
+    font-weight: 600 !important;
+  }
+
+
+  .counter_no {
+    text-align: center;
+  }
+
+  .counter_no i {
+    color: white;
+    font-size: 31px;
+  }
+
+  .icon {
+
+
+    color: white;
+    font-size: 31px;
+
+  }
+  .redicon {
+
+
+    color: red;
+    font-size: 31px;
+
+  }
+  .blink_me {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+
+
+  /* Blink Icon */
+  .blink {
+    animation: blink 2s steps(5, start) infinite;
+    -webkit-animation: blink 1s steps(5, start) infinite;
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  h4 {
+    background-color: #c9c4c4;
+    color: #000;
+    border-radius: 2px;
+    padding: 12px;
+    margin-bottom: 2px !important;
+    margin-top: 3px !important;
+    font-size: 14px;
+  }
+  

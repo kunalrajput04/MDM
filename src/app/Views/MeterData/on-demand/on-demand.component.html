@@ -1,0 +1,103 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+      <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full price_table padding_infor_info">
+              <div class="form-group consumerdetails row">
+                <!-- Consumer information -->
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Consumer Name:</span> &nbsp;
+                  <span>{{consumerformdata.customerName}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Consumer No:</span> &nbsp;
+                  <span>{{consumerformdata.customerNo}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Consumer Address:</span> &nbsp;
+                  <span>{{consumerformdata.address}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Mobile No.:</span> &nbsp;
+                  <span>{{consumerformdata.whatsappNo}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Billing Category:</span> &nbsp;
+                  <span>{{consumerformdata.billingCategory}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Meter No.:</span> &nbsp;
+                  <span>{{consumerformdata.meterSerialNumber}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Meter Type:</span> &nbsp;
+                  <span>{{consumerformdata.meterType}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span style="font-weight: bold;">Consumer Type:</span> &nbsp;
+                  <span>{{consumerformdata.consumerType}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <!-- Request Form -->
+                <div class="col-md-12">
+                  <form #form="ngForm" (submit)="onSubmit()">
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label>Consumer Number</label>
+                        <ng-select
+                          [items]="consumerno"
+                          bindLabel="consumerNumber"
+                          bindValue="meterNo"
+                          name="devicesrno"
+                          class="custom"
+                          [loading]="loading"
+                          #devicesrno="ngModel"
+                          [virtualScroll]="virtualScroll"
+                          [(ngModel)]="formdata.devicesrno"
+                          (change)="getConsumerDetails($event)"
+                          (keyup)="getConsumers($event)"
+                        ></ng-select>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Request Type</label>
+                        <select
+                          class="form-control"
+                          #command="ngModel"
+                          name="command"
+                          [(ngModel)]="formdata.command"
+                        >
+                          <option value="">--Select Request--</option>
+                          <option value="InstantRead">Instant Read</option>
+                          <option value="PingMeter">Ping Meter</option>
+                          <option value="FullData">Full Data Read</option>
+                          <option value="Connect">Connect</option>
+                          <option value="Disconnect">Disconnect</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button
+                      [disabled]="form.invalid"
+                      type="submit"
+                      class="btn btn-success"
+                    >
+                      <i class="fa fa-check"></i> Submit
+                    </button>
+                    <a
+                      style="margin-left: 5px;"
+                      routerLink="/mdm/prepaid/servicerequest"
+                      class="btn btn-primary"
+                    >
+                      <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

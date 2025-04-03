@@ -1,0 +1,142 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full price_table padding_infor_info">
+                        <div class="form-group consumerdetails row">
+
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Consumer Name:</span> &nbsp;
+                                <span>{{consumerformdata.customerName}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Consumer No:</span> &nbsp;
+                                <span>{{consumerformdata.customerNo}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Consumer Address:</span> &nbsp;
+                                <span>{{consumerformdata.address}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Mobile No.:</span> &nbsp;
+                                <span>{{consumerformdata.whatsappNo}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Billing Category:</span> &nbsp;
+                                <span>{{consumerformdata.billingCategory}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Meter No.:</span> &nbsp;
+                                <span>{{consumerformdata.meterSerialNumber}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Meter Type:</span> &nbsp;
+                                <span>{{consumerformdata.meterType}}</span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <span style="font-weight: bold;">Consumer Type:</span> &nbsp;
+                                <span>{{consumerformdata.consumerType}}</span>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                <form #form="ngForm" (submit)="manageRequest()">
+                                    <input type="hidden" #requestID="ngModel" name="requestID" [(ngModel)]="formData.requestID" />
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label>Request Type</label>
+                                            <select class="form-control" #requestType="ngModel" name="requestType" [(ngModel)]="formData.requestType">
+                          <option value="">--Select Request--</option>
+                          <option value="LoadConnect">Load Connect</option>
+                          <option value="LoadDisConnect">Load DisConnect</option>
+                          <!-- <option value="PrePaidMode">Pre-Paid Mode</option>
+                          <option value="PostPaidMode">Post-Paid Mode</option> -->
+                          <option value="ImportOnly">Import Only</option>
+                          <option value="ImportExport">Import Export</option>
+                          <!-- <option value="Firmware">Firmware</option> -->
+                        </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Consumer No </label>
+
+                                            <ng-select [items]="consumerno" name="consumerNumber" class="custom" [loading]="loading" #consumerNumber="ngModel" [virtualScroll]="virtualScroll" [(ngModel)]="formData.consumerNumber" (keyup)="getConsumers($event)" (change)="getConsumerDetails()">
+                                            </ng-select>
+                                        </div>
+                                        <!-- <div class="col-md-4" *ngIf="formData.requestType == 'Firmware'">
+                        <label>Firmware File </label>
+                        <select class="form-control">
+                          <option>-- Select Firmware --</option>
+                          <option>i210-a0-V02-2021040901</option>
+                        </select>
+                      </div> -->
+                                        <div class="col-md-4">
+                                            <label>Request By</label>
+                                            <input type="text" class="form-control" #requestByName="ngModel" name="requestByName" [(ngModel)]="formData.requestByName" readonly placeholder="requestBy" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Request To</label>
+
+                                            <select class="form-control" #requestTo="ngModel" name="requestTo" [(ngModel)]="formData.requestTo">
+                          <option value="">--Select User--</option>
+                          <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                            {{ obj.fullName }}
+                          </option>
+                        </select>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label>Request Reason</label>
+
+                                            <textarea class="form-control" [readonly]="isAssignUser" #requestReason="ngModel" name="requestReason" [(ngModel)]="formData.requestReason" required rows="2" cols="50"></textarea>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Response</label>
+
+                                            <textarea class="form-control" [readonly]="!isAssignUser" #response="ngModel" name="response" [(ngModel)]="formData.response" rows="2" cols="50"></textarea>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Remarks</label>
+
+                                            <textarea class="form-control" #remarks="ngModel" name="remarks" [(ngModel)]="formData.remarks" rows="2" cols="50"></textarea>
+                                        </div>
+                                        <div class="col-md-4" *ngIf="formData.requestID > 0 && isAssignUser">
+                                            <label>Request Status</label>
+                                            <select class="form-control" #requestStatus="ngModel" name="requestStatus" [(ngModel)]="formData.requestStatus">
+                          <option value="Pending">Pending</option>
+                          <option value="Accept">Accept</option>
+                          <option value="Reject">Reject</option>
+                        </select>
+                                        </div>
+                                    </div>
+
+                                    <button [disabled]="form.invalid" type="submit" class="btn btn-success">
+                      <i class="fa fa-check"></i> Submit
+                    </button>
+
+
+                                    <a style="margin-left: 5px;" routerLink="/mdm/prepaid/servicerequest" class="btn btn-primary">
+                                        <i class="fa fa-arrow-left"></i> Back
+                                    </a>
+
+                                    <button type="reset" *ngIf="!isAssignUser" class="btn btn-danger" style="float: right">
+                      <i class="fa fa-refresh"></i> Reset
+                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>
+                        Add Complaints
+                        <a routerLink="/mdm/support/Complaints" class="btn btn-primary btn-xs" style="float: right; color: white; margin-top: -14px">
+                            <img style="height: 25px" src="https://img.icons8.com/color/48/000000/complaints.png" /> Complaints
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full price_table padding_infor_info">
+                        <div class="form-group consumerdetails row">
+                            <div class="col-md-4">
+                                <span class="consumer">
+                  {{ consumerformdata.customerName }}</span
+                >
+              </div>
+              <div class="col-md-4">
+                <span>Consumer No:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.customerNo
+                }}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Consumer Address:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.address
+                }}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Mobile No:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.whatsappNo
+                }}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Billing Category:</span> &nbsp;
+                                <span>{{ consumerformdata.billingCategory }}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Meter No:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.meterSerialNumber
+                }}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Meter Type:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.meterType
+                }}</span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <span>Consumer Type:</span> &nbsp;
+                                <span style="font-weight: bold">{{
+                  consumerformdata.consumerType
+                }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                <form #form="ngForm" (submit)="manageSupport()" autocomplete="off">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label>Title</label>
+                                            <input type="text" #title="ngModel" name="title" [(ngModel)]="formData.title" required [ngClass]="title.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" placeholder="Title" class="form-control"
+                                            />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Type</label>
+                                            <select #type="ngModel" name="type" [(ngModel)]="formData.type" class="form-control">
+                        <option value="Billing">Billing</option>
+                        <option value="Wrong Energy">Wrong Energy</option>
+                        <option value="Wrong Amount">Wrong Amount</option>
+                        <option value="Wrong Consumer Information">Wrong Consumer Information</option>
+                        <option value="As Discription">As Discription</option>
+                                              </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Consumer Number</label>
+                                            <ng-select [items]="consumerno" name="consumerName" class="custom" [loading]="loading" #consumerName="ngModel" [virtualScroll]="virtualScroll" [(ngModel)]="formData.consumerName" (keyup)="getConsumers($event)" (change)="getConsumerDetails()">
+                                            </ng-select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Assign To</label>
+                                            <select class="form-control" #assignId="ngModel" name="assignId" [(ngModel)]="formData.assignId">
+                        <option value="0">--Assign User--</option>
+                        <option
+                          *ngFor="let obj of members"
+                          value="{{ obj.userID }}"
+                        >
+                          {{ obj.fullName }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label>Description </label>
+                                            <textarea cols="5" rows="5" class="form-control" #description="ngModel" name="description" [(ngModel)]="formData.description" [ngClass]="description.invalid ? 'errorclass' : 'successclass'" pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                                                required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <button [disabled]="form.invalid" type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                                    <button (click)="cancel()" type="reset" class="btn btn-danger" style="float: right">
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

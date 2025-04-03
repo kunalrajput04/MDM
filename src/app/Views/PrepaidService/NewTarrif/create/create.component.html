@@ -1,0 +1,206 @@
+<div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <div class="row">
+            <div class="col-3">
+              <h2>NewTarrif Configuration</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- row -->
+  
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="row">
+              <!-- column contact -->
+              <div class="col-md-12">
+                <form #form="ngForm" (submit)="onSubmit()">
+                  <input
+                    type="hidden"
+                    #requestID="ngModel"
+                    name="requestID"
+                    [(ngModel)]="formData.requestID"
+                  />
+                 
+  
+                  <div class="form-group row">
+  
+                    <div
+                    class="col-md-3"
+                  
+                  >
+                    <label>Subdivision</label>
+                    <select
+                      class="form-control"                       
+                      name="tarrifName"
+                      [(ngModel)]="formData.requestID"
+                    >
+                      <option [ngValue]="">Select TarrifName</option>
+                      <option
+                        *ngFor="let obj of   tarrifdropdown ;
+                        "
+                        [ngValue]="obj.requestID"
+                      >
+                        {{ obj.tarrifName }}
+                      </option>
+                    </select>
+                  </div>
+
+                 
+               
+  
+                    <div class="col-md-3">
+                      <label>Tarrif Applicable</label>
+                      <input
+                        #tarrifStart="ngModel"
+                        name="tarrifStart"
+                        [(ngModel)]="formData.tarrifStart"
+                        type="date"
+                        class="form-control"
+                       
+                      />
+                    </div>
+                    
+  
+
+  
+                   
+                    <div class="col-md-3">
+                      <label>Monthly Rental</label>
+                      <input
+                        #monthlyRental="ngModel"
+                        name="monthlyRental"
+                        [(ngModel)]="formData.monthlyRental"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                    <div class="col-md-3">
+                      <label>Tarrif Rate [100 Kwh]</label>
+                      <input
+                        #tarrifRate1="ngModel"
+                        name="tarrifRate1"
+                        [(ngModel)]="formData.tarrifRate1"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                    <div class="col-md-3">
+                      <label>Tarrif Rate [100 -200 Kwh]</label>
+                      <input
+                        #tarrifRate2="ngModel"
+                        name="tarrifRate2"
+                        [(ngModel)]="formData.tarrifRate2"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                    <div class="col-md-3">
+                      <label>Tarrif Rate Above 200 Kwh</label>
+                      <input
+                        #tarrifRate3="ngModel"
+                        name="tarrifRate3"
+                        [(ngModel)]="formData.tarrifRate3"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                    <div class="col-md-3">
+                      <label>GST Rate</label>
+                      <input
+                        #gstRate="ngModel"
+                        name="gstRate"
+                        [(ngModel)]="formData.gstRate"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                    <div class="col-md-3">
+                      <label>Low Balance Limit</label>
+                      <input
+                        #lowBalance="ngModel"
+                        name="lowBalance"
+                        [(ngModel)]="formData.lowBalance"
+                        type="number"
+                        class="form-control"
+                        placeholder="0.0"
+                      />
+                    </div>
+  
+                  
+                   
+  
+                
+                
+  
+                    <!-- <div class="col-md-12">
+                      <div class="row">
+                      
+                        <div class="col-md-12">
+                          <label>Remarks</label>
+  
+                          <textarea
+                            class="form-control"
+                            #remarks="ngModel"
+                            name="remarks"
+                            [(ngModel)]="formData.remarks"
+                            [ngClass]="
+                              remarks.invalid ? 'errorclass' : 'successclass'
+                            "
+                            pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                            rows="2"
+                            cols="50"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+  
+                  <button
+                   
+                   
+                    type="submit"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                  <a
+                    style="margin-left: 5px"
+                    routerLink="/mdm/PrepaidService/newTarrif"
+                    class="btn btn-primary"
+                  >
+                    <i class="fa fa-arrow-left"></i> Back
+                  </a>
+                  <button
+                    type="reset"
+                    class="btn btn-danger"
+                    style="float: right"
+                  >
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

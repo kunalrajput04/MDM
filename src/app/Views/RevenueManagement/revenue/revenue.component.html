@@ -1,0 +1,395 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+
+
+    <div class="form-group row">
+      <div class="col-md-3">
+
+
+        <label>Access Level</label>
+
+        <select class="form-control" (change)="getSubdivision()" name="accessLevel" [(ngModel)]="formData.accessLevel"
+          required>
+
+
+
+          <option *ngIf="accessLevel=='All'" value="All">ALL</option>
+          <option *ngIf="accessLevel=='All'" value="SUBDEVISION">Subdivision</option>
+          <option *ngIf="accessLevel=='All' || accessLevel=='SUBDEVISION'" value="SUBSTATION">Substation</option>
+          <option *ngIf="accessLevel=='All' || accessLevel=='SUBDEVISION' || accessLevel=='SUBSTATION'" value="FEEDER">
+            Feeder</option>
+          <option
+            *ngIf="accessLevel=='All' || accessLevel=='SUBDEVISION' || accessLevel=='SUBSTATION' || accessLevel=='FEEDER'"
+            value="DT"> DT</option>
+
+
+        </select>
+
+
+      </div>
+
+      <div class="col-md-3"
+        *ngIf="(formData.accessLevel=='SUBDEVISION' || formData.accessLevel=='SUBSTATION' || formData.accessLevel=='FEEDER' || formData.accessLevel=='DT' ) && accessLevel=='All' ">
+        <label>Subdivision</label>
+        <select class="form-control" (change)="getSubstation(subdivisonName.value)" name="subdivisonName"
+          #subdivisonName="ngModel" [(ngModel)]="formData.subdivisonName">
+          <option [ngValue]="">Select Subdevision</option>
+          <option *ngFor="let obj of subdivisionDropDown" [ngValue]="obj">
+            {{ obj }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3"
+        *ngIf="(formData.accessLevel=='SUBSTATION'  || formData.accessLevel=='FEEDER' || formData.accessLevel=='DT')  && (accessLevel=='All' || accessLevel=='SUBDEVISION' )">
+
+
+        <label>Substation</label>
+
+        <select class="form-control" (change)="getFeeder(substationName.value)" #substationName="ngModel"
+          name="substationName" [(ngModel)]="formData.substationName">
+
+
+          <option [ngValue]="">Select Substation</option>
+          <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+            {{ obj }}
+          </option>
+
+
+        </select>
+
+
+      </div>
+
+
+      <div class="col-md-3"
+        *ngIf="(formData.accessLevel=='FEEDER' ||  formData.accessLevel=='DT') && ( accessLevel=='SUBSTATION' || accessLevel=='SUBDEVISION' || accessLevel=='All') ">
+
+
+        <label>Feeder</label>
+
+        <select class="form-control" (change)="getDT(feederName.value)" #feederName="ngModel" name="feederName"
+          [(ngModel)]="formData.feederName">
+
+
+          <option [ngValue]="">Select Feeder</option>
+          <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+            {{ obj }}
+          </option>
+
+        </select>
+
+
+      </div>
+      <div class="col-md-3"
+        *ngIf="formData.accessLevel=='DT' && (accessLevel=='FEEDER' || accessLevel=='SUBSTATION' || accessLevel=='SUBDEVISION' || accessLevel=='All'  )">
+
+
+        <label>DT</label>
+
+        <select class="form-control" name="dtName" #dtName="ngModel" [(ngModel)]="formData.dtName">
+
+          <option [ngValue]="">Select DT</option>
+          <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+            {{ obj }}
+          </option>
+
+        </select>
+
+
+      </div>
+      <div class="col-md-3">
+        <label>From Date</label>
+        <input type="date" #fromdate="ngModel" name="fromdate" [(ngModel)]="formdata.fromdate" class="form-control" />
+      </div>
+
+      <div class="col-md-3">
+        <label>To Date</label>
+        <input type="date" #todate="ngModel" name="todate" [(ngModel)]="formdata.todate" class="form-control" />
+      </div>
+
+
+
+      <button type="button" (click)="onSubmit()" class="btn btn-success">GO</button>
+
+    </div>
+
+
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 allconsumer">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-users yellow_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">2500</p>
+              <p style="color: white;" class="head_couter">All Consumers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 paidconsumer">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-check-circle-o blue1_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">123.50</p>
+              <p style="color: white;" class="head_couter">Paid Consumers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 dueconsumer">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-clock-o green_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">1,805</p>
+              <p style="color: white;" class="head_couter">Due Consumers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 totalamt">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-money red_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">54</p>
+              <p style="color: white;" class="head_couter">Total Amount</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 paidamt">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-money paid_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">54</p>
+              <p style="color: white;" class="head_couter">Paid Amount</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="full counter_section margin_bottom_30 dueamt">
+          <div class="couter_icon">
+            <div>
+              <i class="fa fa-money due_color"></i>
+            </div>
+          </div>
+          <div class="counter_no">
+            <div>
+              <p style="color: white;" class="total_no">54</p>
+              <p style="color: white;" class="head_couter">Due Amount</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+
+          <div class="map_section padding_infor_info">
+            <div class="map m_style1">
+              <div id="map" class="
+          leaflet-container
+          leaflet-retina
+          leaflet-fade-anim
+          leaflet-grab
+          leaflet-touch-drag
+        " tabindex="0" style="outline: none; top: 1em" leaflet [leafletOptions]="mapOptions"
+                [leafletMarkerClusterOptions]="markerClusterOptions" (leafletMapReady)="onMapReady($event)"
+                [leafletMarkerCluster]="markerClusterData" [leafletFitBounds]="mapFitToBounds"
+                [leafletFitBoundsOptions]="mapFitToBoundsOptions"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="white_shd full margin_bottom_30">
+
+          <div class="map_section padding_infor_info">
+            <div class="css-treeview">
+              <ul>
+                <li>
+                  <input type="checkbox" checked="checked" id="rev" /><label for="rev"><b>REVENUE- ₹ 0</b></label>
+
+                  <ul *ngIf="accessLevel=='SUBDEVISION'">
+
+                    <li>
+                      <input type="checkbox" id="sd" /><label for="sd"><b>SUBDIVISION- ₹ 0</b></label>
+                      <ul>
+                        <li *ngFor="let sd of treeData;let i=index">
+
+                          <input type="checkbox" id="sd-{{i}}" /><label for="sd-{{i}}"> {{sd.subdivionName}} - ₹
+                            0</label>
+
+                          <ul>
+                            <li>
+                              <input type="checkbox" id="sb-{{i}}" /><label for="sb-{{i}}"><b>SUBSTATION- ₹ 0</b>
+                              </label>
+                              <ul>
+                                <li *ngFor="let ss of sd.substation;let j=index">
+                                  <input type="checkbox" id="sb-{{i}}-{{j}}" /><label for="sb-{{i}}-{{j}}">
+                                    {{ss.substationName}} -₹
+                                    0</label>
+
+                                  <ul>
+                                    <li>
+                                      <input type="checkbox" id="fd-{{i}}-{{j}}" /><label
+                                        for="fd-{{i}}-{{j}}"><b>FEEDER- ₹
+                                          0</b>
+                                      </label>
+                                      <ul>
+                                        <li *ngFor="let fd of ss.feeder;let k=index;">
+                                          <input type="checkbox" id="fd-{{i}}-{{j}}.{{k}}" /><label
+                                            for="fd-{{i}}-{{j}}.{{k}}">{{fd.feederName}} -₹ 0 </label>
+                                          <ul>
+                                            <li>
+                                              <input type="checkbox" id="dt-{{i}}-{{j}}.{{k}}" /><label
+                                                for="dt-{{i}}-{{j}}.{{k}}"><b>DT- ₹ 0</b> </label>
+                                              <ul>
+
+                                                <li *ngFor="let dt of fd.dtName;let n=index">
+                                                  <input type="checkbox" id="dt-{{i}}-{{j}}.{{k}}.{{n}}" /><label
+                                                    for="dt-{{i}}-{{j}}.{{k}}.{{n}}.1"> {{dt}}- ₹ 0 </label>
+                                                </li>
+                                              </ul>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul *ngIf="accessLevel=='SUBSTATION'">
+                    <li>
+                      <input type="checkbox" id="sb" /><label for="sb"><b>SUBSTATION- ₹ 0</b> </label>
+                      <ul>
+                        <li *ngFor="let ss of subtationtreeData;let j=index">
+                          <input type="checkbox" id="sb-{{j}}" /><label for="sb-{{j}}"> {{ss.substationName}} -₹
+                            0</label>
+
+                          <ul>
+                            <li>
+                              <input type="checkbox" id="fd-{{j}}" /><label for="fd-{{j}}"><b>FEEDER- ₹ 0</b>
+                              </label>
+                              <ul>
+                                <li *ngFor="let fd of ss.feeder;let k=index;">
+                                  <input type="checkbox" id="fd-{{j}}.{{k}}" /><label
+                                    for="fd-{{j}}.{{k}}">{{fd.feederName}}
+                                    -₹
+                                    0 </label>
+                                  <ul>
+                                    <li>
+                                      <input type="checkbox" id="dt-{{j}}.{{k}}" /><label for="dt-{{j}}.{{k}}"><b>DT- ₹
+                                          0</b>
+                                      </label>
+                                      <ul>
+
+                                        <li *ngFor="let dt of fd.dtName;let n=index">
+                                          <input type="checkbox" id="dt-{{j}}.{{k}}.{{n}}" /><label
+                                            for="dt-{{j}}.{{k}}.{{n}}.1"> {{dt}}- ₹ 0 </label>
+                                        </li>
+                                      </ul>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul *ngIf="accessLevel=='FEEDER'">
+                    <li>
+                      <input type="checkbox" id="fd" /><label for="fd"><b>FEEDER- ₹ 0</b>
+                      </label>
+                      <ul>
+                        <li *ngFor="let fd of feedertreeData;let k=index;">
+                          <input type="checkbox" id="fd.{{k}}" /><label for="fd.{{k}}">{{fd.feederName}} -₹ 0 </label>
+                          <ul>
+                            <li>
+                              <input type="checkbox" id="dt.{{k}}" /><label for="dt.{{k}}"><b>DT- ₹ 0</b> </label>
+                              <ul>
+
+                                <li *ngFor="let dt of fd.dtName;let n=index">
+                                  <input type="checkbox" id="dt.{{k}}.{{n}}" /><label for="dt.{{k}}.{{n}}.1"> {{dt}}- ₹
+                                    0
+                                  </label>
+                                </li>
+                              </ul>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+
+                  <ul *ngIf="accessLevel=='DT'">
+                    <li>
+                      <input type="checkbox" id="dt" /><label for="dt"><b>DT- ₹ 0</b> </label>
+                      <ul>
+
+                        <li *ngFor="let dt of dttreeData;let n=index">
+                          <input type="checkbox" id="dt.{{n}}" /><label for="dt.{{n}}.1"> {{dt}}- ₹ 0 </label>
+                        </li>
+                      </ul>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="white_shd full margin_bottom_30">
+
+          <div class="map_section padding_infor_info">
+            <div id="chart">
+              <apx-chart [series]="chartOptions.pieseries" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+                [responsive]="chartOptions.responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

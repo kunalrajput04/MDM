@@ -1,0 +1,46 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <a data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-xs" style="float: right; color: white">
+
+                    </a>
+                    <h2>Manage Device</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- row -->
+
+
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+
+                        </div>
+
+                        <div class="table-responsive">
+                            <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+              <i class="fa fa-download"></i> Export Data
+              </button>
+                            <input type="text" id="filter-text-box" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+                            <input type="text" placeholder="meter no" name="meterNo" [(ngModel)]="meterNo" style="float: right;" />
+                            <button type="button" (click)="onList()" class="ag-gridbtn gobtn" style="float: right;">
+                Go
+              </button>
+                            <ag-grid-angular style="width: 100%; height: 450px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" (gridReady)="onGridReady($event)" [columnDefs]="columnDefs" [animateRows]=true>
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

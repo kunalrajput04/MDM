@@ -1,0 +1,142 @@
+
+<div class="container-fluid pt-3 px-0">
+    <section>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <!-- <i class="fa fa-cog p-2" aria-hidden="true"></i> -->
+          <div class="text-container">
+            <!-- <p class="m-0">VEE &nbsp; &#62; &nbsp;Configuration &nbsp; &#62;</p> -->
+            <p class="m-0 font-weight-bold" style="font-size:16px;color:#364052;">Monthly Estimation Rule</p>
+          </div>
+        </div>
+      
+      </div>
+    </section>
+
+     <!-- firstCard****************** -->
+    
+  <div class="row pt-3">
+    <div class="col-md-4 rectangle1 d-flex pt-3 pb-3">
+      <!-- Total Batches****************************************************************** -->
+      <div class="col-6 d-flex p-0">
+        <i
+          class="fa fa-cog mx-2 pt-2"
+          aria-hidden="true"
+          style="font-size: 30px; color: grey"
+        ></i>
+        <span class="Tcolor">
+          Total Batches Complete <br />
+          <span class="fcolor pt-2">{{ Batches.Total }}</span> 
+        </span>
+      </div>
+      <!--Average  Validation**************************************************************************** -->
+      <div class="col-6 Tcolor p-0">
+        Avg. Estimation/Sec <br />
+        <span class="fcolor pt-2">{{Batches.Average}}</span>
+      </div>
+    </div>
+    <!--Second Card************************************************* -->
+    <div class="col-md-8 rectangle2 d-flex pt-3 pb-3">
+      <!-- Validation Queue********************************************** -->
+      <div class="col-3 d-flex p-0">
+        <i
+          class="fa fa-users mx-1"
+          aria-hidden="true"
+          style="color: #96eee4; font-size: 22px"
+        ></i>
+        <span class="Tcolor p-0">
+          Estimation in queue <br />
+          <p class="fcolor pt-2">{{ Batches.ValidationQueue }}</p>
+        </span>
+      </div>
+      <!-- Batches Queue********************************** -->
+      <div class="col-3 d-flex p-0">
+        <i
+          class="fa fa-cog mx-2"
+          aria-hidden="true"
+          style="color: #96eee4; font-size: 25px"
+        ></i>
+        <span class="Tcolor">
+          Batches in queue <br />
+          <p class="fcolor pt-2">{{ Batches.BatchQueue }}</p>
+          <p></p
+        ></span>
+      </div>
+      <!-- Add Button********************************************************* -->
+      <div class="text-left">
+        <!-- <button class="btn btn-success btn-xs" (click)="openDialog()">
+          <i class="fa fa-plus" style="font-size: 20px"></i>
+        </button> -->
+         <!-- Validation Rule Name******************************************** -->
+  <div class="form-group Tcolor">
+    <label class="HideFeederDropDown d-none" style="margin-bottom: 1em"
+      >Rule Name
+      <span
+        [ngClass]="{
+          error: ruleName.invalid && ruleName.touched
+        }"
+        >*</span
+      ></label
+    ><br />
+   <div class="row d-none">   
+    <select
+      #ruleName="ngModel"
+      name="ruleName"
+      id="validationRule"
+      class="form-control col-8"
+      [(ngModel)]="formdata.ruleName"
+      required
+    >
+      <option value="" disabled selected default hidden>
+        Select Estimation Rule Name
+      </option>
+      <option *ngFor="let obj1 of  viewListData?.Billing" [value]="obj1.ruleName">
+        {{ obj1.ruleName }}
+      </option>
+    </select>
+    <button class="btn btn-success mx-2" (click)="Run(formdata.ruleName)">
+      Go
+    </button>
+  </div>
+ 
+   
+  </div>
+  <div
+    *ngIf="ruleName.invalid && ruleName.touched"
+    class="alert alert-danger my-2"
+  >
+  Estimation Rule Name is required
+  </div>
+      </div>
+
+        </div></div>
+   <!-- AG-Grid Table -->
+    <section class="mt-4">
+     
+      <div class="table-responsive table-container mt-3">
+        <ag-grid-angular
+        style="width: 100%; height:630px"
+          class="ag-theme-balham"
+          #agGrid
+          id="myGrid"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [editType]="editType"
+          [rowClassRules]="rowClassRules"
+          [pagination]=true
+          [paginationPageSize]="20"
+          (cellClicked)="onCellClicked($event)"
+          (gridReady)="onGridReady($event)"
+          [animateRows]=true
+          [immutableColumns] = "true"
+          suppressClickEdit
+          [frameworkComponents]="frameworkComponents"
+        >
+        </ag-grid-angular>
+       
+      </div>
+    </section>
+  
+  </div>
+  

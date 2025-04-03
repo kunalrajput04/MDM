@@ -1,0 +1,453 @@
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <div class="row">
+                    <div class="col-3">
+                        <h2>Tariff Configuration</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- row -->
+
+    <!-- row -->
+    <div class="row column1">
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+                <div class="full price_table padding_infor_info">
+                    <div class="row">
+                        <!-- column contact -->
+                        <div class="col-md-12">
+                            <form #form="ngForm" (submit)="manageRequest()">
+                                <input type="hidden" #requestID="ngModel" name="requestID" [(ngModel)]="formData.requestID" />
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label>Meter Type</label>
+                                        <select class="form-control" #meterType="ngModel" name="meterType" [(ngModel)]="formData.meterType">
+                      <option value="">--Select Meter--</option>
+                      <option value="Single Phase">Single Phase</option>
+                      <option value="Three Phase">Three Phase</option>
+                    </select>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <label>Supply Category</label>
+                                        <select class="form-control" #supplyCategory="ngModel" name="supplyCategory" [(ngModel)]="formData.supplyCategory">
+                      <option value="">--Select Category--</option>
+                      <option value="Domestic consumption">Domestic consumption</option>
+                      <option value="Non Domestic consumption">Non Domestic consumption </option>
+                      <option value="Industrial consumption">Industrial consumption</option>
+                      <option value="Ferro alloy consumption">Ferro alloy consumption</option>
+                      <option value="Public service consumption">Public service consumption</option>
+                      <option value="Public Water Supply / Sewage Treatment Plant consumption">Public Water Supply / Sewage Treatment Plant consumption</option>
+                      <option value="General Purpose consumption">General Purpose consumption </option>
+                      <option value="Agriculture consumption">Agriculture consumption</option>
+                      <option value="Crematorium consumption">Crematorium consumption</option>
+                      <option value="Electric Vehicle Charging Stations consumption">Electric Vehicle Charging Stations consumption</option>
+                      <option value="Temporary Supply (CT & HT) consumption">Temporary Supply (CT & HT) consumption</option>
+
+                     
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Billing Category</label>
+                                        <select class="form-control" #billingCategory="ngModel" name="billingCategory" [(ngModel)]="formData.billingCategory">
+                      <option value="">--Select Category--</option>
+                      <option value="Domestic (DLT)">Domestic (DLT)</option>
+                      <option value="Commercial (CLT)">Commercial (CLT)</option>
+                      <option
+                        value="Industrial Low Tension
+                      (ILT)"
+                      >
+                        Industrial Low Tension (ILT)
+                      </option>
+                      <option value="General Purpose (GP) ">
+                        General Purpose (GP)
+                      </option>
+                      <option
+                        value="Public Water Supply
+                      (WSLT)/Sewage Treatment Plant"
+                      >
+                        Public Water Supply (WSLT)/Sewage Treatment Plant
+                      </option>
+
+                      <option
+                        value="Public Lighting Metered
+                        (PL)"
+                      >
+                        Public Lighting Metered (PL)
+                      </option>
+                      <option value="Agriculture (AP) ">
+                        Agriculture (AP)
+                      </option>
+                      <option value="Crematorium (CRM)">
+                        Crematorium (CRM)
+                      </option>
+                      <option
+                        value="Electric Vehicle Charging
+                        Stations (EVLT)"
+                      >
+                        Electric Vehicle Charging Stations (EVLT)
+                      </option>
+                    </select>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <label>Monthly Rental</label>
+                                        <input #monthlyRental="ngModel" name="monthlyRental" [(ngModel)]="formData.monthlyRental" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Tarrif Rate [100 Kwh]</label>
+                                        <input #tarrifRate1="ngModel" name="tarrifRate1" [(ngModel)]="formData.tarrifRate1" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Tarrif Rate [100 -200 Kwh]</label>
+                                        <input #tarrifRate2="ngModel" name="tarrifRate2" [(ngModel)]="formData.tarrifRate2" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Tarrif Rate Above 200 Kwh</label>
+                                        <input #tarrifRate3="ngModel" name="tarrifRate3" [(ngModel)]="formData.tarrifRate3" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>GST Rate</label>
+                                        <input #gstRate="ngModel" name="gstRate" [(ngModel)]="formData.gstRate" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label>Low Balance Limit</label>
+                                        <input #lowBalance="ngModel" name="lowBalance" [(ngModel)]="formData.lowBalance" type="number" class="form-control" placeholder="0.0" />
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <label>Level Type</label>
+                                        <input readonly type="text" class="form-control" #requestType="ngModel" name="requestType" [(ngModel)]="formData.requestType" required placeholder="level type" />
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <label>Level Value</label>
+                                        <input type="text" readonly class="form-control" #requestValue="ngModel" name="requestValue" [(ngModel)]="formData.requestValue" required placeholder="level value" />
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <label>Request By</label>
+                                        <input type="text" class="form-control" #requestByName="ngModel" name="requestByName" [(ngModel)]="formData.requestByName" readonly placeholder="requestBy" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Request To</label>
+
+                                        <select class="form-control" #requestTo="ngModel" name="requestTo" [(ngModel)]="formData.requestTo">
+                      <option value="">--Select User--</option>
+                      <option
+                        *ngFor="let obj of members"
+                        value="{{ obj.userID }}"
+                      >
+                        {{ obj.fullName }}
+                      </option>
+                    </select>
+                                    </div>
+
+                                    <div class="col-md-3" *ngIf="formData.requestID > 0 && isAssignUser">
+                                        <label>Request Status</label>
+                                        <select class="form-control" #requestStatus="ngModel" name="requestStatus" [(ngModel)]="formData.requestStatus">
+                    <option value="Pending">Pending</option>
+                    <option value="Accept">Accept</option>
+                    <option value="Reject">Reject</option>
+                  </select>
+                                    </div>
+
+                                    <!-- <div class="col-md-3">
+                    <label>Old Tarrif</label>
+                    <input
+                      #oldTariff="ngModel"
+                      name="oldTariff"
+                      [(ngModel)]="formData.oldTariff"
+                      type="number"
+                      class="form-control"
+                      placeholder="0.0"
+                    />
+                  </div>
+
+                  <div class="col-md-3">
+                    <label>New Tarrif</label>
+                    <input
+                      #newTariff="ngModel"
+                      name="newTariff"
+                      [(ngModel)]="formData.newTariff"
+                      type="number"
+                      class="form-control"
+                      placeholder="0.0"
+                    />
+                  </div> -->
+
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <!-- <div class="col-md-6">
+                        <label>Request Reason</label>
+
+                        <textarea
+                          class="form-control"
+                          #requestReason="ngModel"
+                          name="requestReason"
+                          [(ngModel)]="formData.requestReason"
+                          [ngClass]="requestReason.invalid ? 'errorclass' : 'successclass'"                    
+                          pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                          required
+                          rows="2"
+                          cols="50"
+                        ></textarea>
+                      </div> -->
+
+                                            <div class="col-md-12">
+                                                <label>Remarks</label>
+
+                                                <textarea class="form-control" #remarks="ngModel" name="remarks" [(ngModel)]="formData.remarks" [ngClass]="
+                            remarks.invalid ? 'errorclass' : 'successclass'
+                          " pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$" rows="2" cols="50"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button [disabled]="form.invalid" type="submit" class="btn btn-success">
+                          <i class="fa fa-check"></i> Submit
+                        </button>
+
+
+                                <a style="margin-left: 5px;" routerLink="/mdm/prepaid/tariff" class="btn btn-primary">
+                                    <i class="fa fa-arrow-left"></i> Back
+                                </a>
+
+                                <button type="reset" class="btn btn-danger" style="float: right">
+                  <i class="fa fa-refresh"></i> Reset
+                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 
+<div class="container-fluid">
+   
+   
+    <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              <div class="heading1 margin_0">
+                <h2>Add Tariff</h2>
+              </div>
+           
+            </div>
+            <div class="full price_table padding_infor_info">
+                
+              <div class="row">
+              
+                <div class="col-md-12">
+                    <form #form="ngForm" (submit)="manageRequest()">
+                        <input
+                          type="hidden"
+                          #requestID="ngModel"
+                          name="requestID"
+                          [(ngModel)]="formData.requestID"
+                        />
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label>Level Type</label>
+                                <input 
+                                readonly
+                                type="text"
+                                class="form-control"
+                                #requestType="ngModel"
+                                name="requestType"
+                                [(ngModel)]="formData.requestType"
+                                required
+                                placeholder="level type"
+                              />
+                              </div>
+                            <div class="col-md-4">
+                            <label>Level Value</label>
+                            <input
+                              type="text"
+                              readonly
+                              class="form-control"
+                              #requestValue="ngModel"
+                              name="requestValue"
+                              [(ngModel)]="formData.requestValue"
+                              required
+                              placeholder="level value"
+                            />
+                          </div>
+                          
+                          <div class="col-md-4">
+                            <label>Sanction load (kwh)* </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              #sectionLoad="ngModel"
+                              name="sectionLoad"
+                              [(ngModel)]="formData.sectionLoad"
+                              required
+                              placeholder="Sanction load (kwh)*"
+                            />
+                          </div>
+        
+                          <div class="col-md-3">
+                            <label>Request By</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              #requestByName="ngModel"
+                              name="requestByName"
+                              [(ngModel)]="formData.requestByName"
+                              readonly
+                              placeholder="requestBy"
+                            />
+                          </div>
+                          <div class="col-md-3">
+                            <label>Request To</label>
+        
+                            <select
+                              class="form-control"
+                              #requestTo="ngModel"
+                              name="requestTo"
+                              
+                              [(ngModel)]="formData.requestTo"
+                            >
+                              <option value="">--Select User--</option>
+                              <option
+                                *ngFor="let obj of members"
+                                value="{{ obj.userID }}"
+                              >
+                                {{ obj.fullName }}
+                              </option>
+                            </select>
+                          </div>
+        
+                          <div class="col-md-3">
+                            <label>Old Tarrif</label>
+                            <input
+                            #oldTariff="ngModel"
+                            name="oldTariff"
+                            [(ngModel)]="formData.oldTariff"
+                              type="number"
+                              class="form-control"
+                              placeholder="0.0"
+                            />
+                          </div>
+        
+                          <div class="col-md-3">
+                            <label>New Tarrif</label>
+                            <input
+                            #newTariff="ngModel"
+                            name="newTariff"
+                            [(ngModel)]="formData.newTariff"
+                              type="number"
+                              class="form-control"
+                              placeholder="0.0"
+                            />
+                          </div>
+        
+                          <div class="col-md-6">
+                            <label>Request Reason</label>
+        
+                            <textarea
+                              class="form-control"
+                              
+                              #requestReason="ngModel"
+                              name="requestReason"
+                              [(ngModel)]="formData.requestReason"
+                              required
+                              rows="2"
+                              cols="50"
+                            ></textarea>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Response</label>
+        
+                            <textarea
+                              class="form-control"
+                              [readonly]="!isAssignUser"
+                              #response="ngModel"
+                              name="response"
+                              [(ngModel)]="formData.response"
+                              rows="2"
+                              cols="50"
+                            ></textarea>
+                          </div>
+        
+                          <div class="col-md-6">
+                            <label>Remarks</label>
+        
+                            <textarea
+                              class="form-control"
+                              #remarks="ngModel"
+                              name="remarks"
+                              [(ngModel)]="formData.remarks"
+                              rows="2"
+                              cols="50"
+                            ></textarea>
+                          </div>
+                          <div
+                            class="col-md-4"
+                            *ngIf="formData.requestID > 0 && isAssignUser"
+                          >
+                            <label>Request Status</label>
+                            <select
+                              class="form-control"
+                              #requestStatus="ngModel"
+                              name="requestStatus"
+                              [(ngModel)]="formData.requestStatus"
+                            >
+                              <option value="Pending">Pending</option>
+                              <option value="Accept">Accept</option>
+                              <option value="Reject">Reject</option>
+                            </select>
+                          </div>
+                          
+                        </div>
+        
+                        <button
+                          [disabled]="form.invalid"
+                          *ngIf="formData.requestStatus == 'Pending'"
+                          type="submit"
+                          class="btn btn-success"
+                        >
+                          <i class="fa fa-check"></i> Submit
+                        </button>
+        
+                       
+                    <a  style="margin-left: 5px;" 
+                    routerLink="/mdm/prepaid/tariff"
+                      class="btn btn-primary">
+                      <i class="fa fa-arrow-left"></i> Back
+                </a>
+                      </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+   -->

@@ -1,0 +1,64 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+
+                    <h2>Old Meters List</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- row -->
+
+
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12 mb-4">
+                <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+                  <i class="fa fa-download"></i> CSV Export
+                </button>
+
+                <select name="pageOption" [(ngModel)]="pageOption" (change)="getRecordNumber()">
+                  <option value="All">All</option>
+                  <option value="500">500</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                  <option value="20000">20000</option>
+                  <option value="30000">30000</option>
+                  <option value="Customize">Customize</option>
+                </select>
+                <select name="searchColumn" [(ngModel)]="agridRequest.searchColumn">
+                  <option value="">Select Search Column</option>
+                  <option value="customerNumber">Customer Number</option>
+                  <option value="customerName">Customer Name</option>
+                  <option value="address">Address</option>
+                  <option value="oldMeterSerialNumber">Old Meter SerialNumber</option>
+                  <option value="meterManufacture">Meter Manufacture</option>
+                  <option value="lastBillingReading">Last Billing Reading</option>
+                  <option value="meterStatus">Meter Status</option>
+                  <option value="meterType">Meter Type</option>
+                  <option value="mobileNo">Mobile No</option>
+                  <option value="monthlyBilled">Monthly Billed</option>
+                  <option value="sectionLoad">Section Load</option>
+                  
+                 
+                  
+                </select>
+                <input type="text" name="searchValue" [(ngModel)]="agridRequest.searchValue" placeholder="search in full database" />
+                <input type="number" *ngIf="pageOption=='Customize'" name="length" [(ngModel)]="agridRequest.length" placeholder="enter number" />
+                <button type="button" (click)="onSubmit()" class="ag-gridbtn">
+                  <i class="fa fa-download"></i> Go
+                </button>
+
+                <input type="text" id="filter-text-box" placeholder="search in table" (input)="onFilterTextBoxChanged()" style="float: right;" />
+
+                <ag-grid-angular style="width: 100%; height: 450px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" [enableCellTextSelection]=true (gridReady)="onGridReady($event)" [suppressRowClickSelection]="true"
+                    [columnDefs]="columnDefs" [rowSelection]="rowSelection">
+                </ag-grid-angular>
+
+            </div>
+        </div>
+    </div>
+</div>

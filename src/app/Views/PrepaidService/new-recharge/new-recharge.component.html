@@ -1,0 +1,218 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>
+            New Recharge
+            <a
+              routerLink="/mdm/PrepaidService/rechargeHistory"
+              class="btn btn-primary btn-xs"
+              style="float: right; color: white"
+            >
+              <i class="fas fa-money"></i>
+              Recharge
+            </a>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="form-group consumerdetails row">
+              <div class="col-md-4">
+                <span class="consumer">
+                  {{ consumerformdata.customerName }}</span
+                >
+              </div>
+              <div class="col-md-4">
+                <span>Consumer No:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.customerNo
+                }}</span>
+              </div>
+              <div class="col-md-4">
+                <span>Consumer Address:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.address
+                }}</span>
+              </div>
+              <div class="col-md-4">
+                <span>Mobile No:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.whatsappNo
+                }}</span>
+              </div>
+              <div class="col-md-4">
+                <span>Billing Category:</span> &nbsp;
+                <span>{{ consumerformdata.billingCategory }}</span>
+              </div>
+              <div class="col-md-4">
+                <span>Meter No:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.meterSerialNumber
+                }}</span>
+              </div>
+              <div class="col-md-4">
+                <span>Meter Type:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.meterType
+                }}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Consumer Type:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.consumerType
+                }}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Current Balance:</span> &nbsp;
+                <span style="font-weight: bold">{{
+                  consumerformdata.currentBalance
+                }}</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- column contact -->
+              <div class="col-md-12">
+                <form
+                  #form="ngForm"
+                  (submit)="manageRecharge()"
+                  autocomplete="off"
+                >
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <label>Consumer Number</label>
+                      <ng-select
+                        [items]="consumerno"
+                        name="consumerNo"
+                        class="custom"
+                        [loading]="loading"
+                        #consumerNo="ngModel"
+                        [virtualScroll]="virtualScroll"
+                        [(ngModel)]="formdata.consumerNo"
+                        (keyup)="getConsumers($event)"
+                        (change)="getConsumerDetails()"
+                      >
+                      </ng-select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label>Payment Mode</label>
+                      <select
+                        class="form-control"
+                        #mode="ngModel"
+                        name="mode"
+                        id="mode"
+                        [(ngModel)]="formdata.mode"
+                        (ngModelChange)="onPaymentMode($event)"
+                      >
+                        <option value="" selected>--Payment Mode--</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Online">Online</option>
+                        <option value="Cheque">Cheque</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label>Amount</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        #amount="ngModel"
+                        name="amount"
+                        [(ngModel)]="formdata.amount"
+                        max="100000"
+                        min="100"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row" *ngIf="formdata.ischeque">
+
+                    
+                    <div class="col-md-3">
+                      <label>Cheque Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        #chequeNumber="ngModel"
+                        name="chequeNumber"
+                        [(ngModel)]="formdata.chequeNumber"
+                        
+                      />
+                    </div>
+
+                    
+                    <div class="col-md-3">
+                      <label>Bank Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        #chequeBank="ngModel"
+                        name="chequeBank"
+                        [(ngModel)]="formdata.chequeBank"
+                        
+                      />
+                    </div>
+
+                    <div class="col-md-3">
+                      <label>Branch Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        #chequeBranch="ngModel"
+                        name="chequeBranch"
+                        [(ngModel)]="formdata.chequeBranch"
+                        
+                      />
+                    </div>
+
+
+                    
+                    <div class="col-md-3">
+                      <label>Cheque Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        #chequeDate="ngModel"
+                        name="chequeDate"
+                        [(ngModel)]="formdata.chequeDate"
+                        
+                      />
+                    </div>
+
+
+            
+
+                  </div>
+
+                  <button
+                   
+                    type="submit"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                  <button
+                    type="reset"
+                    class="btn btn-danger"
+                    style="float: right"
+                  >
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

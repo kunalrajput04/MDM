@@ -1,0 +1,58 @@
+#map {
+    height: 420px;
+    margin-left: 0px;
+  }
+  
+  .counter_section {
+  
+    padding: 0px 35px !important;
+  
+    min-height: 115px !important;
+  
+  }
+  
+  
+  .counter_no p.total_no {
+    font-size: 18px !important;
+  
+  }
+  
+  
+  .couter_icon i {
+  
+    font-size: 32px !important;
+  
+  }
+  
+  .counter_no .head_couter {
+  
+  
+    color: white !important;
+  
+  }
+  
+  @media (min-width: 992px) {
+    .col-lg-2 {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 18.666667%;
+      flex: 0 0 18.666667%;
+      max-width: 21.666667%;
+    }
+  }
+  
+  @media (max-width: 280px) {
+    .col-lg-2 {
+      margin-top: 55px; 
+      }
+    }
+  
+  .h4 {
+    background-color: #c9c4c4;
+    color: #2929af;
+    border-radius: 5px;
+    padding: 2px;
+    margin-bottom: 2px !important;
+    margin-top: 3px !important;
+    font-size: 14px;
+  
+  }

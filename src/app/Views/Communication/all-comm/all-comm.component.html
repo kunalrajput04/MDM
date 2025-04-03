@@ -1,0 +1,605 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12 infobox-container">
+                <div class="col-md-12" style="display: flex">
+                    <div class="col-md-12" style="padding: 0px; margin-bottom: 18px">
+
+                        <div class="row">
+                            <div class="min-bg-s  col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-flat widget-header-small ">
+                                            <h5 class="widget-title">Comm Read </h5>
+
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="commRead" [labels]="chartOptions?.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions?.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="min-bg-s col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-flat widget-header-small">
+                                            <h5 class="widget-title">Instatnt Read</h5>
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="instantRead" [labels]="chartOptions.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="min-bg-s col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-flat widget-header-small">
+                                            <h5 class="widget-title">DLP Data</h5>
+
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="dlpRead" [labels]="chartOptions.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="min-bg-s col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="
+                            widget-header widget-header-flat widget-header-small
+                          ">
+                                            <h5 class="widget-title">LP Read</h5>
+
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="lpRead" [labels]="chartOptions.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="min-bg-s col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="
+                            widget-header widget-header-flat widget-header-small
+                          ">
+                                            <h5 class="widget-title">Billing Read</h5>
+
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="billingRead" [labels]="chartOptions.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="min-bg-s col-md-2">
+                                <div class="item">
+                                    <div class="widget-box">
+                                        <div class="
+                            widget-header widget-header-flat widget-header-small
+                          ">
+                                            <h5 class="widget-title">Event Read</h5>
+
+                                            <div class="widget-toolbar no-border"></div>
+                                        </div>
+                                        <div id="chart">
+                                            <apx-chart [series]="eventRead" [labels]="chartOptions.labels"
+                                                [colors]="chartOptions.colors" [chart]="chartOptions.chart"
+                                                [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+                                                [fill]="chartOptions.fill" [plotOptions]="chartOptions.plotOptions">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="white_shd full margin_bottom_30">
+                                    <div class="full graph_head">
+                                        <div class="heading1 margin_0">
+                                            <h6 class="title">Total Installed Meter :
+                                                {{dashboardChartComman.singlephasemeters +
+                                                dashboardChartComman.threephasemeters +
+                                                dashboardChartComman.ctmeters}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-bordered table-hover no-wrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Data</th>
+                                                        <th class="noprint">Inactive</th>
+
+                                                        <th class="noprint">Current Day </th>
+
+                                                        <th class="print">Current Day (%) </th>
+
+                                                        <th class="noprint">Last Day</th>
+
+                                                        <th class="print">Last Day(%)</th>
+
+                                                        <th class="noprint">Last Week </th>
+
+                                                        <th class="print">Last Week(%)</th>
+
+                                                        <th class="noprint">Last Month </th>
+
+                                                        <th class="print">Last Month(%)</th>
+
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            cumulative Read
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">
+
+                                                                {{dashboardChartComman.commdaysuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.commdaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">
+                                                                {{dashboardChartComman.commyestsuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.commyestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">
+                                                                {{dashboardChartComman.commweeksuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.commweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">
+                                                                {{dashboardChartComman.commmonthsuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.commmonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Instatnt Read
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">
+                                                                {{dashboardChartComman.instantdaysuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.instantdaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint">
+                                                            <a href="javascript:void(0)">{{dashboardChartComman.instantyestsuccesscount}}
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.instantyestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.instantweeksuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.instantweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.instantmonthsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.instantmonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            DLP Data
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.dailydaysuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.dailydaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.dailyyestsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.dailyyestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.dailyweeksuccesscount}}
+                                                            </a></td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.dailyweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.dailymonthsuccesscount}}</a>
+                                                        </td>
+
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.dailymonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            LP Read
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.deltadaysuccesscount}}</a>
+                                                        </td>
+
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.deltadaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.deltayestsuccesscount}}
+                                                            </a></td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.deltayestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.deltaweeksuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.deltaweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.deltamonthsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.deltamonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Billing Read
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.billingdaysuccesscount}}
+                                                            </a></td>
+
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.billingdaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.billingyestsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.billingyestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.billingweeksuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.billingweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.billingmonthsuccesscount}}
+                                                            </a></td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.billingmonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Event Read
+                                                        </td>
+                                                        <td class="noprint">
+                                                            {{dashboardChartComman.inactivedev}}
+                                                        </td>
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.eventdaysuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.eventdaysuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.eventyestsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.eventyestsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.eventweeksuccesscount}}</a>
+                                                        </td>
+
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.eventweeksuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+                                                        <td class="noprint"><a
+                                                                href="javascript:void(0)">{{dashboardChartComman.eventmonthsuccesscount}}</a>
+                                                        </td>
+
+                                                        <td class="print">
+
+
+                                                            {{(dashboardChartComman.eventmonthsuccesscount) /
+                                                            ((dashboardChartComman.singlephasemeters +
+                                                            dashboardChartComman.threephasemeters +
+                                                            dashboardChartComman.ctmeters) -
+                                                            dashboardChartComman.inactivedev) | percent: "1.0-2"}}
+                                                        </td>
+
+
+
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

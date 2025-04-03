@@ -1,0 +1,96 @@
+<div class="col-md-6">
+    <div class="white_shd full margin_bottom_30">
+      <div class="full graph_head">
+        <h4>Return to Supplier</h4>
+      </div>
+      <div class="full price_table padding_infor_info">
+        <div class="row">
+          <!-- column contact -->
+          <div class="col-md-12">
+            <form #form="ngForm" (submit)="returnToSupplier()" autocomplete="off">
+              <div class="form-group row">
+               
+
+               
+
+                <div class="col-md-12">
+                  <label>Supplier Name</label>
+                  <input
+                    type="text"
+                    #supplierName="ngModel"
+                    name="supplierName"
+                    [(ngModel)]="returnTo.supplierName"
+                    [ngClass]="supplierName.invalid ? 'errorclass' : 'successclass'"
+                    pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                    required
+                    placeholder="Enter Supplier Name"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <label>Chalan No <b>[OUT]</b> </label>
+                  <input
+                    type="text"
+                    #chalanNo="ngModel"
+                    name="chalanNo"
+                    [(ngModel)]="returnTo.chalanNo"
+                    [ngClass]="chalanNo.invalid ? 'errorclass' : 'successclass'"
+                    pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                    required
+                    placeholder="Enter Chalan No"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <label>Faulty Meters</label>
+                  <input
+                    type="number"
+                    #meterCount="ngModel"
+                    name="meterCount"
+                    [(ngModel)]="returnTo.meterCount"
+                    required
+                    placeholder="Fault Stock"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label>Comments</label>
+                  <textarea
+                    type="text"
+                    #comments="ngModel"
+                    name="comments"
+                    [(ngModel)]="returnTo.comments"
+                    [ngClass]="comments.invalid ? 'errorclass' : 'successclass'"
+                    pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                    required
+                    placeholder="Description"
+                    class="form-control"
+                  ></textarea>
+                </div>
+              </div>
+
+              <button
+              
+                type="submit"
+                class="btn btn-success"
+                [disabled]="form.invalid"
+              >
+                <i class="fa fa-check"></i> Submit
+              </button>
+              <button
+                (click)="cleanreturnto()"
+                type="reset"
+                class="btn btn-danger"
+                style="float: right"
+              >
+                <i class="fa fa-refresh"></i> Reset
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

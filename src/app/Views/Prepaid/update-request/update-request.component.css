@@ -1,0 +1,16 @@
+.customCheck{
+    height: 50px;
+    width: 25px;
+}
+
+
+.openrowcolor {
+    background-color: #c6edbe  !important;
+    color: white;
+
+}
+.closerowcolor {
+    background-color: #ec9484 !important;
+    color: white;
+
+}

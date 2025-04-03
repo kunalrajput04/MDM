@@ -1,0 +1,223 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>
+                        Prepaid Consumers
+
+                        <button routerLink="/mdm/PrepaidService/dailySummary" class="btn btn-success btn-xs mybutton">
+              <i class="fa fa-bolt"> </i> Daily Summary
+            </button> &nbsp;&nbsp;
+
+                        <button routerLink="/mdm/PrepaidService/monthlySummary" class="btn btn-danger btn-xs mybutton">
+              <i class="fa fa-money"> </i> Monthly Summary
+            </button> &nbsp;&nbsp;
+
+                        <button routerLink="/mdm/PrepaidService/rechargeHistory" class="btn btn-info btn-xs mybutton">
+              <i class="fas fa-chart-line"></i> Recharge History
+            </button> &nbsp;&nbsp;
+
+                        <button type="button" (click)="onBtnExport()" class="btn btn-success btn-xs mybutton">
+              <i class="fas fa-file-excel"></i> Export
+            </button>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row column1">
+                <div class="col-md-12">
+                    <div class="white_shd full margin_bottom_30" style="width: 160%;">
+                        <div class="full price_table padding_infor_info">
+                            <div class="row">
+                                <!-- column contact -->
+                                <!-- <div class="col-md-12">
+                  <form #form="ngForm" autocomplete="off">
+                    <div class="form-group row">
+                      <div class="col-md-3">
+
+
+                        <select
+                          class="form-control"
+                          #accessLevel="ngModel"
+                          (change)="accessLevelChange()"
+                          name="accessLevel"
+                          [(ngModel)]="formdata.accessLevel"
+                        >
+                          <option value="CONSUMER">CONSUMER</option>
+                          <option value="SUBDIVISION">SUBDIVISION</option>
+                          <option value="SUBSTATION">SUBSTATION</option>
+                          <option value="FEEDER">FEEDER</option>
+                          <option value="DT">DT</option>
+                        </select>
+                      </div>
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'SUBDIVISION' ||
+                          formdata.accessLevel == 'SUBSTATION' ||
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getSubstation(subdivisonName.value)"
+                          name="subdivisonName"
+                          #subdivisonName="ngModel"
+                          [(ngModel)]="formdata.subdivisonName"
+                        >
+                          <option [ngValue]="">Select Subdevision</option>
+                          <option
+                            *ngFor="let obj of subdivisionDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'SUBSTATION' ||
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getFeeder(substationName.value)"
+                          #substationName="ngModel"
+                          name="substationName"
+                          [(ngModel)]="formdata.substationName"
+                        >
+                          <option [ngValue]="">Select Substation</option>
+                          <option
+                            *ngFor="let obj of substatioDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="
+                          formdata.accessLevel == 'FEEDER' ||
+                          formdata.accessLevel == 'DT'
+                        "
+                      >
+                        <select
+                          class="form-control"
+                          (change)="getDT(feederName.value)"
+                          #feederName="ngModel"
+                          name="feederName"
+                          [(ngModel)]="formdata.feederName"
+                        >
+                          <option [ngValue]="">Select Feeder</option>
+                          <option
+                            *ngFor="let obj of feederDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+                      <div
+                        class="col-md-3"
+                        *ngIf="formdata.accessLevel == 'DT'"
+                      >
+                        <select
+                          class="form-control"
+                          name="dtName"
+                          #dtName="ngModel"
+                          [(ngModel)]="formdata.dtName"
+                        >
+                          <option [ngValue]="">Select DT</option>
+                          <option
+                            *ngFor="let obj of dtDropDown"
+                            [ngValue]="obj"
+                          >
+                            {{ obj }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #fromdate="ngModel"
+                          name="fromdate"
+                          [(ngModel)]="formdata.fromdate"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #todate="ngModel"
+                          name="todate"
+                          [(ngModel)]="formdata.todate"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <br />
+                      <br />
+
+                      <div
+                        class="col-md-3"
+                        *ngIf="formdata.accessLevel == 'CONSUMER'"
+                      >
+                        <input
+                          type="text"
+                          required
+                          [class.invalid]="meterNo.invalid"
+                          #meterNo="ngModel"
+                          placeholder="meter number"
+                          name="meterNo"
+                          [(ngModel)]="formdata.meterNo"
+                          [ngClass]="
+                            meterNo.invalid ? 'errorclass' : 'successclass'
+                          "
+                          pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-md-3">
+                        <button
+                          type="submit"
+                          [disabled]="form.invalid"
+                          class="btn btn-success"
+                        >
+                          GO
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                 -->
+                                <div class="col-md-12">
+                                    <h5 style="float: left;font-weight: bold;">Access Level : {{levelValue}}</h5>
+                                    <h5 style="float: right;font-weight: bold;">Access Value : {{levelName}}</h5>
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <div id="gridContainer">
+                                                <ag-grid-angular style="width: 100%; height: 450px" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]="true" [paginationPageSize]="100" (gridReady)="onGridReady($event)" [columnDefs]="columnDefs" [animateRows]="true">
+                                                </ag-grid-angular>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

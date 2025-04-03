@@ -1,0 +1,177 @@
+<div class="full_container">
+    <div class="inner_container">
+      <!-- Sidebar  -->
+      <nav id="sidebar" class="ps">
+        <!-- It for toggle nav->Line4->[ngStyle]="{ 'width': !isExpended ? '0px': '', 'min-width': !isExpended ? '0px': ''  }" -->
+        <div class="sidebar_blog_1">
+          <div class="sidebar-header">
+            <div class="logo_section">
+              <a routerLink="/"
+                ><img
+                  class="logo_icon img-responsive"
+                  src="/assets/images/logo/mdmlogo.png"
+                  alt="#"
+              /></a>
+            </div>
+          </div>
+          <div class="sidebar_user_info">
+            <div class="icon_setting"></div>
+            <div class="user_profle_side">
+              <div class="user_img">
+                <a routerLink="/">
+                  <img
+                    style="background-color: white"
+                    class="img-responsive"
+                    src="/assets/images/MeECLlogo.png"
+                    alt="#"
+                  />
+                </a>
+              </div>
+              <div class="user_info">
+                <a routerLink="/">
+                  <!-- <h6>MDM</h6> -->
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <perfect-scrollbar>
+          <div class="sidebar_blog_2">
+            <h4>
+              <a routerLink="/" style="color: white">
+                <span>Home</span></a>
+            </h4>
+  
+            <ul class="list-unstyled components cc">
+              <li *ngFor="let obj of navMenu">
+                <a
+                  [routerLink]="obj.key"
+                  [ngClass]="{ active: obj.key == currentUrl }"
+                  (click)="currentUrl = obj.key"
+                  *ngIf="obj.child.length == 0">
+                  <i class="{{ obj.icon }}"></i>
+                  <span>{{ obj.urlName }}</span>
+                </a>
+                <a
+                  href="#{{ obj.urlName }}"
+                  [ngClass]="{ active: obj.key == currentUrl }"
+                  (click)="currentUrl = obj.key"
+                  *ngIf="obj.child.length > 0"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  class="dropdown-toggle"
+                >
+                  <i class="{{ obj.icon }}"></i>
+                  <span>{{ obj.urlName }}</span>
+                </a>
+  
+                <ul class="collapse list-unstyled" id="{{ obj.urlName }}">
+                  <li>
+                    <!-- <a
+                      [routerLink]="obj.key"
+                      [ngClass]="{ active: obj.key == currentUrl }"
+                      (click)="currentUrl = obj.key"
+                    >
+                      <span>{{ obj.urlName }}</span>
+                    </a> -->
+                  </li>
+                  <li *ngFor="let objj of obj.child">
+                    <a
+                      routerLink="{{ objj.key }}"
+                     
+                    >
+                      <i class="fa fa-angle right"></i>
+                      <span>{{ objj.urlName }}</span>
+                    </a>
+                    <ul
+                      class="collapse list-unstyled"
+                      id="{{ objj.urlName }}child"
+                    >
+                      <li *ngFor="let objjj of objj.child">
+                        <a [routerLink]="objjj.key">
+                          <i class="fa fa-angle right"></i>
+                          <span>{{ objjj.urlName }}</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </perfect-scrollbar>
+      </nav>
+  
+      <app-sidebar></app-sidebar>
+      <!-- end sidebar -->
+      <!-- right content -->
+      <div id="content">
+        <!--For toggle content->line no:113-> [ngStyle]="{ 'padding-left': !isExpended ? '0px': '' }" -->
+        <!-- topbar -->
+  
+        <app-top-bar></app-top-bar>
+  
+        <div class="topbar">
+          <!--For Toggle top bar->Line no 119->[ngStyle]="{ 'padding-left': !isExpended ? '0px': '' }" -->
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="full">
+               <!-- <button type="button" id="sidebarCollapse" class="sidebar_toggle"
+               (click)="manageSideNav()">
+               <i class="fa fa-bars"></i> 
+              </button> -->
+              <div class="logo_section text-center">
+                <a routerLink="/">
+                  <img class="" src="/assets/images/logo/mdmlogo.png" alt="#"/>
+                </a>
+              </div>
+              <div class="right_topbar">
+                <div class="icon_info">
+                  <ul class="user_profile_dd">
+                    <li>
+                      <a href="../../../assets/MDM Help.pdf" target="_blank" class="ic"><button type="button" class="btn btn-outline-light mx-3">Help</button></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img
+                          style="background-color: white"
+                          class="img-responsive rounded-circle"
+                          src="/assets/images/MeECLlogo.png"
+                          alt="#"
+                        /><span class="name_user">{{ loginUserName }}</span></a
+                      >
+                      <div class="dropdown-menu">
+                        <!-- <a class="dropdown-item" href="javascript:void(0)"
+                          >My Profile</a
+                        > -->
+                        <a class="dropdown-item" routerLink="/mdm/changepassword"
+                          >Change Password</a
+                        >
+  
+                        <a
+                          class="dropdown-item"
+                          href="javascript:void(0)"
+                          (click)="logout()"
+                          ><span>Log Out</span> &nbsp;
+                          <i class="fa fa-sign-out"></i
+                        ></a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+  
+        <!-- end topbar -->
+        <!-- dashboard inner -->
+  
+        <!-- end dashboard inner -->
+        <router-outlet></router-outlet>
+        <div class="container-fluid">
+            <div class="footer">
+                <p>version: {{version}}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

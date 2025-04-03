@@ -1,0 +1,81 @@
+<div class="p-0">
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close class="btn btn-success">
+        <mat-icon mat-dialog-close>cancel</mat-icon>
+      </button>
+    </mat-dialog-actions>
+    <!-- Validation Type******************************************************************** -->
+    <div class="form-group m-2">
+      <label class="HideFeederDropDown" style="margin-bottom: 1em"
+        >Data Type
+        <span
+          [ngClass]="{
+            error: dataType.invalid && dataType.touched
+          }"
+          >*</span
+        ></label
+      ><br/>
+      <select
+      #dataType="ngModel"
+      name="dataType"
+      id="dataType"
+      class="form-control"
+      [(ngModel)]="formdata.dataType"
+      required
+    >
+        <option value="" disabled selected default hidden>
+          Select Data Type
+        </option>
+        <option *ngFor="let obj1 of RuleData | keyvalue" [value]="obj1.key">
+          {{ obj1.key }}
+        </option>
+      </select>
+    </div>
+    <div
+      *ngIf="dataType.invalid && dataType.touched"
+      class="alert alert-danger my-2"
+    >
+      Data Type is required
+    </div>
+    <!-- Validation Rule Name******************************************** -->
+    <div class="form-group m-2">
+      <label class="HideFeederDropDown" style="margin-bottom: 1em"
+        >Rule Name
+        <span
+          [ngClass]="{
+            error: validationRule.invalid && validationRule.touched
+          }"
+          >*</span
+        ></label
+      ><br />
+      <select
+        #validationRule="ngModel"
+        name="validationRule"
+        id="validationRule"
+        class="form-control"
+        [(ngModel)]="formdata.validationRuleType"
+        required
+      >
+        <option value="" disabled selected default hidden>
+          Select Validation Rule Name
+        </option>
+        <option *ngFor="let obj1 of  RuleData[formdata.dataType]" [value]="obj1.validationRuleType">
+          {{ obj1.validationRuleType }}
+        </option>
+      </select>
+    </div>
+    <div
+      *ngIf="validationRule.invalid && validationRule.touched"
+      class="alert alert-danger my-2"
+    >
+      validation Rule Name is required
+    </div>
+    <div class="pt-3 d-flex justify-content-between">
+      <div class="pt-2">
+        <button class="btn btn-success" (click)="Run(formdata.validationRuleType,validationRule)">
+          Run
+        </button>
+      </div>
+    </div>
+  </div>
+  

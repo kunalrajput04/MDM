@@ -1,0 +1,55 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <form #form="ngForm" (submit)="onSubmit()" autocomplete="off">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <input type="date" #fromdate="ngModel" name="fromdate" [(ngModel)]="formdata.fromdate" class="form-control" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input type="date" #todate="ngModel" name="todate" [(ngModel)]="formdata.todate" class="form-control" />
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <ng-select [items]="consumerno" bindLabel="consumerNumber" bindValue="meterNo" name="meterNo" class="custom" [loading]="loading" #meterNo="ngModel" [virtualScroll]="virtualScroll" [(ngModel)]="formdata.meterNo" (keyup)="getConsumers($event)">
+                                </ng-select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button type="submit" [disabled]="form.invalid" class="btn btn-success">
+                    GO
+                  </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+
+
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full price_table padding_infor_info">
+                        <div class="table-responsive">
+                            <button type="button" (click)="onBtnExport()" class="ag-grid btn btn-primary">
+                  <i class="fa fa-download"></i> CSV Export Data
+                </button> &nbsp;
+                            <input type="text" id="filter-text-box" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+                            <button type="submit" style="background: #0b7dda;"><i class="fa fa-search"></i></button>
+                            <ag-grid-angular style="width: 100%; height: 450px; margin-top: 10px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" (gridReady)="onGridReady($event)" [columnDefs]="columnDefs"
+                                [animateRows]=true>
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

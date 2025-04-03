@@ -1,0 +1,265 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
+      <div class="widget-content widget-content-area br-6">
+        <h4>Sim Data</h4>
+
+        <button
+          type="button"
+          class="btn btn-primary mb-2 mr-2"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          style="float: right; margin-right: 9px"
+          class="btn btn-info mb-2"
+        >
+          Import SimData
+        </button>
+
+        <a
+          style="float: right; margin-right: 9px"
+          class="btn btn-info mb-2"
+          target="_blank"
+          href="{{ fileUrl }}/SimData/SimData.xlsx"
+        >
+          Sample Excel
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-primary mb-2 mr-2"
+          data-toggle="modal"
+          data-target="#exampleModal1"
+          style="float: right; margin-right: 9px"
+          class="btn btn-info mb-2"
+        >
+          Import Sim Status
+        </button>
+
+        <a
+          style="float: right; margin-right: 9px"
+          class="btn btn-info mb-2"
+          target="_blank"
+          href="{{ fileUrl }}/SimData/SimStatus.xlsx"
+        >
+          Sample Sim Status
+        </a>
+        <div class="table-responsive mb-4 mt-4">
+          <button type="button" (click)="deleteConfirmation()" class="ag-gridbtn">
+            <i class="fa fa-download"></i> Delete Selected
+          </button>
+          <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+            <i class="fa fa-download"></i> CSV Export Data
+          </button>
+          <button type="button"  (click)="prevRecords()" class="ag-gridbtn">
+            <i class="fa fa-download"></i> Prev
+          </button>
+          <select name="pageOption" [(ngModel)]="pageOption" (change)="getRecordNumber()">
+            <option value="All">All</option>
+            <option value="500">500</option>
+            <option value="5000">5000</option>
+            <option value="10000">10000</option>
+            <option value="20000">20000</option>
+            <option value="30000">30000</option>
+            <option value="Customize">Customize</option>
+          </select>
+          <button type="button"  (click)="nextRecords()" class="ag-gridbtn">
+            <i class="fa fa-download"></i> Next
+          </button>
+          <select name="searchColumn"  [(ngModel)]="agridRequest.searchColumn" >
+            <option value="">Select Search Column</option>
+            <option value="msisdn">Msisdn</option>
+            <option value="iccid">Iccid</option>
+            <option value="imsino">Imsino</option>
+            <option value="ipV6">IpV6</option>
+            <option value="gcode">Gcode</option>
+            <option value="apn">APN</option>
+            <option value="meterSerialNo">Meter SerialNo</option>
+            <option value="gprsSealNo">GprsSealNo</option>
+            <option value="meterSealNo">MeterSealNo</option>
+            <option value="boxSealNo">BoxSealNo</option>
+            <option value="simStatus">Sim Status</option>
+           
+          </select>
+          <input type="text"  name="searchValue" [(ngModel)]="agridRequest.searchValue"
+          placeholder="search in full database" style="width: 112px;" />
+          <input type="number" *ngIf="pageOption=='Customize'" name="length" [(ngModel)]="agridRequest.length"
+            placeholder="enter number" />
+          <button type="button"  (click)="renderTable()" class="ag-gridbtn">
+            <i class="fa fa-download"></i> Go
+          </button>
+          <input type="text" id="filter-text-box" placeholder="search in table" (input)="onFilterTextBoxChanged()"
+            style="float: right; width: 94px;" />
+          <ag-grid-angular style="width: 100%; height: 450px;" class="ag-theme-balham" [defaultColDef]="defaultColDef"
+            [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="15" [enableCellTextSelection]=true
+            (gridReady)="onGridReady($event)" [suppressRowClickSelection]="true" [columnDefs]="columnDefs"  [rowSelection]="rowSelection">
+          </ag-grid-angular>
+
+        </div>
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-x"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Upload Excel* </label>
+            <label class="custom-file-container__custom-file">
+              <input
+                type="file"
+                (change)="onChange($event)"
+                #fileInput
+                (click)="fileInput.value = null"
+                class="custom-file-container__custom-file__custom-file-input"
+              />
+              <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+              <span
+                class="custom-file-container__custom-file__custom-file-control"
+                >Choose file...<span
+                  class="
+                    custom-file-container__custom-file__custom-file-control__button
+                  "
+                >
+                  Browse
+                </span></span
+              >
+            </label>
+          </div>
+          <br />
+
+          <div class="col-md-12" style="margin-top: 20px">
+            <button type="button" (click)="postFile()" class="btn btn-primary">
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">
+          <i class="flaticon-cancel-12"></i> Discard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Sim Status Modal -->
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import Sim Status Excel</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-x"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Upload Excel* </label>
+            <label class="custom-file-container__custom-file">
+              <input
+                type="file"
+                (change)="onChangeSimStatus($event)"
+                #fileInput1
+                (click)="fileInput1.value = null"
+                class="custom-file-container__custom-file__custom-file-input"
+              />
+              <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+              <span
+                class="custom-file-container__custom-file__custom-file-control"
+                >Choose file...<span
+                  class="
+                    custom-file-container__custom-file__custom-file-control__button
+                  "
+                >
+                  Browse
+                </span></span
+              >
+            </label>
+          </div>
+          <br />
+
+          <div class="col-md-12" style="margin-top: 20px">
+            <button type="button" (click)="postSimSatatusFile()" class="btn btn-primary">
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">
+          <i class="flaticon-cancel-12"></i> Discard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

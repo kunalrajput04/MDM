@@ -1,0 +1,111 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+      <div class="row column_title">
+        <div class="col-md-12">
+          <div class="page_title">
+            <h2>New Tarrif</h2>
+            <a
+              routerLink="/mdm/PrepaidService/AddTarrif"
+              class="btn btn-primary pull-right"
+              style="margin-top: -32px"
+            >
+              <i class="fas fa-plus"></i>
+              Add New
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- row -->
+      <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              
+              <div class="table_section padding_infor_info">
+                <div class="table-responsive-sm" style="margin-top: -40px">
+                  <table
+                    datatable
+                    [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger"
+                    class="table table-striped table-bordered table-hover nowrap"
+                  >
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>TarrifName</th>
+                        <th>Monthly Rental</th>
+                        <th>Tarrif Rate[100 Kwh]</th>
+                        <th>Tarrif Rate2[100 -200 Kwh]</th>
+                        <th>Tarrif Rate3 [Above 200 Kwh]</th>
+                        <th>GST Rate</th>
+                        <th>Low Balance</th>
+                        <th>Tarrif Applicable</th>
+                        <th>Status</th>
+                        <th>Last Updated</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="datalist?.length != 0">
+                      <tr *ngFor="let obj of datalist">
+                        <td>
+                          {{ obj.tarrifName }}
+                        </td>
+                        <td>
+                            ₹ {{ obj.monthlyRental }}
+                        </td>
+  
+                        <td>
+                            ₹ {{ obj.tarrifRate1 }}
+                        </td>
+  
+                        <td>₹ {{ obj.tarrifRate2 }}</td>
+                        <td>₹ {{ obj.tarrifRate3 }}</td>
+                        
+                        <td>
+                            {{ obj.gstRate }}
+                          </td>
+  
+                          <td>
+                            {{ obj.lowBalance }}
+                          </td>
+  
+                        <td>
+                          {{ obj.tarrifStart | date: "dd-MMM-yy h:mm:ss a " }}
+                        </td>
+                        <td *ngIf="obj.isActive">
+                          <span class="badge badge-success">Active</span>
+                        </td>
+  
+                        <td *ngIf="!obj.isActive">
+                            <span class="badge badge-danger">Disabled</span>
+                          </td>
+                        <td>
+                            {{ obj.updated | date: "dd-MMM-yy h:mm:ss a " }}
+                          </td>
+  
+                      
+    
+                       
+                        <td>
+                          <i routerLink="/mdm/PrepaidService/UpdateTarrif/{{obj.newTarrifId}}" class="btn btn-primary fas fa-pencil"></i> &nbsp;
+                          <i (click)="Activate(obj.newTarrifId)" class="btn btn-info fas fa-hammer"></i> &nbsp;
+                          <i  (click)="Delete(obj.newTarrifId)" class="btn btn-danger fas fa-trash"></i> &nbsp;
+                          
+                          &nbsp;
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="datalist?.length == 0">
+                      <tr>
+                        <td colspan="8" class="no-data-available">No data!</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

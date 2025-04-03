@@ -1,0 +1,95 @@
+.min-bg-s .item {
+    background: #d1cfca;
+}
+
+.min-bg-s {
+    margin-bottom: 15px;
+    width: 14.2%;
+    padding: 0px 5px !important;
+}
+
+.errorclass {
+    border-color: red;
+}
+
+.successclass {
+    border-color: green;
+}
+
+.h4 {
+    background-color: #307ecc;
+    color: white;
+    padding: 2px;
+}
+
+#map {
+    height: 420px;
+    margin-left: 0px;
+}
+
+.widget-title {
+    font-size: 11px !important;
+}
+
+.newrowcolor {
+    background-color: #e99292 !important;
+    color: white;
+}
+
+.closerowcolor {
+    background-color: #7fcb7f !important;
+    color: white;
+}
+
+.padding_chart {
+    padding: 18px 3px !important;
+}
+
+@media (min-width: 768px) {
+    .min-bg-s {
+        flex: 0 0 13.333333% !important;
+    }
+}
+
+.social_icon {
+    font-size: 12px !important;
+    padding: 3px 0 3px !important;
+}
+
+.chartrow {
+    margin-right: -40px !important;
+    margin-left: -32px !important;
+}
+
+@media (min-width: 992px) {
+    .chartcol {
+        max-width: 14.10% !important;
+    }
+}
+
+.chartcol {
+    padding-right: 0px !important;
+    padding-left: 9px !important;
+}
+
+.graph_head {
+    padding: 3px 25px 2px;
+    background-color: black;
+}
+
+.heading1 h2 {
+    color: #f8f9fa;
+}
+
+.padding_infor_info {
+    padding: 15px 10px !important;
+}
+
+.page_title {
+    height: auto;
+    padding: 12px 35px 1px 38px;
+}
+
+.col-padding-bottom {
+    padding-bottom: 5px;
+}

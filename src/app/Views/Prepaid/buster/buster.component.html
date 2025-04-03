@@ -1,0 +1,373 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Prepaid Management</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12" *ngIf="IsAdd">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Booster</h2>
+                        </div>
+                        <button class="btn btn-primary" (click)="List()" style="float: right;"><i class="fa fa-database"></i> Booster Logs</button>
+                        <!-- <a
+                routerLink="/mdm/user"
+                class="btn btn-primary btn-xs"
+                style="float: right; color: white"
+              >
+                <i class="fa fa-file-excel-o"> </i> Format
+              </a> -->
+                    </div>
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-group row">
+
+                                        <div class="col-md-4">
+                                            <label>From Date</label>
+                                            <input type="date" required placeholder="Name" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>To Date</label>
+                                            <input type="date" required placeholder="Name" class="form-control" />
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label>Category/Tariff Index</label>
+                                            <select class="form-control">
+                          <option value="">--Select Category/Tariff--</option>
+                          <option value="DLT">Domestic(DLT)</option>
+                          <option value="CLT">Non Domestic(CLT)</option>
+                          <option value="ILT">Industrial(ILT)</option>
+                          <option value="GP">General Purpose(GP)</option>
+                          <option value="WSLT">Public Water Supply(WSLT)</option>
+                          <option value="PL">Public Lighting(PL)</option>
+                          <option value="LED">LED Fittings And Lamps(LED)</option>
+                          <option value="AP">Agriculture(AP)</option>
+                          <option value="BPLM">Kultir Jyoti/BPL(BPLM)</option>
+                          <option value="TOD_LT">Time Of Day-LT(TOD_LT)</option>
+                        </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Price</label>
+                                            <input type="number" required placeholder="0.00" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Assign To</label>
+                                            <select class="form-control">
+                          <option value="">--Assign User--</option>
+                          <option value="Rahul Kumar">Rahul Kumar</option>
+                          <option value="Nagendra Kumar">Nagendra Kumar</option>
+                          <option value="Anil Singh">Anil Singh</option>
+                          <option value="GP">Deepak</option>
+                         
+                        </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-success">
+                      <i class="fa fa-check"></i> Apply
+                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" *ngIf="IsList">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Booster</h2>
+
+                        </div>
+                        <button class="btn btn-primary" (click)="Add()" style="float: right;"><i class="fa fa-bolt"></i> ADD</button>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#Request Number</th>
+                                        <th>Tarrif </th>
+                                        <th>Consumer No</th>
+                                        <th>From Date</th>
+                                        <th>To Date</th>
+                                        <th>Assign To</th>
+                                        <th>Status </th>
+                                        <th>Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>SR637727806986360333</td>
+                                        <td>DLT</td>
+                                        <td>1213456</td>
+                                        <td>10/12/2021</td>
+                                        <td>15/12/2021</td>
+                                        <td>Rahul Kumar</td>
+                                        <td><span class="badge badge-danger">PENDING</span></td>
+                                        <td>
+                                            <i class="fa fa-cogs btn btn-xs btn-success"></i>
+                                            <i class="fa fa-wrench btn btn-xs btn-warning"></i>
+                                            <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                                            <i class="fa fa-bell btn btn-xs btn-info"></i>
+                                            <i class="fa fa-envelope btn btn-xs btn-primary"></i>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

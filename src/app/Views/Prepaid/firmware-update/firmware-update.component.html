@@ -1,0 +1,240 @@
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <h2> Firmware Update</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row column1 white_shd ">
+        <div class="col-md-12">
+            <h5 class="h5">
+                Firmware File Upload
+
+            </h5>
+            <div class="row">
+                <div class="form-group col-md-3">
+
+                    <label for="manufacturer">Meter Manufacturer</label>
+                    <select class="form-control" style="width: 100%" name="manufacturer" #manufacturer="ngModel" [(ngModel)]="formFiledata.manufacturer" required>
+                        <option value="">Select Meter Manufacturer</option>
+                        <option value="JNE">JNE </option>
+                        <option value="HEXING">HEXING </option>
+                        <option value="JPM">JPM </option>
+                        <option value="INISH">INISH </option>
+                        <option value="ALLIED">ALLIED </option>
+                        <option value="LNT">LNT </option>
+                        <option value="LAN">LAN </option>
+                        <option value="EPPELTONE">EPPELTONE </option>
+                        <option value="FLASH">FLASH </option>
+                    </select>
+
+                </div>
+                <div class="form-group col-md-2">
+
+                    <label for="manufacturer">Firmware Version</label>
+                    <input type="text" class="form-control" style="width: 100%" name="version" #version="ngModel" [(ngModel)]="formFiledata.version" />
+
+                </div>
+
+                <div class="form-group col-md-2">
+
+                    <label for="manufacturer">Status</label>
+                    <select class="form-control" style="width: 100%" name="status" #status="ngModel" [(ngModel)]="formFiledata.status" required>
+                        <option value="">Select Status</option>
+                        <option value="Active">Active </option>
+                        <option value="Inactive">Inactive </option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group col-md-3">
+
+                    <label for="manufacturer">Select Firmware File</label>
+                    <input type="file" accept=".bin" (change)="checkFile($event)" class="form-control" style="width: 100%" name="firmWareFile" />
+
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" (click)="uploadFirmware()" class="btn brn-default" style="float: left">
+                        Upload
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row column1 white_shd ">
+        <div class="col-md-12">
+            <h5 class="h5">
+                View Available Firmware
+
+            </h5>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <button type="button" (click)="onBtnExport()" class="ag-gridbtn btn btn-primary">
+                            <i class="fa fa-download"></i> CSV Export Data
+                        </button>&nbsp;
+                        <input type="text" id="filter-text-box" placeholder="Search" (input)="onFilterTextBoxChanged()" />
+                        <button type="submit" style="background: #0b7dda;"><i class="fa fa-search"></i></button>
+                        <ag-grid-angular style="width: 100%; height: 250px; margin-top: 10px;" class="ag-theme-balham" [defaultColDef]="defaultColDef" [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions" [pagination]=true [paginationPageSize]="100" (gridReady)="onGridReady($event)"
+                            [rowSelection]="rowSelection" [columnDefs]="columnDefs" [animateRows]=true>
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row column1 white_shd ">
+        <div class="col-md-12">
+            <h5 class="h5">
+                Firmware Upgrade (Select bin file from above list to upgrade firmware )
+
+            </h5>
+            <div class="row">
+
+
+                <div class="col-md-3">
+                    <select class="form-control" #accessLevel="ngModel" name="accessLevel" [(ngModel)]="formdata.accessLevel">
+                        <option value="All">All</option>
+                        <option value="SUBDIVISION">SUBDIVISION</option>
+                        <option value="SUBSTATION">SUBSTATION</option>
+                        <option value="FEEDER">FEEDER</option>
+                        <option value="DT">DT</option>
+                        <option value="METER">METER</option>
+                    </select>
+                </div>
+                <div class="col-md-3" *ngIf="formdata.accessLevel=='SUBDIVISION' || formdata.accessLevel=='SUBSTATION' || formdata.accessLevel=='FEEDER' || formdata.accessLevel=='DT'">
+
+                    <select class="form-control" (change)="getSubstation(subdivisonName.value)" name="subdivisonName" #subdivisonName="ngModel" [(ngModel)]="formdata.subdivisonName">
+                        <option [ngValue]="">Select Subdevision</option>
+                        <option *ngFor="let obj of subdivisionDropDown" [ngValue]="obj">
+                            {{ obj }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-3" *ngIf="formdata.accessLevel=='SUBSTATION'  || formdata.accessLevel=='FEEDER' || formdata.accessLevel=='DT'">
+
+
+
+
+                    <select class="form-control" (change)="getFeeder(substationName.value)" #substationName="ngModel" name="substationName" [(ngModel)]="formdata.substationName">
+
+
+                        <option [ngValue]="">Select Substation</option>
+                        <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                            {{ obj }}
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+                <div class="col-md-3" *ngIf="formdata.accessLevel=='FEEDER' ||  formdata.accessLevel=='DT'">
+
+
+
+
+                    <select class="form-control" (change)="getDT(feederName.value)" #feederName="ngModel" name="feederName" [(ngModel)]="formdata.feederName">
+
+
+                        <option [ngValue]="">Select Feeder</option>
+                        <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                            {{ obj }}
+                        </option>
+
+                    </select>
+
+
+                </div>
+                <div class="col-md-3" *ngIf="formdata.accessLevel=='DT'">
+
+
+
+
+                    <select class="form-control" name="dtName" #dtName="ngModel" [(ngModel)]="formdata.dtName">
+
+                        <option [ngValue]="">Select DT</option>
+                        <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                            {{ obj }}
+                        </option>
+
+                    </select>
+
+
+                </div>
+                <div class="col-md-3" *ngIf="formdata.accessLevel=='METER'">
+
+                    <input type="text" placeholder="enter meter no" class="form-control" name="meterNo" #meterNo="ngModel" [(ngModel)]="formdata.meterNo" />
+                </div>
+                <div class="col-md-3">
+
+                    <button type="button" (click)="getSelectedRowData()" class="btn btn-success">
+                        Firmware Upgrade
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" #myModal>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Firmware</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <div class="modal-body ">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+
+                            <label for="manufacturer">Meter Manufacturer</label>
+                            <input type="text" readonly class="form-control" style="width: 100%" name="manufacturer" #manufacturer="ngModel" [(ngModel)]="formFiledata.manufacturer" />
+                        </div>
+                        <div class="form-group col-md-4">
+
+                            <label for="manufacturer">Firmware Version</label>
+                            <input type="text" class="form-control" style="width: 100%" name="version" #version="ngModel" [(ngModel)]="formFiledata.version" />
+
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                            <label for="manufacturer">Status</label>
+                            <select class="form-control" style="width: 100%" name="status" #status="ngModel" [(ngModel)]="formFiledata.status" required>
+                                <option value="">Select Status</option>
+                                <option value="Active">Active </option>
+                                <option value="Inactive">Inactive </option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-4">
+
+                            <label for="manufacturer">Image Identifier</label>
+                            <input type="text" class="form-control" style="width: 100%" name="imageIdentifier" #imageIdentifier="ngModel" [(ngModel)]="formFiledata.imageIdentifier" required />
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="float: left">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnUpdateSaveSubstation" style="float: right" (click)="updateFirmware()">
+                      Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

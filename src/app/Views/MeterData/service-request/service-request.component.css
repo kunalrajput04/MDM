@@ -1,0 +1,28 @@
+.listbtn {
+    padding: 0.175rem 0.44rem !important;
+    font-size: 10px !important;
+}
+
+.consumerdetails {
+    background-color: #e6e7e8;
+    padding: 4px;
+}
+
+.newrowcolor {
+    background-color: #e99292 !important;
+    color: white;
+
+}
+
+.closerowcolor {
+    background-color: #7fcb7f !important;
+    color: white;
+
+}
+
+
+@media (min-width: 1200px) {
+    .modal-xl {
+        max-width: 1140px !important;
+    }
+  }

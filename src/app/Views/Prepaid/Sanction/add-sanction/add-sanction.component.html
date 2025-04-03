@@ -1,0 +1,177 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Sanction Load</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Sanction Load</h2>
+                        </div>
+
+                    </div>
+                    <div class="full price_table padding_infor_info">
+                        <div class="row">
+                            <!-- column contact -->
+                            <div class="col-md-12">
+                                <form (ngSubmit)="manageRequest()">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label>Level Type</label>
+                                            <select class="form-control" #requestType="ngModel" name="requestType"
+                                                [(ngModel)]="formData.requestType">
+                                                <option value="">--Select Level--</option>
+                                                <option value="Consumer">Consumer</option>
+                                                <option value="SUBDEVISION">Subdivision</option>
+                                                <option value="SUBSTATION">Substation</option>
+                                                <option value="FEEDER">Feeder</option>
+                                                <option value="DT"> DT</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3" *ngIf="formData.requestType=='Consumer'">
+                                            <label>Consumer</label>
+                                            <input type="text" class="form-control" placeholder="consumer no"
+                                                name="consumer" [(ngModel)]="consumer" />
+                                        </div>
+
+
+                                        <div class="col-md-3"
+                                            *ngIf="formData.requestType=='SUBDEVISION' || formData.requestType=='SUBSTATION' || formData.requestType=='FEEDER' || formData.requestType=='DT'">
+                                            <label>Subdivision</label>
+                                            <select class="form-control" (change)="getSubstation()"
+                                                name="subdivisonName" [(ngModel)]="subdivisonName">
+                                                <option [ngValue]="">Select Subdevision</option>
+                                                <option *ngFor="let obj of subdivisionDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3"
+                                            *ngIf="formData.requestType=='SUBSTATION'  || formData.requestType=='FEEDER' || formData.requestType=='DT'">
+
+
+                                            <label>Substation</label>
+
+                                            <select class="form-control" (change)="getFeeder()" name="substationName"
+                                                [(ngModel)]="substationName">
+
+
+                                                <option [ngValue]="">Select Substation</option>
+                                                <option *ngFor="let obj of substatioDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+
+                                            </select>
+
+
+                                        </div>
+
+
+                                        <div class="col-md-3"
+                                            *ngIf="formData.requestType=='FEEDER' ||  formData.requestType=='DT'">
+
+
+                                            <label>Feeder</label>
+
+                                            <select class="form-control" (change)="getDT()" name="feederName"
+                                                [(ngModel)]="feederName">
+
+
+                                                <option [ngValue]="">Select Feeder</option>
+                                                <option *ngFor="let obj of feederDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-md-3" *ngIf="formData.requestType=='DT'">
+
+
+                                            <label>DT</label>
+
+                                            <select class="form-control" name="dtName" [(ngModel)]="dtName">
+
+                                                <option [ngValue]="">Select DT</option>
+                                                <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                                                    {{ obj }}
+                                                </option>
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Assign To</label>
+                                            
+                                            <select class="form-control" #requestTo="ngModel" name="requestTo" [(ngModel)]="formData.requestTo">
+                                                <option value="">--Select User--</option>
+                                                <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                                                  {{ obj.fullName }}
+                                                </option>
+                                              </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Old Sanction Load</label>
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                             
+                                              name="email"
+                                              required
+                                              placeholder="Sanction Load"
+                                            />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>New Sanction Load</label>
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                             
+                                              name="email"
+                                              required
+                                              placeholder="Sanction Load"
+                                            />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Applicable Date</label>
+                                            <input
+                                              type="date"
+                                              class="form-control"
+                                              name="email"
+                                              required
+                                              
+                                            />
+                                        </div>
+                                      
+
+
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-check"></i> Apply
+                                    </button>
+                                    <a style="margin-left: 5px;" routerLink="/mdm/prepaid/sanction" class="btn btn-primary">
+                                        <i class="fa fa-arrow-left"></i> Back
+                                      </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

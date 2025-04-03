@@ -1,0 +1,361 @@
+<div class="container-fluid">
+  <div class="row column_title">
+    <div class="col-md-12">
+      <div class="page_title">
+        <h2>Prepay Configuration</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- row -->
+
+  <!-- row -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="white_shd full margin_bottom_30">
+        <div class="full price_table padding_infor_info">
+          <div class="row">
+            <!-- column contact -->
+            <div class="col-md-12">
+              <form>
+                <input
+                  type="hidden"
+                  #prepayID="ngModel"
+                  [(ngModel)]="formData.prepayID"
+                  name="prepayID"
+                />
+                <h5 class="h5">
+                  Manage Times
+                  <button
+                    (click)="manageRequest()"
+                    type="button"
+                    class="btn btn-primary updatebtn"
+                  >
+                    <i class="fa fa-save"></i> Update
+                  </button>
+                </h5>
+
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <label>Balance Update Time</label>
+                    <input
+                      class="form-control"
+                      type="time"
+                      #balanceUpdateTime="ngModel"
+                      [(ngModel)]="formData.balanceUpdateTime"
+                      name="balanceUpdateTime"
+                      placeholder="enter update time"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label>Happy Hour Start Time</label>
+                    <input
+                      class="form-control"
+                      type="time"
+                      #happyHourStart="ngModel"
+                      [(ngModel)]="formData.happyHourStart"
+                      name="happyHourStart"
+                      placeholder="enter update time"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label>Happy Hour End Time</label>
+                    <input
+                      class="form-control"
+                      type="time"
+                      #happyHourEnd="ngModel"
+                      [(ngModel)]="formData.happyHourEnd"
+                      name="happyHourEnd"
+                      placeholder="enter update time"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label>-Ve Balance Limit</label>
+                    <input
+                      class="form-control"
+                      type="number"
+                      #balanceLimit="ngModel"
+                      [(ngModel)]="formData.balanceLimit"
+                      name="balanceLimit"
+                      placeholder="-1000 to 0"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <h5 class="h5">Week Days</h5>
+
+                    <div class="white_shd full margin_bottom_30">
+                      <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                          <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>Week Day Name</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #sun="ngModel"
+                                      [(ngModel)]="formData.sun"
+                                      name="sun"
+                                      class="form-check-input"
+                                    />
+                                    SUNDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #mon="ngModel"
+                                      [(ngModel)]="formData.mon"
+                                      name="mon"
+                                      class="form-check-input"
+                                    />
+                                    MONDAY
+                                  </label>
+                                </td>
+                                <td>false</td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #tue="ngModel"
+                                      [(ngModel)]="formData.tue"
+                                      name="tue"
+                                      class="form-check-input"
+                                    />
+                                    TUESDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #wed="ngModel"
+                                      [(ngModel)]="formData.wed"
+                                      name="wed"
+                                      class="form-check-input"
+                                    />
+                                    WEDNESDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #thur="ngModel"
+                                      [(ngModel)]="formData.thur"
+                                      name="thur"
+                                      class="form-check-input"
+                                    />
+                                    THURSDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #fri="ngModel"
+                                      [(ngModel)]="formData.fri"
+                                      name="fri"
+                                      class="form-check-input"
+                                    />
+                                    FRIDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="form-check-label">
+                                    <input
+                                      type="checkbox"
+                                      class="form-control"
+                                      #sat="ngModel"
+                                      [(ngModel)]="formData.sat"
+                                      name="sat"
+                                      class="form-check-input"
+                                    />
+                                    SATURDAY
+                                  </label>
+                                </td>
+                                <td>true</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h5 class="h5">National Holidays</h5>
+                    <div class="white_shd full margin_bottom_30">
+                      <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                          <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>Holiday Name</th>
+                                <th>Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Republic Day</td>
+                                <td>26 Jan</td>
+                              </tr>
+
+                              <tr>
+                                <td>Ambedkar Jayanti</td>
+                                <td>14 Apr</td>
+                              </tr>
+
+                              <tr>
+                                <td>Good Friday</td>
+                                <td>15 Apr</td>
+                              </tr>
+
+                              <tr>
+                                <td>Indian Independence Day</td>
+                                <td>15 Aug</td>
+                              </tr>
+
+                              <tr>
+                                <td>Gandhi Jayanti</td>
+                                <td>02 Oct</td>
+                              </tr>
+
+                              <tr>
+                                <td>Christmas Day</td>
+                                <td>25 Dec</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <h5 class="h5">Custom Holidays</h5>
+                    <div class="white_shd full margin_bottom_30">
+                      <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                          <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>Holiday Name</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <input
+                                    class="form-control"
+                                    placeholder="Enter holiday name"
+                                    [(ngModel)]="holidayData.holidayName"
+                                    name="holidayName"
+                                    
+                                    
+                                    
+                                    type="text"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    [(ngModel)]="holidayData.holidayDate"
+                                    name="holidayDate"
+                                  />
+                                </td>
+                                <td>
+                                  <button
+                                    (click)="addCustomeHoliDay()"
+                                    class="btn btn-primary"
+                                  >
+                                    <i class="fa fa-save"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr
+                                *ngFor="let obj of customHoliday; let i = index"
+                              >
+                                <td>
+                                  <input
+                                    readonly
+                                    class="form-control"
+                                    placeholder="enter holiday name"
+                                    name="holidayName + {{ i }}"
+                                    type="text"
+                                    [(ngModel)]="customHoliday[i].holidayName"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    readonly
+                                    type="text"
+                                    name="holidayDate + {{ i }}"
+                                    class="form-control"
+                                    [(ngModel)]="customHoliday[i].holidayDate"
+                                  />
+                                </td>
+                                <td>
+                                  <button
+                                    class="btn btn-danger"
+                                    (click)="removeCustomeHoliDay(obj)"
+                                  >
+                                    <i class="fa fa-trash"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

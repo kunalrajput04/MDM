@@ -1,0 +1,100 @@
+.bt_color{
+    background-color:#1baeb6;
+    color: white;
+}
+
+.bt_Div{
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    /* display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column-reverse; */
+}
+.lastUpdate{
+    border: 1px solid rgb(235, 227, 227);
+    border-radius: 20px;
+}
+
+.Total{
+    background-color: #195b39;
+}
+.tablesuccess{
+    overflow: hidden;
+    border: 1px solid #8eb8d1;
+    border-radius:14px;
+}
+/* ************************************** */
+.profile{
+    background-image:linear-gradient(#e2eaec,#195b39);
+    color: white;
+    border: 1px solid #71a5c3;
+}
+.validation{
+    background-color:#def0f0;
+    color:#195b39;
+    font-weight: bold;
+}
+.success{
+/* color:#41aec6; */
+color: #195b39;
+font-weight: bold;
+}
+.failed{
+    color: red;
+    font-weight: bold;
+}
+.totalborder{
+    color: white;
+    border: 1px solid #38769b;
+}
+
+.icondiffer{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+/* .iconData{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.pagetitle1{
+    padding: 0px 40px;
+}
+.monthly{
+    background-color: #cd46ab;
+    /* background-image:linear-gradient(#41aec6,#46c7cd); */
+    border: 1px solid #71a5c3;
+    color: white;
+    font-weight: bold;
+}
+.fcolor{
+    vertical-align: top;
+    width: 32px;
+    height:32px;
+}
+.data{
+    font-size: 25px;
+    font-weight: bold;
+}
+.eligible{
+    font-weight: bold;
+}
+.sda{
+    width:22px;
+    height:22px;
+    /* color: #195b39; */
+}
+:host ::ng-deep .form-control{
+    width: initial;
+    line-height: initial;
+}
+.datepadding{
+    padding: 16px 41px 14px 35px;
+}
+.profile_newone{
+    background-image:linear-gradient(#41aec6,#cd46ab);
+}

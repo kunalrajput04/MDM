@@ -1,0 +1,212 @@
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+    display: contents !important;
+}
+
+/* Remove bullets from ul */
+ul {
+    list-style-type: none;
+}
+
+li {
+    line-height: 140%;
+}
+
+.folder-button {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+}
+
+/* .folder-icon {
+    width: 22px;
+    height: 22px;
+  } */
+
+.folder-button-label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.item-name {
+    margin-left: 34px;
+}
+
+.css-treeview ul,
+.css-treeview li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.css-treeview input {
+    position: absolute;
+    opacity: 0;
+}
+
+.css-treeview {
+    font: normal 11px "Segoe UI", Arial, Sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.css-treeview a {
+    color: #000;
+    text-decoration: none;
+}
+
+.css-treeview a:hover {
+    text-decoration: underline;
+}
+
+.css-treeview input+label+ul {
+    margin: 0 0 0 22px;
+}
+
+.css-treeview input~ul {
+    display: none;
+}
+
+.css-treeview label,
+.css-treeview label::before {
+    cursor: pointer;
+}
+
+.css-treeview input:disabled+label {
+    cursor: default;
+    opacity: .6;
+}
+
+.css-treeview input:checked:not(:disabled)~ul {
+    display: block;
+}
+
+.css-treeview label,
+.css-treeview label::before {
+    background: url("http://experiments.wemakesites.net/pages/css3-treeview/example/icons.png") no-repeat;
+}
+
+.css-treeview label,
+.css-treeview a,
+.css-treeview label::before {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+}
+
+.css-treeview label {
+    background-position: 18px 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.css-treeview label::before {
+    content: "";
+    width: 16px;
+    margin: 0 22px 0 0;
+    vertical-align: middle;
+    background-position: 0 -32px;
+}
+
+.css-treeview input:checked+label::before {
+    background-position: 0 -16px;
+}
+
+/* webkit adjacent element selector bugfix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .css-treeview {
+        -webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
+    }
+
+    @-webkit-keyframes webkit-adjacent-element-selector-bugfix {
+        from {
+            padding: 0;
+        }
+
+        to {
+            padding: 0;
+        }
+    }
+}
+
+.couter_icon i {
+    font-size: 22px;
+}
+
+.counter_no p.total_no {
+    font-size: 18px;
+
+}
+
+.counter_no {
+    padding: 0 0px;
+
+}
+
+.couter_icon {
+
+    margin: 0px 0 4px;
+}
+
+.counter_section {
+
+
+    padding: 5px 2px;
+
+    min-height: 93px;
+
+}
+
+.allconsumer {
+    background-image: linear-gradient(#d5d0ed, #515e9b);
+}
+
+.paidconsumer {
+    background-image: linear-gradient(#b5e9c5, #519b5e);
+}
+
+.dueconsumer {
+    background-image: linear-gradient(#eda3b4, #e95267);
+}
+
+.totalamt {
+    background-image: linear-gradient(#c8d9eb, #007bff);
+}
+
+.paidamt {
+    background-image: linear-gradient(#cdebde, #05db81);
+
+}
+
+.dueamt {
+    background-image: linear-gradient(#f3aeae, #d9071c);
+}
+
+.red_color {
+    color: #212529 !important;
+}
+
+.paid_color {
+    color: #6c757d !important;
+}
+
+.due_color {
+    color: #28a745 !important;
+}
+
+#map {
+    height: 100%;
+    min-height: 400px;
+}
+
+.padding_infor_info {
+    padding: 0px 5px;
+    float: left;
+    width: 100%;
+    
+}

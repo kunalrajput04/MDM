@@ -1,0 +1,116 @@
+<div class="layout-px-spacing">
+    <style>
+      .custom-control.custom-checkbox.checkbox-info {
+        margin-top: 3em;
+        margin-left: 8em;
+      }
+    </style>
+  
+    <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div
+            class="form-row mb-4"
+            style="background-color: #1b55e2; color: white"
+          >
+            <div class="col-md-12">
+              <h6 style="padding-top: 9px; color: white">Subdivision</h6>
+            </div>
+          </div>
+  
+          <form novalidate #form="ngForm" (submit)="manageSubdivision(form)">
+            <div class="form-row mb-4">
+              <div class="col-md-4 mb-4" id="basic">
+                <label for="exampleFormControlInput1">Subdivision</label>
+                <input
+                  type="hidden"
+                  #subDivisionID="ngModel"
+                  name="subDivisionID"
+                  [(ngModel)]="subdivisionForm.subDivisionID"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Subdivision Name"
+                  #subDivisionName="ngModel"
+                  name="subDivisionName"
+                  [(ngModel)]="subdivisionForm.subDivisionName"
+                />
+              </div>
+  
+              <div class="col-md-4 form-group form-check pl-0">
+                <div class="custom-control custom-checkbox checkbox-info">
+                  <input
+                    type="checkbox"
+                    checked
+                    #isActive="ngModel"
+                    name="isActive"
+                    [(ngModel)]="subdivisionForm.isActive"
+                  />
+                  <label style="height: 20px" for="IsActive"> Active</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <button
+                  type="submit"
+                  id="submitform"
+                  class="btn btn-primary mt-3"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div
+            class="form-row mb-4"
+            style="background-color: #1b55e2; color: white"
+          >
+            <div class="col-md-12">
+              <h6 style="padding-top: 9px; color: white">Subdivision List</h6>
+            </div>
+          </div>
+          <div id="tableProgress" class="col-lg-12 col-12 layout-spacing">
+            <div class="statbox widget box box-shadow">
+              <div class="widget-content widget-content-area">
+                <div class="table-responsive">
+                  <table
+                    datatable
+                    [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger"
+                    class="row-border hover nowrap " style="width: 90%;"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Subdivision Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of data">
+                        <td>{{ obj.name  }}</td>
+                        <td>
+                          <button class="btn btn-success" (click)="GetData(obj)">
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END MAIN CONTAINER -->
+  <!--  END NAVBAR  -->
+  

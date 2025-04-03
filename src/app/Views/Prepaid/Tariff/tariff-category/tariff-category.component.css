@@ -1,0 +1,21 @@
+
+.newrowcolor {
+    background-color: #e99292 !important;
+    color: white;
+
+}
+
+.closerowcolor {
+    background-color: #7fcb7f !important;
+    color: white;
+
+}
+
+th{
+    text-transform: uppercase;
+}
+
+td{
+    font-weight: 600;
+}
+

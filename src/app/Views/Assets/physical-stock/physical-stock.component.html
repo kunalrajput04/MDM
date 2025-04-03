@@ -1,0 +1,367 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h4>
+            Physical Stock
+            <a
+              routerLink="/mdm/assets/Inventory"
+              routerLinkActive="router-link-active"
+              class="btn btn-primary btn-xs"
+              style="
+                float: right;
+                color: white;
+                margin-top: -8px;
+                cursor: pointer;
+              "
+            >
+              <i class="fa fa-arrow-left"> </i> Back
+            </a>
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- table section -->
+      <div class="col-md-12">
+        <div class="heading1 margin_0"></div>
+        <div class="row">
+          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-12 col-12"></div>
+          <div
+            class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"
+            data-toggle="modal"
+            data-target="#myModal"
+            title="Edit"
+            (click)="getMeterListsByCard('TotalAvilable')"
+          >
+            <div class="card l-bg-orange-dark">
+              <div class="card-statistic-3 p-4">
+                <div class="card-icon card-icon-large">
+                  <img
+                    src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                  />
+                </div>
+                <div class="mb-4">
+                  <h5 class="card-title">
+                    <label
+                      class="mylabel"
+                      style="font-size: 13px; font-weight: bold"
+                      >{{ meterCountData.totalAvilable }}
+                    </label>
+                  </h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                  <div class="custom-line-meter">
+                    <h6 class="d-flex align-items-center mb-0">
+                      Available Meters
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"
+            data-toggle="modal"
+            data-target="#myModal"
+            title="Edit"
+            (click)="getMeterListsByCard('Installed')"
+          >
+            <div class="card l-bg-orange-dark">
+              <div class="card-statistic-3 p-4">
+                <div class="card-icon card-icon-large">
+                  <img
+                    src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                  />
+                </div>
+                <div class="mb-4">
+                  <h5 class="card-title">
+                    <label
+                      class="mylabel"
+                      style="font-size: 13px; font-weight: bold"
+                      >{{ meterCountData.installed }}</label
+                    >
+                  </h5>
+                </div>
+
+                <div class="row align-items-center mb-2 d-flex">
+                  <div class="custom-line-meter">
+                    <h6 class="d-flex align-items-center mb-0">
+                      Installed Meters
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"
+            data-toggle="modal"
+            data-target="#myModal"
+            title="Edit"
+            (click)="getMeterListsByCard('JIO')"
+          >
+            <div class="card l-bg-orange-dark">
+              <div class="card-statistic-3 p-4">
+                <div class="card-icon card-icon-large">
+                  <img
+                    src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                  />
+                </div>
+                <div class="mb-4">
+                  <h5 class="card-title">
+                    <label
+                      class="mylabel"
+                      style="font-size: 13px; font-weight: bold"
+                      >{{ meterCountData.totalJio }}
+                    </label>
+                  </h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                  <div class="custom-line-meter">
+                    <h6 class="d-flex align-items-center mb-0">JIO Meters</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"
+            data-toggle="modal"
+            data-target="#myModal"
+            title="Edit"
+            (click)="getMeterListsByCard('AIRTEL')"
+          >
+            <div class="card l-bg-orange-dark">
+              <div class="card-statistic-3 p-4">
+                <div class="card-icon card-icon-large">
+                  <img
+                    src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                  />
+                </div>
+                <div class="mb-4">
+                  <h5 class="card-title mb-0">
+                    <label
+                      class="mylabel"
+                      style="font-size: 13px; font-weight: bold"
+                      >{{ meterCountData.totalAirtel }}
+                    </label>
+                  </h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                  <div class="custom-line-meter">
+                    <h6 class="d-flex align-items-center mb-0">
+                      Airtel Meters
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"
+            data-toggle="modal"
+            data-target="#myModal"
+            title="Edit"
+            (click)="getMeterListsByCard('Faulty')"
+          >
+            <div class="card l-bg-orange-dark">
+              <div class="card-statistic-3 p-4">
+                <div class="card-icon card-icon-large">
+                  <img
+                    src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                  />
+                </div>
+                <div class="mb-4">
+                  <h5 class="card-title mb-0">
+                    <label
+                      class="mylabel"
+                      style="font-size: 13px; font-weight: bold"
+                      >{{ meterCountData.faultyMeter }}
+                    </label>
+                  </h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                  <div class="custom-line-meter">
+                    <h6 class="d-flex align-items-center mb-0">
+                      Faulty Meters
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-3">
+        <label>Manufacturer</label>
+        <select
+          (change)="onListStock()"
+          class="form-control"
+          #meterManufacture="ngModel"
+          name="meterManufacture"
+          [(ngModel)]="formData.meterManufacture"
+        >
+          <option value="">--Select Manufacturer--</option>
+          <option value="JPM">JPM</option>
+          <option value="INISH">INISH</option>
+          <option value="HPL">HPL</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Sim Type</label>
+        <select
+          (change)="onListStock()"
+          class="form-control"
+          #simType="ngModel"
+          name="simType"
+          [(ngModel)]="formData.simType"
+        >
+          <option value="">--Select Sim Type--</option>
+          <option value="JIO">JIO</option>
+          <option value="AIRTEL">AIRTEL</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Meter Type</label>
+        <select
+          (change)="onListStock()"
+          class="form-control"
+          #meterType="ngModel"
+          name="meterType"
+          [(ngModel)]="formData.meterType"
+        >
+          <option value="">--Select MeterType--</option>
+          <option value="HT">HT Meters</option>
+          <option value="CT Meter">CT Meters</option>
+          <option value="Single Phase">1P Meters</option>
+          <option value="Three Phase">3P Meters</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Meter Status</label>
+        <select
+          (change)="onListStock()"
+          class="form-control"
+          #meterStatus="ngModel"
+          name="meterStatus"
+          [(ngModel)]="formData.meterStatus"
+        >
+          <option value="">--Select Status--</option>
+          <option value="Faulty">Faulty/Damage</option>
+          <option value="Ok">Ok</option>
+        </select>
+      </div>
+
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h4>Physical Stock</h4>
+            </div>
+          </div>
+
+          <div
+            class="table_section padding_infor_info"
+            style="margin-top: -35px"
+          >
+            <div class="table-responsive-sm">
+              <button
+                type="button"
+                (click)="onBtnExport()"
+                class="ag-gridbtn btn btn-primary"
+              >
+                <i class="fa fa-download"></i> Export Data</button
+              >&nbsp;
+              <input
+                type="text"
+                id="filter-text-box"
+                placeholder="Search"
+                (input)="onFilterTextBoxChanged()"
+              />
+              <button type="submit" style="background: #0b7dda">
+                <i class="fa fa-search"></i>
+              </button>
+              <ag-grid-angular
+                style="width: 100%; height: 250px; margin-top: 10px"
+                class="ag-theme-balham"
+                [defaultColDef]="defaultColDef"
+                [gridOptions]="gridOptions"
+                [pagination]="true"
+                [paginationPageSize]="100"
+                [columnDefs]="columnDefsStock"
+                (gridReady)="onGridReadyStock($event)"
+                [floatingFilter]="true"
+                [animateRows]="true"
+                [frameworkComponents]="frameworkComponents"
+              >
+              </ag-grid-angular>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" #myModal>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Meters List</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="row column1">
+            <div class="col-md-12">
+              <div class="white_shd full margin_bottom_30">
+                <div class="full price_table padding_infor_info">
+                  <div class="row"></div>
+
+                  <div class="table-responsive">
+                    <button
+                      type="button"
+                      (click)="onBtnExport()"
+                      class="ag-gridbtn btn btn-primary"
+                    >
+                      <i class="fa fa-download"></i> CSV Export Data</button
+                    >&nbsp;
+                    <input
+                      type="text"
+                      id="filter-text-box"
+                      placeholder="Search"
+                      (input)="onFilterTextBoxChanged()"
+                    />
+                    <button type="submit" style="background: #0b7dda">
+                      <i class="fa fa-search"></i>
+                    </button>
+                    <ag-grid-angular
+                      style="width: 100%; height: 450px; margin-top: 10px"
+                      class="ag-theme-balham"
+                      [defaultColDef]="defaultColDef"
+                      [gridOptions]="gridOptions"
+                      [pagination]="true"
+                      [paginationPageSize]="100"
+                      [columnDefs]="columnDefs"
+                      (gridReady)="onGridReady($event)"
+                      [floatingFilter]="true"
+                      [animateRows]="true"
+                    >
+                    </ag-grid-angular>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

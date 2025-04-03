@@ -1,0 +1,246 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <a
+            routerLink="/mdm/prepaid/NewRequest"
+            class="btn btn-info"
+            style="float: right; margin-right: 5px"
+          >
+            <i class="fa fa-user"></i> Individual Request
+          </a>
+
+          <button
+            data-toggle="modal"
+            data-target="#exampleModal"
+            class="btn btn-success"
+            style="float: right; margin-right: 5px"
+          >
+            <i class="fa fa-file-excel-o"></i> Import Excel
+          </button>
+          <a
+            class="btn btn-success"
+            style="float: right; margin-right: 5px"
+            target="_blank"
+            href="/assets/ConsumerUpdateExcelFormat.xlsx"
+          >
+            <i class="fa fa-file-excel-o"></i> Download Excel Format
+          </a>
+          <h2>Consumer Update Request</h2>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30" >
+          <div class="full graph_head">
+            <div class="table_section padding_infor_info">
+              <div class="table-responsive-sm" style="margin-top: -40px">
+                <table
+                  datatable
+                  [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger"
+                  class="table table-striped table-bordered table-hover nowrap"
+                >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th># ReferenceId</th>
+                      <th>ConsumerNo</th>
+                      <th>Consumer Type</th>
+                      <th>Net Metering</th>
+                      <th>Current Tarrif</th>
+                      <th>Pending Amount</th>
+                      <th>Arial</th>
+                      <th>Auto Disconnect</th>
+                      <th>Current Status</th>
+                      <th>Remarks</th>
+                      <th>Last Updated</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="datalist?.length != 0">
+                    <tr *ngFor="let obj of datalist">
+                      <td>
+                        {{ obj.requestNumber }}
+                      </td>
+                      <td>
+                        {{ obj.consumerNo }}
+                      </td>
+
+                      <td>
+                        {{ obj.changeTo }}
+                      </td>
+
+                      <td>{{ obj.netMetering }}</td>
+
+                      <td>{{ obj.billingTarrif }}</td>
+
+                      <td>₹ {{ obj.pendingAmount }}</td>
+
+                      <td>
+                        {{ obj.arial }}
+                      </td>
+
+                      <td *ngIf="obj.autoDisconnect">
+                        <span class="badge badge-success">Auto</span>
+                      </td>
+
+                      <td *ngIf="!obj.autoDisconnect">
+                        <span class="badge badge-danger">Manual</span>
+                      </td>
+
+                      <td>
+                        <span
+                          *ngIf="obj.requestStatus == 'Accepted'"
+                          class="badge badge-success"
+                          >Accepted</span
+                        >
+                        <span
+                          *ngIf="obj.requestStatus == 'Pending'"
+                          class="badge badge-warning"
+                          >Pending</span
+                        >
+                        <span
+                          *ngIf="obj.requestStatus == 'Rejected'"
+                          class="badge badge-danger"
+                          >Rejected</span
+                        >
+                      </td>
+
+                      <td>
+                        {{ obj.remarks }}
+                      </td>
+
+                      <td>
+                        {{ obj.updated | date: "dd-MMM-yy h:mm:ss a " }}
+                      </td>
+
+                      <td>
+                        <i
+                          routerLink="/mdm/prepaid/UpdateCustomerRequest/{{
+                            obj.requestNumber
+                          }}"
+                          title="Edit"
+                          class="btn btn-primary fas fa-pencil"
+                        ></i>
+                        <i
+                          (click)="manage(obj.requestID, 'accept',obj.consumerNo,obj.changeTo)"
+                          title="Accept"
+                          *ngIf="obj.requestStatus=='Pending'"
+                          class="btn btn-success fas fa-check"
+                        ></i>
+                        <i
+                          (click)="manage(obj.requestID, 'reject',obj.consumerNo,obj.changeTo)"
+                          title="Reject"
+                          *ngIf="obj.requestStatus=='Pending'"
+                          class="btn btn-warning fas fa-cancel"
+                        ></i>
+                        <i
+                          (click)="manage(obj.requestID, 'remove',obj.consumerNo,obj.changeTo)"
+                          title="Delete"
+                          *ngIf="obj.requestStatus=='Pending'"
+                          class="btn btn-danger fas fa-trash"
+                        ></i>
+
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="datalist?.length == 0">
+                    <tr>
+                      <td colspan="8" class="no-data-available">No data!</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-x"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <label>Upload Excel* </label>
+
+            <input
+              type="file"
+              (change)="onChange($event)"
+              #fileInput
+              (click)="fileInput.value = null"
+              class="form-control"
+            />
+            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+          </div>
+          <div class="col-md-4">
+            <label>Assign To </label>
+            <select class="form-control" name="assignTo" [(ngModel)]="assignTo">
+              <option value="0">--Select Assign To--</option>
+              <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                {{ obj.fullName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label> Change To </label>
+
+            <select class="form-control" name="changeTo" [(ngModel)]="changeTo">
+              <option value="">--Select Consumer Type--</option>
+              <option value="Prepaid">Prepaid</option>
+              <option value="Postpaid">Postpaid</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="uploadFile()" class="btn btn-primary">
+          Upload
+        </button>
+        <button #closebutton class="btn" data-dismiss="modal">
+          <i class="flaticon-cancel-12"></i> Discard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

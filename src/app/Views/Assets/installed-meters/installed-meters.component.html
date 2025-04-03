@@ -1,0 +1,147 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>Installed Meters</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- row -->
+
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="row column1">
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 yellow_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-industry"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ singlePhase }}</p>
+                      <p class="head_couter">Single Phase</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 blue1_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-rss"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ threePhase }}</p>
+                      <p class="head_couter">Three Phase</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 blue1_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-rss"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ ctMeters }}</p>
+                      <p class="head_couter">CT Meters</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 blue1_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-rss"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ htMeters }}</p>
+                      <p class="head_couter">HT Meters</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 green_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-rss"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ jio }}</p>
+                      <p class="head_couter">JIO</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="full counter_section margin_bottom_30 red_bg">
+                  <div class="couter_icon">
+                    <div>
+                      <i class="fa fa-bolt"></i>
+                    </div>
+                  </div>
+                  <div class="counter_no">
+                    <div>
+                      <p class="total_no">{{ airtel }}</p>
+                      <p class="head_couter">Airtel</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <button type="button" (click)="onBtnExport()" class="ag-gridbtn">
+                CSV Export
+              </button>
+              &nbsp;
+              <input
+                type="text"
+                id="filter-text-box"
+                placeholder="Search"
+                (input)="onFilterTextBoxChanged()"
+              />
+              From
+              <input type="date" name="fromDate" [(ngModel)]="fromDate" />
+              &nbsp; To
+              <input type="date" name="toDate" [(ngModel)]="toDate" /> &nbsp;
+              <button type="button" (click)="onList()" class="ag-gridbtn">
+                Go
+              </button>
+              <ag-grid-angular
+                style="width: 100%; height: 450px; margin-top: 10px"
+                class="ag-theme-balham"
+                [defaultColDef]="defaultColDef"
+                [gridOptions]="gridOptions"
+                [pagination]="true"
+                [paginationPageSize]="100"
+                [columnDefs]="columnDefs"
+                (gridReady)="onGridReady($event)"
+                [floatingFilter]="true"
+                [animateRows]="true"
+              >
+              </ag-grid-angular>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

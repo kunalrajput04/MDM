@@ -1,0 +1,508 @@
+<div class="container-fluid">
+  <!-- <div class="row column_title"> -->
+  <!-- <div class="col-md-12"> -->
+  <!-- <div class="page_title pagetitle1"> -->
+  <!-- <form #form="ngForm" (submit)="onSubmit()" autocomplete="off"> -->
+  <!-- <div class="form-group row pt-3"> -->
+  <!-- <p>DD-MMM-YYYY{{date | date: 'DD-MMM-YYYY'}}</p> -->
+  <!-- <input
+              type="date"
+              #fromdate="ngModel"
+              name="fromdate"
+              [(ngModel)]="formdata.fromdate"
+              class="form-control mx-3"
+            /> -->
+
+  <!-- <button
+              [disabled]="form.invalid"
+              type="submit"
+              class="btn bt_color"
+            >
+              Apply Filter
+            </button> -->
+  <!-- </div> -->
+  <!-- </form> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- ********************************************* -->
+  <!-- <div class="row">
+    <h4 class="m-0 mt-1">Last Update</h4>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">Today</button>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">
+      Last 12 Hour
+    </button>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">
+      Last 4 Hour
+    </button>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">
+      Last 2 Hour
+    </button>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">
+      Last 1 Hour
+    </button>
+    <button type="button" class="mx-2 lastUpdate btn btn-light">
+      Last 10 Minutes
+    </button>
+  </div> -->
+  <!-- New First Table*************************************************************** -->
+  <div class="row mt-3 tablesuccess">
+    <table class="table table-bordered m-0">
+      <tbody>
+        <tr class="text-center">
+          <th class="profile_newone" style="color: #364052">
+            <span class="px-0"
+              >Total Installed <br />
+              Meter QTY</span
+            >
+          </th>
+          <th class="profile_newone" style="color: #364052">
+            Single Phase <br />
+            Meter Qty
+          </th>
+          <th class="profile_newone" style="color: #364052">
+            Three Phase <br />
+            Meter Qty
+          </th>
+          <th class="profile_newone" style="color: #364052">
+            CT Meter <br />
+            Qty
+          </th>
+          <th class="profile_newone" style="color: #364052">
+            HT Meter <br />
+            Qty
+          </th>
+        </tr>
+        <tr>
+          <td class="success validation text-center">
+            {{ TotalInsMeter?.meters }}
+          </td>
+          <td class="success validation text-center">
+            {{ TotalInsMeter?.singlephasemeters }}
+          </td>
+          <td class="success validation text-center">
+            {{ TotalInsMeter?.threephasemeters }}
+          </td>
+          <td class="success validation text-center">
+            {{ TotalInsMeter?.ctmeters }}
+          </td>
+          <td class="success validation text-center">
+            {{ TotalInsMeter?.htmeters }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Second Table********************************************************************************* -->
+  <div class="row mt-3 tablesuccess">
+    <table class="table table-bordered m-0 profile">
+      <tbody>
+        <tr>
+          <th rowspan="2" class="totalborder Total">
+            <img
+              src="../../../../../assets/images/outline_assignment_turned_in_white_24dp.png"
+              alt="Assignment Action"
+              class="mx-2 my-3 fcolor"
+            />
+            <span class="px-0 py-3">
+              TOTAL DATA <br />
+
+              <span class="data pt-1">
+                <!-- MonthlyDailyDashboardSP?.dlpTotal -->
+                
+                {{
+                  MeterDailyPending+MeterDailyPendingMixed
+              }}</span>
+            </span>
+          </th>
+          <th colspan="3" class="totalborder">
+            <span class="icondiffer">
+              VALIDATION
+              <img src="/assets/images/logo.png" alt="Telescope" class="sda" />
+            </span>
+          </th>
+          <th colspan="6" class="totalborder">
+            <span class="icondiffer">
+              ESTIMATION & EDITION
+              <img src="/assets/images/Icon4.png" alt="SDA" class="sda" />
+            </span>
+          </th>
+        </tr>
+        <tr class="totalborder">
+          <td class="totalborder">
+            Success(%) <br />
+            <!-- <span class="data pt-2">{{ groupBySuccess }}</span> -->
+            <span class="data pt-2">
+              <!-- {{
+              MonthlyDailyDashboardSP?.dlpSuccessPercentage | number : "2.1-2"
+            }} -->
+            {{successPercentage | number : "2.1-2"}}
+          </span>
+          </td>
+          <td class="totalborder">
+            Failed(%) <br />
+            <!-- <span class="data pt-2">{{ groupByFailed }}</span> -->
+            <span class="data pt-2">
+              <!-- {{
+                MonthlyDailyDashboardSP?.dlpFailPercentage | number : "2.1-2"
+              }} -->
+              {{failPercentage | number : "2.1-2"}}
+              </span>
+            <!-- &nbsp;
+            {{MonthlyDailyDashboardSP?.dlpFailPercentage}}% -->
+          </td>
+          <td class="totalborder">
+            Pending<br />
+
+            <span class="data pt-2">
+              <!-- {{groupByPending}} -->
+              {{
+                this.TotalInsMeter?.meters -
+                  this.MonthlyDailyDashboardSP?.dlpTotal-MeterDailyPendingMixed
+              }}</span
+            >
+          </td>
+          <td class="totalborder">
+            Eligible <br />
+            <span class="data pt-2">
+              <!-- {{ groupByEligible }} -->
+              {{
+                this.TotalInsMeter?.meters -
+                  this.MonthlyDailyDashboardSP?.dlpTotal-MeterDailyPendingMixed
+              }}
+            </span>
+          </td>
+          <td class="totalborder">
+            Success(%)<br />
+            <span class="data pt-2">
+              <!-- {{
+              EstDashboardReport?.estimationSuccessPercentage
+            }}{{"success"}} -->
+            {{ESTDashbordMonthlySuccesstDSHB}}
+          </span>
+          </td>
+          <td class="totalborder">
+            Failed(%) <br />
+            <span class="data pt-2">
+              <!-- {{
+              EstDashboardReport?.estimationFailPercentage
+            }} -->
+            {{ESTDashbordMonthlyFailedtDSHB}}
+          </span>
+          </td>
+          <td class="totalborder">
+            Pending <br />
+            <span class="data pt-2">{{ groupByESTPending }}</span>
+          </td>
+
+          <td class="totalborder">
+            Failed(%)<br />
+            <span class="data pt-2">{{ groupByESTFailed2 }}</span>
+          </td>
+
+          <td class="totalborder">
+            Edit Failed(%) <br />
+            <span class="pt-2">{{ groupByESTFailed2Per }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Third Table**************************************************************************************  -->
+  <div class="row mt-3 tablesuccess">
+    <table class="table table-bordered m-0">
+      <tbody>
+        <tr class="text-center">
+          <th rowspan="2" class="profile">
+            <span class="px-0 py-4"> Meter Type </span>
+          </th>
+          <th rowspan="2" class="profile">
+            <span class="px-0 py-4"> PROFILE TYPE </span>
+          </th>
+          <th rowspan="2" WIDTH="230">
+            <span class="iconData px-0 py-2"> TOTAL DATA </span><br />
+            <span style="color: grey">(LAST UPDATED)</span>
+          </th>
+          <th colspan="2" class="validation">VALIDATION</th>
+          <th colspan="6" style="color: #364052">ESTIMATION & EDITION</th>
+        </tr>
+        <tr class="text-center">
+          <td class="success validation">Success(%)</td>
+          <td class="failed validation">Failed(%)</td>
+          <td class="eligible">Pending</td>
+          <!-- *************************************** -->
+          <td class="eligible">Eligible</td>
+          <td class="success">Success(%)</td>
+          <td class="failed">Failed(%)</td>
+          <td class="eligible">Pending</td>
+          <td class="eligible">Edited</td>
+          <td class="failed">Failed(%)</td>
+        </tr>
+        <ng-container>
+          <!-- Monthly Billing-Data -->
+          <!-- Monthly Single Phase -->
+          <tr class="text-center">
+            <td class="monthly">SinglePhase</td>
+
+            <td class="monthly">Monthly</td>
+            <td>
+              <span
+                class="icondiffer eligible p-0"
+                style="word-break: break-all"
+              >
+                {{ MonthlyDailyDashboardSP?.billReport?.billTotal }}
+              </span>
+            </td>
+            <!-- Monthly Validation SP************************************** -->
+            <td class="success validation">
+              {{
+                MonthlyDailyDashboardSP?.billReport?.billSuccessPercentage
+                  | number : "2.1-2"
+              }}
+            </td>
+
+            <td class="failed validation">
+              <span class="icondiffer">
+                {{
+                  MonthlyDailyDashboardSP?.billReport?.billFailPercentage
+                    | number : "2.1-2"
+                }}
+              </span>
+            </td>
+            <ng-container *ngFor="let data1 of ESTDashbordMonthlyReport">
+              <ng-container *ngIf="data1.meterType === 'Single phase'">
+            <td class="eligible">{{data1.estimationTotal | number : "2.1-2"}}</td>
+            <td class="eligible">{{data1.estimationTotal | number : "2.1-2"}}</td>
+           
+                <td class="success">
+                  {{ data1.estimationSuccessPercentage | number : "2.1-2" }}
+                </td>
+                <td class="failed">
+                  {{ data1.estimationFailPercentage | number : "2.1-2" }}
+                  <!-- <span class="icondiffer">
+                <span style="color: grey"> </span>
+              </span> -->
+                </td>
+              </ng-container>
+            </ng-container>
+            <!-- ****************** -->
+            <td class="eligible"></td>
+            <td class="eligible"></td>
+            <td class="failed">
+              <span class="icondiffer">
+                <span style="color: grey"> </span>
+              </span>
+            </td>
+          </tr>
+          <!--  -->
+          <!-- Monthly-Mixed -->
+
+          <tr class="text-center" *ngFor="let thData of MonthlyDashboardMixed">
+            <ng-container *ngFor="let dailyMix of ESTDashbordMonthlyReport">
+              <ng-container
+                *ngIf="
+                  thData.billMeterType?.toLowerCase()?.split(' ')?.join('') ===
+                  dailyMix.meterType?.toLowerCase()?.split(' ')?.join('')
+                "
+              >
+                <td class="monthly">{{ thData.billMeterType }}</td>
+
+                <td class="monthly"></td>
+                <td>
+                  <span class="icondiffer eligible">
+                    {{ thData.billTotal }}
+                  </span>
+                </td>
+                <!-- ************************************** -->
+                <td class="success validation text-center">
+                  {{ thData.billSuccessPercentage | number : "2.1-2" }}
+                </td>
+
+                <td class="failed validation text-center">
+                  <span class="icondiffer">
+                    {{ thData.billFailPercentage | number : "2.1-2" }}
+                  </span>
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.validation.pending }} -->
+                  {{dailyMix.estimationTotal | number : "2.1-2"}}
+                </td>
+                <!-- ********************************************* -->
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.eligible }} -->
+                  {{dailyMix.estimationTotal | number : "2.1-2"}}
+                </td>
+                <td class="success">
+                  {{ dailyMix.estimationSuccessPercentage | number : "2.1-2" }}
+                </td>
+                <td class="failed">
+                  <span class="icondiffer">
+                    {{ dailyMix.estimationFailPercentage | number : "2.1-2" }}
+                    <span style="color: grey">
+                      <!-- {{ meter.estimationEdition.failedPer }} -->
+                    </span>
+                  </span>
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.pending }} -->
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.edited }} -->
+                </td>
+                <td class="failed">
+                  <span class="icondiffer">
+                    <!-- {{ meter.estimationEdition.edtfailed }} -->
+                    <span style="color: grey">
+                      <!-- {{ meter.estimationEdition.edtFailedPer }} -->
+                    </span>
+                  </span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </tr>
+
+          <!-- Daily DLP-Data -->
+          <!-- Daily Single Phase -->
+          <tr class="text-center">
+            <td class="monthly">SinglePhase</td>
+            <td class="monthly">Daily</td>
+            <td>
+              <span class="icondiffer eligible">
+                {{ MonthlyDailyDashboardSP?.dlpTotal }}
+                &nbsp;
+              </span>
+            </td>
+            <!-- ************************************** -->
+            <td class="success validation">
+              <!-- {{ meter.validation.success }}'2222' -->
+              {{
+                MonthlyDailyDashboardSP?.dlpSuccessPercentage | number : "2.1-2"
+              }}
+            </td>
+
+            <td class="failed validation">
+              <span class="icondiffer">
+                {{
+                  MonthlyDailyDashboardSP?.dlpFailPercentage | number : "2.1-2"
+                }}
+              </span>
+            </td>
+              <!-- Daily Estimation SP-->
+              <ng-container *ngFor="let data of ESTDashbordDailyReport">
+                <ng-container *ngIf="data.meterType === 'Single phase'">
+            <td class="eligible">
+              <!-- {{ meter.validation.pending }} -->
+              {{data?.estimationTotal | number : "2.1-2"}}
+            </td>
+            <!-- ********************************************* -->
+            <td class="eligible">
+              <!-- {{ meter.estimationEdition.eligible }} -->
+              {{data?.estimationTotal | number : "2.1-2"}}
+            </td>
+          
+                <td class="success">
+                  {{ data?.estimationSuccessPercentage | number : "2.1-2" }}
+                </td>
+                <td class="failed">
+                  <span class="icondiffer">
+                    {{ data?.estimationFailPercentage | number : "2.1-2" }}
+                    <span style="color: grey">
+                      <!-- {{ meter.estimationEdition.failedPer }} -->
+                    </span>
+                  </span>
+                </td>
+             
+            <!-- ******** -->
+            <td class="eligible">
+              <!-- {{ meter.estimationEdition.pending }} -->
+              
+            </td>
+            <td class="eligible">
+              <!-- {{ meter.estimationEdition.edited }} -->
+              
+            </td>
+            <td class="failed">
+              <span class="icondiffer">
+                <!-- {{ meter.estimationEdition.edtfailed }} -->
+                <span style="color: grey">
+                  <!-- {{ meter.estimationEdition.edtFailedPer }} -->
+                </span>
+              </span>
+            </td>
+          </ng-container>
+        </ng-container>
+          </tr>
+          <!-- Daily-Mixed -->
+
+          <tr *ngFor="let data of DailyDashboardMixed" class="text-center">
+            <ng-container *ngFor="let dailyMix of ESTDashbordDailyReport">
+              <ng-container
+                *ngIf="
+                  data.meterType.toLowerCase().split(' ').join('') ===
+                  dailyMix.meterType.toLowerCase().split(' ').join('')
+                "
+              >
+                <td class="monthly">{{ data.meterType }}</td>
+
+                <td class="monthly"></td>
+                <td>
+                  <span class="icondiffer eligible">
+                    {{ data.dlpTotal }}
+                  </span>
+                </td>
+                <!-- ************************************** -->
+                <td class="success validation">
+                  {{ data.dlpSuccessPercentage | number : "2.1-2" }}
+                </td>
+
+                <td class="failed validation">
+                  <span class="icondiffer">
+                    {{ data.dlpFailPercentage | number : "2.1-2" }}
+                  </span>
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.validation.pending }} -->
+                  {{dailyMix.estimationTotal | number : "2.1-2"}}
+                </td>
+                <!-- ********************************************* -->
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.eligible }} -->
+                  {{dailyMix.estimationTotal | number : "2.1-2"}}
+                </td>
+                <td class="success">
+                  {{ dailyMix.estimationSuccessPercentage | number : "2.1-2" }}
+                </td>
+                <td class="failed">
+                  <span class="icondiffer">
+                    {{ dailyMix.estimationFailPercentage | number : "2.1-2" }}
+                    <span style="color: grey">
+                      <!-- {{ meter.estimationEdition.failedPer }} -->
+                    </span>
+                  </span>
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.pending }} -->
+                  
+                </td>
+                <td class="eligible">
+                  <!-- {{ meter.estimationEdition.edited }} -->
+                  
+                </td>
+                <td class="failed">
+                  <span class="icondiffer">
+                    <!-- {{ meter.estimationEdition.edtfailed }} -->
+                    <span style="color: grey">
+                      <!-- {{ meter.estimationEdition.edtFailedPer }} -->
+                    </span>
+                  </span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ******************************** -->

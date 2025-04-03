@@ -1,0 +1,43 @@
+.rectangle1{
+    background-color: #c6d4d8;
+    border: 1px solid #c6d4d8;
+}
+
+.rectangle2{
+    background-color: #d7f5f5;
+    border: 1px solid #d7f5f5;
+}
+.fcolor{
+    color: #364052;
+    font-weight: bold;
+    font-size: 25px;
+}
+.Mcolor{
+    color: #364052;
+    font-size:18px;
+}
+.Tcolor{
+    color: #364052;
+    font-weight:bold;
+    /* font-size: 15px; */
+}
+
+:host ::ng-deep .ag-header-viewport {
+    background-color: #d7f5f5;
+} 
+:host ::ng-deep .mat-tab-label-content{
+    color:#364052;
+}
+
+:host ::ng-deep .mat-ink-bar{
+    background-color:#364052  !important;
+}
+/* *************************************************** */
+@media screen and (max-width: 400px) {
+    .sidenav {
+      width: 240px;
+    }
+    .sidenav.close {
+      width: 60px;
+    }
+  }

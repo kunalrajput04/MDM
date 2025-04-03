@@ -1,0 +1,93 @@
+
+<div class="midde_cont" >
+    <div class="container-fluid">
+      <!-- row -->
+      <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full price_table padding_infor_info">
+           
+  
+              <div class="row">
+                <!-- column contact -->
+                <div class="col-md-12">
+                  <form #form="ngForm" (submit)="uploadFile()">
+                    <input type="hidden" #requestID="ngModel" name="requestID" [(ngModel)]="formData.requestID" />
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label>Request Type</label>
+                        <select class="form-control" #requestType="ngModel" name="requestType"
+                          [(ngModel)]="formData.requestType">
+                          <option value="">--Select Request--</option>
+                          <option value="LoadConnect">Load Connect</option>
+                          <option value="LoadDisConnect">Load DisConnect</option>
+                          <!-- <option value="PrePaidMode">Pre-Paid Mode</option>
+                          <option value="PostPaidMode">Post-Paid Mode</option> -->
+                          <option value="ImportOnly">Import Only</option>
+                          <option value="ImportExport">Import Export</option>
+                          <!-- <option value="Firmware">Firmware</option> -->
+                        </select>
+                      </div>
+                      
+                      <div class="col-md-4">
+                        <label>File</label>
+                        <input type="file"  (change)="onChange($event)" #fileInput (click)="fileInput.value = null" class="form-control" name="requestByName"
+                          placeholder="requestBy" />
+                      </div>
+                      <!-- <div class="col-md-4" *ngIf="formData.requestType == 'Firmware'">
+                        <label>Firmware File </label>
+                        <select class="form-control">
+                          <option>-- Select Firmware --</option>
+                          <option>i210-a0-V02-2021040901</option>
+                        </select>
+                      </div> -->
+                      <div class="col-md-4">
+                        <label>Request By</label>
+                        <input type="text" class="form-control" #requestByName="ngModel" name="requestByName"
+                          [(ngModel)]="formData.requestByName" readonly placeholder="requestBy" />
+                      </div>
+                      <div class="col-md-4">
+                        <label>Request To</label>
+  
+                        <select class="form-control" #requestTo="ngModel" name="requestTo"
+                          [(ngModel)]="formData.requestTo">
+                          <option value="">--Select User--</option>
+                          <option *ngFor="let obj of members" value="{{ obj.userID }}">
+                            {{ obj.fullName }}
+                          </option>
+                        </select>
+                      </div>
+                     
+                      <div class="col-md-6">
+                        <label>Response</label>
+                      
+                      </div>
+  
+                      
+                     
+                    </div>
+  
+                    <button [disabled]="form.invalid"  type="submit"
+                      class="btn btn-success">
+                      <i class="fa fa-check"></i> Submit
+                    </button>
+                    <a  style="margin-left: 5px;" 
+                    routerLink="/mdm/prepaid/servicerequest"
+                      class="btn btn-primary">
+                      <i class="fa fa-arrow-left"></i> Back
+                </a>
+                <a target="_blank" href="/assets/ConsumerUpdateExcelFormat.xlsx"  class="btn btn-primary btn-xs"
+                style="color: white; margin-left: 5px">
+                <i class="fa fa-download"> </i> &nbsp;Format
+              </a>
+                   
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,74 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+         <h2> 
+            User Management 
+            <button
+              class="btn btn-primary btn-xs"
+              style="float: right; margin-top: -15px" (click)="add()"><i class="fa fa-user-plus "> </i> ADD USER </button>
+          </h2>
+
+        
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1" >
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="table-responsive-sm" >
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"   class="table table-striped table-bordered nowrap " style="width: 100% ">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Profile</th>
+                    <th>User Role</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let obj of groupList">
+                    <td>
+                      <img  class="img-responsive" [src]=" obj.imageUrl != ''   ? imageUrl + obj.imageUrl  : defaultimage " onerror="this.src='/assets/images/layout/g1.png';" alt="#" />
+
+                      <!-- <img class="img-responsive" [src]="obj.imageUrl!= '' ? imageUrl + obj.imageUrl : defaultimage" alt="#" /> -->
+                    </td>
+                    <td>
+                      <span class="badge badge-success">{{
+                        obj.roleType
+                      }}</span>
+                    </td>
+                    <td>{{ obj.fullName }}</td>
+                    <td>{{ obj.email }}</td>
+                    <td>{{ obj.directorMobileNo }}</td>
+                    <td>{{ obj.createdDate }}</td>
+                    <td>
+                      <i
+                        class="fa fa-user-plus btn btn-primary btn-xs"
+                        routerLink="/mdm/user/edit/{{ obj.userID }}"
+                      >
+                      </i>
+                      &nbsp;
+                      <i
+                        class="fa fa-trash btn btn-danger btn-xs"
+                        (click)="remove(obj.userID)"
+                      >
+                      </i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

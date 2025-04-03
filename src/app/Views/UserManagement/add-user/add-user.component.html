@@ -1,0 +1,537 @@
+<div class="midde_cont" >
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>Add New User</h2>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1" >
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+         
+
+          <div class="full price_table padding_infor_info">
+            <div class="row">
+              <!-- column contact -->
+              <div class="col-md-12">
+                <form #form="ngForm" (submit)="manageForm()"  autocomplete="disabled">
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        #fullName="ngModel"
+                        name="fullName"
+                        [(ngModel)]="formData.fullName"
+                        [ngClass]="fullName.invalid ? 'errorclass' : 'successclass'"                    
+                        pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                        required
+                        placeholder="Name"
+                        class="form-control"
+                        autocomplete="nope"
+
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label>Email </label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        #email="ngModel"
+                        name="email"
+                        autocomplete="false"
+                        [(ngModel)]="formData.email"
+                        (ngModelChange)="checkExistingUser($event)"
+                        [ngClass]="email.invalid ? 'errorclass' : 'successclass'"
+                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        required
+                        placeholder="email"
+                        autocomplete="nope"
+
+                        
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label>Contact</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        maxlength="10"
+                        #directorMobileNo="ngModel"
+                        name="directorMobileNo"
+                        [ngClass]="directorMobileNo.invalid ? 'errorclass' : 'successclass'"
+                        [(ngModel)]="formData.directorMobileNo"
+                        pattern="^[0-9]*$"
+                        required
+                        placeholder="Contact"
+                        autocomplete="nope"
+                       
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label>Role Type</label>
+
+                      <select
+                        class="form-control"
+                        name="roleType"
+                        [(ngModel)]="formData.roleType"
+                        required
+                      >
+                        <option value="">--Select Role--</option>
+                        <option value="CCMD">Chairman C.M.D</option>
+                        <option value="DD">Director Distribution</option>
+                        <option value="CE">Chief Engineers</option>
+                        
+                        <option value="SE">Superintending Engineers</option>
+                        <option value="EE">Executive Engineers</option>
+                        <option value="SDO">SDOs/AEEs/AEs</option>
+                        <option value="DAO">Divisional Account Officers</option>
+                        <option value="BC">Billing Cashiers</option>
+                        <option value="CR">CRM Representative</option>
+                        <option value="IT">IT Head</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Username</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        #userName="ngModel"
+                        name="userName"
+                        [(ngModel)]="formData.userName"
+                        [ngClass]="userName.invalid ? 'errorclass' : 'successclass'"
+                        
+                        required
+                        placeholder="username"
+                        autocomplete="new-username"
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="Password">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        #password="ngModel"
+                        name="password"
+                        [(ngModel)]="formData.password"
+                        [ngClass]="password.invalid ? 'errorclass' : 'successclass'"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        required
+                        placeholder="Password"
+                        autocomplete="nope"
+                        tooltip="a password must be eight characters including one uppercase letter, one special character and alphanumeric characters"
+                        placement="top" 
+                      />
+                    
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="Profile">Profile</label>
+                      <input
+                        type="file"
+                        class="form-control"
+                        accept="image/*"
+                        (change)="handleFileInput($event)"
+                        name="imageUrll"
+                      />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label>Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        #userAddress="ngModel"
+                        name="userAddress"
+                        [(ngModel)]="formData.userAddress"
+                        [ngClass]="userAddress.invalid ? 'errorclass' : 'successclass'"                    
+                        pattern="[a-zA-Z-0-9\/)|\(_-][a-zA-Z0-9 -\/)|\(_-]+[a-zA-Z-0-9\/)|\(_-]$"
+                        required
+                        placeholder="Address"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label>Access Level</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getUtility()"
+                        name="accessLevel"
+                        [(ngModel)]="formData.accessLevel"
+                        required
+                      >
+                        <option value="All">ALL</option>
+                        <option value="Utility">Utility</option>
+                        <option value="SUBDEVISION">Subdivision</option>
+                        <option value="SUBSTATION">Substation</option>
+                        <option value="FEEDER">Feeder</option>
+                        <option value="DT">DT</option>
+                      </select>
+                    </div>
+
+                    <div
+                      class="col-md-3"
+                      *ngIf="                        
+                        formData.accessLevel == 'Utility' ||
+                        formData.accessLevel == 'SUBDEVISION' ||
+                        formData.accessLevel == 'SUBSTATION' ||
+                        formData.accessLevel == 'FEEDER' ||
+                        formData.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Utility</label>
+                      <select
+                        class="form-control"
+                        (change)="getSubdivision(ownerName.value)"
+                        name="ownerName"
+                        #ownerName="ngModel"
+                        [(ngModel)]="formData.ownerName"
+                      >
+                        <option [ngValue]="">Select Utility</option>
+                        <option
+                          *ngFor="let obj of utilityDropdown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+
+
+                    <div
+                    class="col-md-3"
+                    *ngIf="                                            
+                      formData.accessLevel == 'SUBDEVISION' ||
+                      formData.accessLevel == 'SUBSTATION' ||
+                      formData.accessLevel == 'FEEDER' ||
+                      formData.accessLevel == 'DT'
+                    "
+                  >
+                    <label>Subdivision</label>
+                    <select
+                      class="form-control"
+                      (change)="getSubstation(subdivisonName.value)"
+                      name="subdivisonName"
+                      #subdivisonName="ngModel"
+                      [(ngModel)]="formData.subdivisonName"
+                    >
+                      <option [ngValue]="">Select Subdevision</option>
+                      <option
+                        *ngFor="let obj of subdivisionDropDown"
+                        [ngValue]="obj"
+                      >
+                        {{ obj }}
+                      </option>
+                    </select>
+                  </div>
+
+                    <div
+                      class="col-md-3"
+                      *ngIf="
+                        formData.accessLevel == 'SUBSTATION' ||
+                        formData.accessLevel == 'FEEDER' ||
+                        formData.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Substation</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getFeeder(substationName.value)"
+                        #substationName="ngModel"
+                        name="substationName"
+                        [(ngModel)]="formData.substationName"
+                      >
+                        <option [ngValue]="">Select Substation</option>
+                        <option
+                          *ngFor="let obj of substatioDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div
+                      class="col-md-3"
+                      *ngIf="
+                        formData.accessLevel == 'FEEDER' ||
+                        formData.accessLevel == 'DT'
+                      "
+                    >
+                      <label>Feeder</label>
+
+                      <select
+                        class="form-control"
+                        (change)="getDT(feederName.value)"
+                        #feederName="ngModel"
+                        name="feederName"
+                        [(ngModel)]="formData.feederName"
+                      >
+                        <option [ngValue]="">Select Feeder</option>
+                        <option
+                          *ngFor="let obj of feederDropDown"
+                          [ngValue]="obj"
+                        >
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3" *ngIf="formData.accessLevel == 'DT'">
+                      <label>DT</label>
+
+                      <select
+                        class="form-control"
+                        name="dtName"
+                        #dtName="ngModel"
+                        [(ngModel)]="formData.dtName"
+                      >
+                        <option [ngValue]="">Select DT</option>
+                        <option *ngFor="let obj of dtDropDown" [ngValue]="obj">
+                          {{ obj }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isUser="ngModel"
+                            name="isUser"
+                            [(ngModel)]="formData.isUser"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Users Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isconsumer="ngModel"
+                            name="isconsumer"
+                            [(ngModel)]="formData.isconsumer"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Consumers Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isRevenue="ngModel"
+                            name="isRevenue"
+                            [(ngModel)]="formData.isRevenue"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Revenue Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isAssets="ngModel"
+                            name="isAssets"
+                            [(ngModel)]="formData.isAssets"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Assets Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isMeter="ngModel"
+                            name="isMeter"
+                            [(ngModel)]="formData.isMeter"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Meter Data Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isEnergy="ngModel"
+                            name="isEnergy"
+                            [(ngModel)]="formData.isEnergy"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Energy Audit Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isCustomer="ngModel"
+                            name="isCustomer"
+                            [(ngModel)]="formData.isCustomer"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Customer Support
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isPrepaidService="ngModel"
+                            name="isPrepaidService"
+                            [(ngModel)]="formData.isPrepaidService"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Prepaid Service Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isCommunication="ngModel"
+                            name="isCommunication"
+                            [(ngModel)]="formData.isCommunication"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Communication Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isException="ngModel"
+                            name="isException"
+                            [(ngModel)]="formData.isException"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Exception Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isVee="ngModel"
+                            name="isVee"
+                            [(ngModel)]="formData.isVee"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          VEE Management
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="field">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-control"
+                            #isPrepaid="ngModel"
+                            name="isPrepaid"
+                            [(ngModel)]="formData.isPrepaid"
+                            (change)="changeStatus($event)"
+                            class="form-check-input"
+                          />
+                          Demand Service
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    [disabled]="form.invalid"
+                    type="submit"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-check"></i> Submit
+                  </button>
+                  <a
+                    style="margin-left: 5px"
+                    routerLink="/mdm/user"
+                    class="btn btn-primary"
+                  >
+                    <i class="fa fa-arrow-left"></i> Back
+                  </a>
+                  <button
+                    (click)="cancel()"
+                    type="reset"
+                    class="btn btn-danger"
+                    style="float: right"
+                  >
+                    <i class="fa fa-refresh"></i> Reset
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

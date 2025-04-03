@@ -1,0 +1,82 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2 style="color: black">METER INVENTORY</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- table section -->
+
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div style="float: left">
+                            <div class="heading1 margin_0">
+                                <h2 style="color: gray; font-weight: bold">
+                                    Total Meters
+                                    <label style="color: black; font-family: cursive">{{dashboard.total}}</label
+                  >
+                </h2>
+              </div>
+            </div>
+            <div style="float: right">
+              <div class="heading1 margin_0">
+                <h2 style="color: gray; font-weight: bold">
+                  Live Meters
+                  <label style="color: black; font-family: cursive"
+                    >{{dashboard.live}}</label
+                  >
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="heading1 margin_0"></div>
+
+        <div class="row" >
+         
+            
+           
+            <div class="col-xl-3 col-lg-6" *ngFor="let obj of dashboard.inventoryDashboards">
+              <a routerLink="/mdm/assets/InventoryMeter/{{obj.meterType}}">
+              <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                  <div class="card-icon card-icon-large">
+                    <img
+                      src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-electric-meter-measurement-icongeek26-flat-icongeek26.png"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <h5 class="card-title mb-0">
+                      <label class="mylabel">{{obj.meterType}} Meters</label>
+                                    </h5>
+                            </div>
+
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">{{obj.total}}</h2>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="mb-4">
+                                <h6 class="card-title mb-0">
+                                    Last Updated : {{today | date:'dd/MM/yyyy hh:mm a'}}
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

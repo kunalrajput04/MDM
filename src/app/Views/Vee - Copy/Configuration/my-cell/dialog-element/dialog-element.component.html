@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Dialog with Data</h1>
+<div mat-dialog-content>
+    <table class="table">
+        <tr>
+            <th>Low Threshold</th>
+            <th>High Threshold</th>
+            <th>RuleDescription</th>
+            <th>Effective Form</th>
+            <th>Estimation Required</th>
+            <th>Status</th>
+        </tr>
+          <tr>
+            <td>{{viewTableData.lowThreshold}}</td>
+            <td>{{viewTableData.highThreshold}}</td>
+            <td>{{viewTableData.ruleDescription}}</td>
+            <td>{{viewTableData.effectiveFrom}}</td>
+            <td>{{viewTableData.estimationRequired}}</td>
+            <td>{{viewTableData.status}}</td>
+          </tr>
+      </table>
+    <!-- {{viewTableData|json}}. -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close color="primary">Close</button>
+</div>

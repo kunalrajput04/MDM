@@ -1,0 +1,143 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h2>Prepaid Recharge History</h2>
+          <a
+            routerLink="/mdm/PrepaidService/newRecharge"
+            class="btn btn-primary pull-right"
+            style="margin-top: -32px"
+          >
+            <i class="fas fa-money"></i>
+            Recharge
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="full price_table padding_infor_info">
+              <form
+                #form="ngForm"
+                (submit)="onSubmit()"
+                style="margin-top: -49px"
+              >
+                <div class="form-group row">
+                  <div class="col-md-5">
+                    <label>From Date </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      #from="ngModel"
+                      name="from"
+                      [(ngModel)]="formdata.from"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-5">
+                    <label>To Date </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      #to="ngModel"
+                      name="to"
+                      [(ngModel)]="formdata.to"
+                      required
+                      placeholder="ConsumerNumber"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-success" style="margin-top: 33px">
+                      <i class="fa fa-search"></i> Search
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="table_section padding_infor_info">
+              <div class="table-responsive-sm" style="margin-top: -40px">
+                <table
+                  datatable
+                  [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger"
+                  class="table table-striped table-bordered table-hover nowrap"
+                >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>#TransId</th>
+                      <th>ConsumerNo</th>
+                      <th>Mode</th>
+                      <th>Amount</th>
+                      <th>Payment Date</th>
+                      <th>Status</th>
+                      <th>Cheque Number</th>
+                      <th>Bank</th>
+                      <th>Branch</th>
+                      <th>ChequeDate</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="datalist?.length != 0">
+                    <tr *ngFor="let obj of datalist">
+                      <td>
+                        {{ obj.transactionId }}
+                      </td>
+                      <td>
+                        {{ obj.consumerNo }}
+                      </td>
+
+                      <td>
+                        {{ obj.mode }}
+                      </td>
+
+                      <td>₹ {{ obj.amount }}</td>
+
+                      <td>
+                        {{ obj.created | date: "dd-MMM-yy h:mm:ss a " }}
+                      </td>
+
+                      <td *ngIf="obj.isActive">
+                        <span class="badge badge-success">SUCCESS</span>
+                      </td>
+
+                      <td>
+                        {{ obj.chequeNumber ? obj.chequeNumber : 'N/A' }}
+                      </td>
+
+                      <td>
+                        {{ obj.chequeBank  ? obj.chequeBank : 'N/A'}}
+                      </td>
+
+                      <td>
+                        {{ obj.chequeBranch ? obj.chequeBranch : 'N/A' }}
+                      </td>
+                      <td>
+                        {{ obj.chequeDate | date: "dd-MMM-yy h:mm:ss a " ? obj.chequeDate :'N/A' }}
+                      </td>
+
+                      <td>
+                        <i routerLink="/mdm/PrepaidService/updateRecharge/{{obj.transactionId}}" class="btn btn-primary fas fa-pencil"></i> &nbsp;
+                        <i class="btn btn-warning fas fa-file-invoice"></i>
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="datalist?.length == 0">
+                    <tr>
+                      <td colspan="8" class="no-data-available">No data!</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

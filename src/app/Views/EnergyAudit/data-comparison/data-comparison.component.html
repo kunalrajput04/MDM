@@ -1,0 +1,151 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <h4 class="pt-3">Data Comparison</h4>
+         
+        </div>
+      </div>
+    </div>
+ <!-- New Form -->
+ <div class="row column1">
+    <div class="col-md-12">
+      <div class="white_shd full margin_bottom_30">
+        <div class="full price_table padding_infor_info">
+          <div class="row">
+            <div class="col-md-12">
+                <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                    <div class="form-group row">
+                      <!-- Start FromDate -->
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #fromdate="ngModel"
+                          name="fromdate"
+                          [(ngModel)]="formdata.fromdate"
+                          class="form-control dateBorder"
+                        />
+                      </div>
+                      <!-- ToDate -->
+                      <div class="col-md-3">
+                        <input
+                          type="date"
+                          #todate="ngModel"
+                          name="todate"
+                          [(ngModel)]="formdata.todate"
+                          class="form-control dateBorder"
+                        />
+                      </div>
+        
+                      <!-- Daily -->
+                      <div class="col-md-3">
+                        <select
+                          class="form-control dailyBackg"
+                          #dataRange="ngModel"
+                          name="dataRange"
+                          [(ngModel)]="formdata.dataRange"
+                        >
+                          <option value="DAILY">DAILY</option>
+                          <option value="WEEKLY">WEEKLY</option>
+                          <option value="MONTHLY">MONTHLY</option>
+                          <option value="YEARLY">YEARLY</option>
+                        </select>
+                      </div>
+                    </div>
+        
+                    <div class="form-group row">
+                       <div class="col-md-3">
+                        <h4 class="pt-2">Level of Comparison</h4>
+                      </div>
+                      <!-- Subdivision Wise-->
+                      <div class="col-md-3">
+                        <select
+                          class="form-control dailyBackg"
+                          #subdivisionwise="ngModel"
+                          name="subdivisionwise"
+                          [(ngModel)]="formdata.subdivisionwise"
+                        >
+                          <option value="subdivision wise">Subdivision wise</option>
+                          <option value="">Subdivision1</option>
+                          <option value="">Subdivision2</option>
+                          <option value="">Subdivision3</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <!-- Subdivision1 -->
+                      <div class="col-md-3">
+                        <input
+                          type="text"
+                          #subdivisonName1="ngModel"
+                          name="Subdivision1"
+                          [(ngModel)]="formdata.subdivisonName1"
+                          class="form-control dateBorder"
+                          placeholder="Subdivision1"
+                        />
+                      </div>
+                      <!-- Subdivision2 -->
+                      <div class="col-md-3">
+                        <input
+                          type="text"
+                          #subdivisonName2="ngModel"
+                          name="Subdivision2"
+                          [(ngModel)]="formdata.subdivisonName2"
+                          class="form-control dateBorder"
+                          placeholder="Subdivision2"
+                        />
+                      </div>
+        
+                      <!-- GoButton -->
+                      <div class="col-md-2">
+                        <button
+                          type="submit"
+                          [disabled]="form.invalid"
+                          class="btn btn-success"
+                        >
+                          GO
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- New DataAnalysis Comparison Chart******************************************************************************** -->
+
+    <div class="row column1">
+      <div class="col-lg-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>Data Comparison</h2>
+            </div>
+          </div>
+          <div class="map_section padding_infor_info" style="padding: 0px 0px">
+            <div id="chart">
+                <apx-chart
+                [series]="chartOptions2.series"
+                [chart]="chartOptions2.chart"
+                [yaxis]="chartOptions2.yaxis"
+                [xaxis]="chartOptions2.xaxis"
+                [labels]="chartOptions2.labels"
+                [stroke]="chartOptions2.stroke"
+                [markers]="chartOptions2.markers"
+                [fill]="chartOptions2.fill"
+                [legend]="chartOptions2.legend"
+                [dataLabels]="chartOptions2.dataLabels"
+                [title]="chartOptions2.title"
+                [colors]="chartOptions2.colors"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--END  New DataAnalysis Comparison********************************************************************************************** -->
+  </div>
+</div>

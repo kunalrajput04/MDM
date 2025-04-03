@@ -1,0 +1,89 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title title1">
+          <h2>System SLA History</h2>
+        </div>
+      </div>
+      <!--Form  -->
+      <!-- <div class="row column1">
+        <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full price_table padding_infor_info">
+              <div class="row"> -->
+                <!-- column contact -->
+                <!-- <div class="col-md-12"> -->
+                  <!-- New Form -->
+                  <!-- <form
+                    #form="ngForm"
+                    (submit)="onSubmit(form)"
+                    autocomplete="off"
+                  >
+                    <div class="form-group row"> -->
+                      <!-- Start FromDate -->
+                      <!-- <div class="col-md-4">
+                        <label for="fromdate">From</label>
+                        <input
+                          type="date"
+                          #fromdate="ngModel"
+                          name="fromdate"
+                          [(ngModel)]="formdata.fromdate"
+                          class="form-control dateBorder"
+                        />
+                      </div> -->
+                      <!-- ToDate -->
+                      <!-- <div class="col-md-4">
+                        <label for="todate">To</label>
+                        <input
+                          type="date"
+                          #todate="ngModel"
+                          name="todate"
+                          [(ngModel)]="formdata.todate"
+                          class="form-control dateBorder"
+                        />
+                      </div> -->
+                      <!-- GoButton -->
+                      <!-- <div class="col-md-2 btn_space">
+                        <button
+                          type="submit"
+                          [disabled]="form.invalid"
+                          class="btn btn-success"
+                        >
+                          GO
+                        </button>
+                      </div> -->
+                    <!-- </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Table -->
+      <div class="row column1">
+      <div class="col-md-12 pt-2">
+        <ag-grid-angular
+          style="width: 100%; height: 400px"
+          class="ag-theme-balham"
+          #agGrid
+          id="myGrid"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [pagination]="true"
+          [paginationPageSize]="20"
+          (gridReady)="onGridReady($event)"
+          [animateRows]="true"
+          [suppressRowClickSelection]="true"
+          [frameworkComponents]="frameworkComponents"
+        >
+        </ag-grid-angular>
+      </div>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+</div>

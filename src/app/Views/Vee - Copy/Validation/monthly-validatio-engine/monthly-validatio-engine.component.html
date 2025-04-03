@@ -1,0 +1,121 @@
+<div class="container-fluid pt-3 px-0">
+  <section>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <div class="text-container">
+          <p class="m-0 font-weight-bold Mcolor pt-1" style="color:#364052;">{{ formdata.process }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--First Card******************************************************************** -->
+
+  <div class="row pt-3">
+    <div class="col-md-4 rectangle1 d-flex pt-3 pb-3">
+      <!-- Total Batches****************************************************************** -->
+      <div class="col-6 d-flex p-0">
+        <i
+          class="fa fa-cog mx-2 pt-2"
+          aria-hidden="true"
+          style="font-size: 30px; color: grey"
+        ></i>
+        <span class="Tcolor">
+          Total Batches Complete <br />
+          <span class="fcolor pt-2">{{ Batches.Total }}</span> 
+        </span>
+      </div>
+      <!--Average  Validation**************************************************************************** -->
+      <div class="col-6 Tcolor p-0">
+        Avg. Validation/Sec <br />
+        <span class="fcolor pt-2">{{Batches.Average}}</span>
+      </div>
+    </div>
+    <!--Second Card************************************************* -->
+    <div class="col-md-8 rectangle2 d-flex pt-3 pb-3">
+      <!-- Validation Queue********************************************** -->
+      <div class="col-3 d-flex p-0">
+        <i
+          class="fa fa-users mx-1"
+          aria-hidden="true"
+          style="color: #96eee4; font-size: 22px"
+        ></i>
+        <span class="Tcolor p-0">
+          Validation in queue <br />
+          <p class="fcolor pt-2">{{ Batches.ValidationQueue }}</p>
+        </span>
+      </div>
+      <!-- Batches Queue********************************** -->
+      <div class="col-3 d-flex p-0">
+        <i
+          class="fa fa-cog mx-2"
+          aria-hidden="true"
+          style="color: #96eee4; font-size: 25px"
+        ></i>
+        <span class="Tcolor">
+          Batches in queue <br />
+          <p class="fcolor pt-2">{{ Batches.BatchQueue }}</p>
+          <p></p
+        ></span>
+      </div>
+      <!-- Add Button********************************************************* -->
+      <div class="col-2 text-center">
+        <button class="btn btn-success btn-xs" (click)="openDialog()">
+          <i class="fa fa-plus" style="font-size: 20px"></i>
+        </button>
+      </div>
+      <!-- Validation Engine*************************************************************** -->
+      <div class="col-4 p-0">
+        <button class="btn btn-success btn-xs">
+          <i
+            class="fa fa-play-circle mx-1 pt-1"
+            aria-hidden="true"
+            style="font-size: 25px"
+          ></i>
+          <span class="py-1" style="vertical-align:top;">Start Validation Engine</span>
+        
+        </button>
+        <p class="disabled" style="font-size: 12px">Last Run : 28 july 2022</p>
+      </div>
+      <!-- *************************************** -->
+    </div>
+  </div>
+
+  <!--Table Tab************************************************************************* -->
+  <div class="row pt-4">
+    <mat-tab-group style="width:100%">
+      <mat-tab label="Batches in Queue">
+        <ng-container  *ngIf="currentTab === 'Que'; tab"></ng-container>
+        
+      </mat-tab>
+      <mat-tab label="Batches Completed">
+        <ng-container  *ngIf="currentTab === 'Comp'; tab"></ng-container> 
+      </mat-tab>
+    </mat-tab-group>
+    </div>
+    
+
+   <!--Table ******************************************************** -->
+  <div class="row" #tab>
+        <div class="table-responsive table-container m-0">
+        <ag-grid-angular
+          style="width: 100%; height: 650px"
+          class="ag-theme-balham"
+          [rowData]="rowData"
+          [pagination]="true"
+          [paginationPageSize]="20"
+          [columnDefs]="columnDefs"
+          (gridReady)="onGridReady($event)"
+          [suppressRowClickSelection]="true"
+          [defaultColDef]="defaultColDef"
+          [animateRows]="true"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
+
+   <!-- ********************************************************************* -->
+
+      
+  
+  
+

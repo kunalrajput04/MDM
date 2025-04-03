@@ -1,0 +1,246 @@
+<div class="midde_cont">
+  <div class="container-fluid">
+    <div class="row column_title">
+      <div class="col-md-12">
+        <div class="page_title">
+          <form #form="ngForm" (submit)="onSubmit()" autocomplete="off">
+            <div class="form-group row">
+              <div class="col-md-3">
+                <input
+                  type="date"
+                  #fromdate="ngModel"
+                  name="fromdate"
+                  [(ngModel)]="formdata.fromdate"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="col-md-3">
+                <input
+                  type="date"
+                  #todate="ngModel"
+                  name="todate"
+                  [(ngModel)]="formdata.todate"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="col-md-3">
+                <ng-select
+                  [items]="consumerno"
+                  bindLabel="consumerNumber"
+                  bindValue="meterNo"
+                  name="meterNo"
+                  class="custom"
+                  [loading]="loading"
+                  #meterNo="ngModel"
+                  [virtualScroll]="virtualScroll"
+                  [(ngModel)]="formdata.meterNo"
+                  (keyup)="getConsumers($event)"
+                >
+                </ng-select>
+              </div>
+
+              <div class="col-md-3">
+                <button
+                  type="submit"
+                  [disabled]="form.invalid"
+                  class="btn btn-success"
+                >
+                  GO
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+    <!--Pie-Chart1 ****************** -->
+    <div class="row column1">
+      <div class="col-6">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>Energy(KVAH)</h2>
+            </div>
+          </div>
+        
+            <div class="white_shd full margin_bottom_30">
+              <div class="map_section padding_infor_info">
+                <div id="chart">
+                  <apx-chart
+                    [series]="chartOptions1.pieseries"
+                    [chart]="chartOptions1.chart"
+                    [labels]="chartOptions1.labels"
+                    [responsive]="chartOptions1.responsive"
+                  ></apx-chart>
+                </div>
+              </div>
+             
+      <!-- -------------------------------- -->
+        </div>
+      </div>
+    </div>
+    <!-- Pie-chart2************************************ -->
+     <div class="col-6">
+      <div class="white_shd full margin_bottom_30">
+        <div class="full graph_head">
+          <div class="heading1 margin_0">
+            <h2>Energy(KWH)</h2>
+          </div>
+        </div>
+          <div class="white_shd full margin_bottom_30">
+            <div class="map_section padding_infor_info">
+              <div id="chart">
+                <apx-chart
+                  [series]="chartOptions4.pieseries"
+                  [chart]="chartOptions4.chart"
+                  [labels]="chartOptions4.labels"
+                  [responsive]="chartOptions4.responsive"
+                ></apx-chart>
+              </div>
+            </div>
+           
+    <!-- -------------------------------- -->
+      </div>
+    </div>
+  </div> 
+    </div>
+     <!-- Bar-Chart1******************** -->
+    <div class="row column1">
+      <div class="col-lg-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full graph_head">
+            <div class="heading1 margin_0">
+              <h2>Billing Determinant (2023)</h2>
+            </div>
+          </div>
+  
+          <div class="map_section padding_infor_info" style="padding: 0px 0px">
+            <div id="chart">
+              <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [xaxis]="chartOptions.xaxis"
+              [labels]="chartOptions.labels"
+              [markers]="chartOptions.markers"
+              [stroke]="chartOptions.stroke"
+              [yaxis]="chartOptions.yaxis"
+              [dataLabels]="chartOptions.dataLabels"
+              [plotOptions]="chartOptions.plotOptions"
+              [title]="chartOptions.title"
+              [fill]="chartOptions.fill"
+              [tooltip]="chartOptions.tooltip"
+              [legend]="chartOptions.legend"
+            ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!--PF-Bar-Chart ******************* -->
+    <div class="row column1">
+            <div class="col-lg-12">
+              <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                    <h2>PF Data - Monthly (2023)</h2>
+                  </div>
+                </div>
+          <div class="map_section padding_infor_info" style="padding: 0px 0px">
+            <div id="chart">
+              <apx-chart
+              [series]="chartOptions2.series"
+              [chart]="chartOptions2.chart"
+              [xaxis]="chartOptions2.xaxis"
+              [markers]="chartOptions2.markers"
+              [labels]="chartOptions2.labels"
+              [stroke]="chartOptions2.stroke"
+              [yaxis]="chartOptions2.yaxis"
+              [dataLabels]="chartOptions2.dataLabels"
+              [title]="chartOptions2.title"
+              [fill]="chartOptions2.fill"
+              [plotOptions]="chartOptions2.plotOptions"
+              [tooltip]="chartOptions2.tooltip"
+              [legend]="chartOptions2.legend"
+            ></apx-chart>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+       <!--MD-Bar-Chart ******************* -->
+       <div class="row column1">
+        <div class="col-lg-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              <div class="heading1 margin_0">
+                <h2>MD Data - Monthly (2023)</h2>
+              </div>
+            </div>
+      <div class="map_section padding_infor_info" style="padding: 0px 0px">
+        <div id="chart">
+          <apx-chart
+          [series]="chartOptions3.series"
+          [chart]="chartOptions3.chart"
+          [xaxis]="chartOptions3.xaxis"
+          [labels]="chartOptions3.labels"
+          [markers]="chartOptions3.markers"
+          [stroke]="chartOptions3.stroke"
+          [yaxis]="chartOptions3.yaxis"
+          [dataLabels]="chartOptions3.dataLabels"
+          [title]="chartOptions3.title"
+          [fill]="chartOptions3.fill"
+          [plotOptions]="chartOptions3.plotOptions"
+          [tooltip]="chartOptions3.tooltip"
+          [legend]="chartOptions3.legend"
+        ></apx-chart>
+        </div> 
+        <!-- <div class="chartNew"> [legend]="chartOptions.legend"</div> -->
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- row -->
+    <div class="row column1">
+      <div class="col-md-12">
+        <div class="white_shd full margin_bottom_30">
+          <div class="full price_table padding_infor_info">
+            <div class="table-responsive">
+              <button
+                type="button"
+                (click)="onBtnExport()"
+                class="ag-gridbtn btn btn-primary"
+              >
+                <i class="fa fa-download"></i> CSV Export Data</button
+              >&nbsp;
+              <input
+                type="text"
+                id="filter-text-box"
+                placeholder="Search"
+                (input)="onFilterTextBoxChanged()"
+              />
+              <button type="submit" style="background: #0b7dda">
+                <i class="fa fa-search"></i>
+              </button>
+              <ag-grid-angular
+                style="width: 100%; height: 450px; margin-top: 10px ;"
+                class="ag-theme-balham"
+                [defaultColDef]="defaultColDef"
+                [gridOptions]="gridOptions"
+                [pagination]="true"
+                [paginationPageSize]="15"
+                (gridReady)="onGridReady($event)"
+                [columnDefs]="columnDefs"
+                [animateRows]="true"
+              >
+              </ag-grid-angular>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

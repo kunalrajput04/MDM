@@ -1,0 +1,18 @@
+<div class="row column1">
+  <div class="col-md-12">
+    <div id="chart">
+      <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+        [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [responsive]="chartOptions.responsive"></apx-chart>
+    </div>
+
+  </div>
+  <div class="col-md-12">
+    <div id="barchart"  >
+      <apx-chart [series]="barchartOptions.series" [chart]="barchartOptions.chart"
+        [dataLabels]="barchartOptions.dataLabels" [stroke]="barchartOptions.stroke" [colors]="barchartOptions.colors"
+        [title]="barchartOptions.title" 
+        [plotOptions]="barchartOptions.plotOptions" [responsive]="barchartOptions.responsive" [yaxis]="barchartOptions.yaxis" [xaxis]="barchartOptions.xaxis"
+        [tooltip]="barchartOptions.tooltip"></apx-chart>
+    </div>
+  </div>
+</div>

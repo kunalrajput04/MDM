@@ -1,0 +1,24 @@
+.nameinitail {
+    font-size: 20px;
+    color:white;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.bodystyle{
+    border: solid;
+    border-style: groove;
+    background-color: lightgray;
+}
+
+.consumerdetails {
+    background-color: lightgray;
+    line-height: 35px;
+  }
+  
+  .consumer {
+    font-weight: bold;
+    font-size: 30px;
+    color: #007bff;
+  }
+  

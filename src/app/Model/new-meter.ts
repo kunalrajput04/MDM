@@ -1,0 +1,33 @@
+export class NewMeter {
+    newMeterID: number = 0;
+    customerName: string = '';
+    customerNo: string = '';
+    address: string = '';
+    pincode: string = '';
+    substationID: string = '';
+    subdivisionID: string = '';
+    feederID: string = '';
+    dtid: string = '';
+    meterSerialNumber: string = '';
+    mobileSerialNumber: string = '';
+    simImei: string = '';
+    iPv6Address: string = '';
+    meterSealNo: string = '';
+    boxSealNo: string = '';
+    gprsSealNo: string = '';
+    meterManufacture: string = '';
+    sectionLoad: string = '';
+    installedKWH: string = '';
+    meterImage: string = '';
+    mobileNo: string = '';
+    meterType: string = '';
+    created: string = '';
+    installedBy: string = '';
+    profileImage: string = '';
+    userDOB: string = '';
+    state: string = '';
+    city: string = '';
+    email: string = '';
+    userMobile: string = '';
+  }
+  

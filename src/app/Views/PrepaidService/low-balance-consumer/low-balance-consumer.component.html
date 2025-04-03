@@ -1,0 +1,44 @@
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>
+                        Low Balance Consumers
+
+                        <button routerLink="/mdm/PrepaidService/consumers" class="btn btn-success btn-xs mybutton">
+                <i class="fa fa-bolt"> </i> Prepaid Consumers
+              </button> &nbsp;&nbsp;
+
+                        <button type="button" (click)="onBtnExport()" class="btn btn-primary btn-xs mybutton">
+                <i class="fas fa-file-excel"></i> Export
+              </button>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row column1">
+                <div class="col-md-12">
+                    <div class="white_shd full margin_bottom_30" style="width: 300%;">
+                        <div class="full price_table padding_infor_info">
+                            <div class="row">
+                                <!-- column contact -->
+
+                                <div class="col-md-12" style="margin-top: -25px;">
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <div id="gridContainer">
+                                                <ag-grid-angular style="width: 200%; height: 350px" class="ag-theme-balham" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]="true" [paginationPageSize]="100" (gridReady)="onGridReady($event)" [columnDefs]="columnDefs" [animateRows]="true">
+                                                </ag-grid-angular>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
