@@ -5,6 +5,36 @@
               <div style="font-size: 1.5rem; font-weight: bold;">
                 Total Meters: {{ communicatingCount + nonCommunicatingCount + neverCommunicatedCount }}
               </div>
+              <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                <div style="margin-right: 20px;">
+                  <label for="fromDate" style="margin-right: 10px;">From Date:</label>
+                  <input
+                    id="fromDate"
+                    type="date"
+                    [(ngModel)]="fromDate"
+                    style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;"
+                  />
+                </div>
+                <div>
+                  <label for="toDate" style="margin-right: 10px;">To Date:</label>
+                  <input
+                    id="toDate"
+                    type="date"
+                    [(ngModel)]="toDate"
+                    style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;"
+                  />
+                </div>
+                <div style="margin-left: 20px;">
+                  <button
+                    (click)="fetchMeterData()"
+                    [disabled]="!fromDate || !toDate"
+                    class="btn btn-success"
+                    style="padding: 5px 10px; border-radius: 4px;"
+                  >
+                    Go
+                  </button>
+                </div>
+              </div>
               <div>
                 <button
                   (click)="downloadCSV('total')"
@@ -94,6 +124,8 @@
                   </div>
                 </div>
               </li>
+              
+              
               <li style="--i: 3">
                 <div
                   style="

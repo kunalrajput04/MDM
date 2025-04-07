@@ -46,7 +46,7 @@ export class CommunicationmeterService {
 
     return this.http
       .post(
-        'https://meghasmarts.com:6003/Evit/getLastCommDevicesList', // Hardcoded API URL
+        'https://meghasmarts.com:6005/Evit/getLastCommDevicesList', // Hardcoded API URL
         payload, // Ensure payload is sent as an object
         httpOptions // Pass options correctly
       )

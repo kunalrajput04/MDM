@@ -17,10 +17,14 @@ export class MetersummeryComponent implements OnInit {
   neverCommunicatedCount: number = 0;
   tableData: any[] = [];
 
+  fromDate: string = '';
+  toDate: string = '';
+
   constructor(private service: CommunicationmeterService, private datePipe: DatePipe) {}
 
-  ngOnInit(): void {
-    this.fetchMeterData(); // Automatically fetch data when the page loads
+  setFilterDates(fromDate: string, toDate: string) {
+    this.fromDate = fromDate;
+    this.toDate = toDate;
   }
 
   fetchMeterData() {
@@ -28,7 +32,8 @@ export class MetersummeryComponent implements OnInit {
       commandType: 'LastComm',
       levelName: 'All',
       levelValue: 'MPDCL',
-      startDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd') || '',
+      startDate: this.fromDate || this.datePipe.transform(new Date(), 'yyyy-MM-dd') || '',
+      endDate: this.toDate || this.datePipe.transform(new Date(), 'yyyy-MM-dd') || '',
       status: 'Success',
       meterType: 'All',
     };
@@ -74,6 +79,11 @@ export class MetersummeryComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.fetchMeterData(); // Automatically fetch data when the page loads
+  }
+
+ 
   downloadCSV(category: string) {
     console.log(`Downloading CSV for category: ${category}`); // Debug log
     let filteredData: any[] = [];
